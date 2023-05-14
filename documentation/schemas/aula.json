@@ -1,0 +1,64 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/aula.schema.json",
+    "title": "Aula",
+    "description": "Un aula dell'istituto",
+    "type": "object",
+    "additionalProperties": "false",
+    "required": [
+        "nome",
+        "capienza",
+        "email-responsabile",
+        "numero-prese-elettriche",
+        "numero-prese-rete"
+    ],
+    "properties": {
+        "nome": {
+            "type": "string",
+            "description": "Nome dell'aula",
+            "examples": [
+                "A1.4"
+            ]
+        },
+        "capienza": {
+            "type": "integer",
+            "description": "Numero di posti",
+            "examples":[
+                50
+            ],
+            "minimum": 0
+        },
+        "numero-prese-elettriche":{
+            "type": "integer",
+            "examples":[
+                10
+            ],
+            "minimum": 0
+        },        
+        "numero-prese-rete":{
+            "type": "integer",
+            "examples":[
+                2
+            ],
+            "minimum": 0
+        },
+        "note":{
+            "type": "string",
+            "examples":[
+                "La tenda della finestra dell'aula non funziona"
+            ]
+        },
+        "attrezzatura":{
+            "$ref": "/schemas/attrezzatura"
+        },
+        "gruppo":{
+            "$ref": "/schemas/gruppo"
+        },
+        "posizione":{
+            "$ref": "/schemas/posizione"
+        },
+        "evento":{
+            "$ref": "/schemas/evento"
+        }
+    }
+}
