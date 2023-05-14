@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/aula.schema.json",
+    "title": "Aula",
+    "description": "Un aula dell'istituto",
+    "type": "object",
+    "additionalProperties": "false",
+    "required": [
+        "nome"
+    ],
+    "properties": {
+        "nome": {
+            "type": "string",
+            "examples": [
+                "Microfono",
+                "Lavagna multimediale"
+            ]
+        }
+    }
+}
