@@ -1,0 +1,41 @@
+openapi: "3.0.2"
+info:
+ title: "API Aule Web SWA 2022/2023"
+ description: "API realizzata per il progetto di esame di Sviluppo Web Avanzato dell'anno di corso 2022/2023"
+ version: "0.1"
+ termsOfService: "https://dellapenna.univaq.it/terms"
+ contact:
+  name: "Mattia Peccerillo"
+  email: "mattia.peccerillo@student.univaq.it"
+ license: 
+  name: "CC Attribution-ShareAlike4.0(CC BY-SA 4.0)"
+  url: "https://dellapenna.univaq.it"
+  
+tags:
+ - name: "Aule"
+   description: "Operazioni riguardanti le aule"
+ - name: "Eventi"
+   description: "Operazioni riguardanti gli eventi"
+   
+externalDocs:
+ url: "https://github.com/Timat-P/web-eng-2022-2023.git"
+ description: "Repository del progetto d'esame"
+  
+servers:
+ - url: "www.example.com"
+   description: "aggiungere server e descrizione"
+   
+paths:
+ /operation1:
+  get:
+   operationId: "2"
+   tags:
+   - "Aule"
+   summary: "Descrizione query"
+   description: "Descrizione dettagliata della query"
+   responses:
+    '200':
+     description: "Operazione avvenuta con successo"
+    '404':
+     description: "NOT FOUND"
+     
