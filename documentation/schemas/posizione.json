@@ -1,19 +1,38 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://example.com/aula.schema.json",
-    "title": "Aula",
-    "description": "Un aula dell'istituto",
+    "$id": "https://example.com/posizione.schema.json",
+    "title": "Posizione",
+    "description": "La posizione di un aula o più aule",
     "type": "object",
     "additionalProperties": "false",
     "required": [
-        "nome"
+        "luogo",
+        "edificio",
+        "piano"
     ],
     "properties": {
-        "nome": {
+        "luogo": {
             "type": "string",
+            "description": "Posizione geografica",
             "examples": [
-                "Microfono",
-                "Lavagna multimediale"
+                "Coppito",
+                "Roio"
+            ]
+        },
+        "edificio": {
+            "type": "string",
+            "description": "Nome dell'edificio",
+            "examples": [
+                "Edificio Alan Turing",
+                "Coppito 2"
+            ]
+        },
+        "piano": {
+            "type": "string",
+            "description": "Piano dell'edificio",
+            "examples": [
+                "Piano Terra",
+                "Primo Piano"
             ]
         }
     }

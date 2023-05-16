@@ -1,0 +1,31 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/aula.schema.json",
+    "title": "Responsabile",
+    "description": "Un responsabile che si occupa di un evento",
+    "type": "object",
+    "additionalProperties": "false",
+    "required": [
+        "nome",
+        "e-mail"
+    ],
+    "properties": {
+        "nome": {
+            "type": "string",
+            "description": "Nome del corso",
+            "examples": [
+                "[DT0209] - SVILUPPO WEB AVANZATO"
+            ]
+        },
+        "e-mail":{
+            "type": "string",
+            "example":[
+                "andrea.dorazio@student.univaq.istituto"
+            ]
+        },
+        "evento": {
+            "type": "object",
+            "$ref": "/evento"
+        }
+    }
+}

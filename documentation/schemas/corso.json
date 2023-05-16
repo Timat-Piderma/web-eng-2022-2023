@@ -1,8 +1,8 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://example.com/aula.schema.json",
-    "title": "Attrezzatura",
-    "description": "L'attrezzatura che può trovarsi all'interno di un aula",
+    "title": "Corso",
+    "description": "Un corso di cui può far parte un evento",
     "type": "object",
     "additionalProperties": "false",
     "required": [
@@ -11,10 +11,14 @@
     "properties": {
         "nome": {
             "type": "string",
+            "description": "Nome del corso",
             "examples": [
-                "Microfono",
-                "Lavagna multimediale"
+                "[DT0209] - SVILUPPO WEB AVANZATO"
             ]
+        },
+        "evento":{
+            "type": "object",
+            "$ref": "/evento"
         }
     }
 }

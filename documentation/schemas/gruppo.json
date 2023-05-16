@@ -1,19 +1,25 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://example.com/aula.schema.json",
-    "title": "Aula",
-    "description": "Un aula dell'istituto",
+    "$id": "https://example.com/gruppo.schema.json",
+    "title": "Gruppo",
+    "description": "Un complesso di aule",
     "type": "object",
     "additionalProperties": "false",
     "required": [
-        "nome"
+        "nome",
+        "descrizione"
     ],
     "properties": {
         "nome": {
             "type": "string",
             "examples": [
-                "Microfono",
-                "Lavagna multimediale"
+                "DISIM"
+            ]
+        },
+        "descrizione": {
+            "type": "string",
+            "examples": [
+                "Dipartimento di Ingegneria e Scienze dell'Informazione e Matematica"
             ]
         }
     }
