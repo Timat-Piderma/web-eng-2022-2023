@@ -1,0 +1,81 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/aula.schema.json",
+    "title": "Evento",
+    "description": "Un evento che può prendere luogo in un'aula",
+    "type": "object",
+    "additionalProperties": "false",
+    "required": [
+        "data",
+        "ora_inizio",
+        "ora_fine",
+        "descrizione",
+        "nome",
+        "id",
+        "tipo",
+        "aula",
+        "responsabile"
+    ],
+    "properties": {
+        "data":{
+            "type": "string",
+            "description": "La data in cui prenderà luogo l'evento",
+            "examples":[
+                "2021-09-06"
+            ],
+            "format": "date"
+        },
+        "ora_inizio":{
+            "type": "string",
+            "description": "L'ora di inizio dell'evento",
+            "examples":[
+                "20:20:39+00:00"
+            ],
+            "format": "time"
+        },
+        "ora_fine":{
+            "type": "string",
+            "description": "L'ora in cui l'evento termina",
+            "examples":[
+                "20:20:39+00:00"
+            ],
+            "format": "time"
+        },
+        "descrizione":{
+            "type": "string",
+            "description": "Una descrizione dell'evento",
+            "examples":[
+                "Seconda lezione di Inglese B1",
+                "Seminario Cybersecurity della Leonardo"
+            ]
+        },
+        "nome": {
+            "type": "string",
+            "description": "Nome del corso",
+            "examples": [
+                "[DT0209] - SVILUPPO WEB AVANZATO"
+            ]
+        },
+        "id":{
+            "type": "integer",
+            "description": "ID univoco dell'evento",
+            "examples":[
+                10745
+            ]
+        },
+        "tipo":{
+            "type": "string",
+            "description": "Tipologia di evento",
+            "enum":["Seminario", "Riunione", "Laurea", "Lezione", "Esame", "Parziale", "Altro"]
+        },
+        "aula":{
+            "$ref": "/aula"
+        },
+        "responsabile":{
+            "$ref": "/responsabile"
+        },
+        "corso":{
+            "$ref": "/corso"
+        }
+    }
+}
