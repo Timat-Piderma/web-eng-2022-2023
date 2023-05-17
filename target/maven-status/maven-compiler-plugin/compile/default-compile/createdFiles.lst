@@ -1,0 +1,5 @@
+org\univaq\swa\auleweb\aulewebrest\resources\AulaResource.class
+org\univaq\swa\auleweb\aulewebrest\model\Prodotto.class
+org\univaq\swa\auleweb\aulewebrest\security\Logged.class
+org\univaq\swa\fattura\fatturarest\CustomException.class
+org\univaq\swa\auleweb\aulewebrest\jackson\NewClass.class
