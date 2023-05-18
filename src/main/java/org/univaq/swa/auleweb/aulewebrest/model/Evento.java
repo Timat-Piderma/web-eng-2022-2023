@@ -2,6 +2,7 @@ package org.univaq.swa.auleweb.aulewebrest.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public class Evento {
     
@@ -12,7 +13,7 @@ public class Evento {
     private String nome;
     private Integer id;
     private Tipologia tipo;
-    private Aula[] aula;
+    private List<Aula> aule;
     private Responsabile responsabile;
 
     /**
@@ -116,15 +117,15 @@ public class Evento {
     /**
      * @return the aula
      */
-    public Aula[] getAula() {
-        return aula;
+    public List<Aula> getAule() {
+        return aule;
     }
 
     /**
-     * @param aula the aula to set
+     * @param aule the aula to set
      */
-    public void setAula(Aula[] aula) {
-        this.aula = aula;
+    public void setAule(List<Aula> aule) {
+        this.aule = aule;
     }
 
     /**
