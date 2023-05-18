@@ -8,10 +8,10 @@ public class Aula {
     private int numeroPreseElettriche;
     private int numeroPreseRete;
     private String note;
-    //private Attrezzatura[] attrezzatura;
-    //private Gruppo gruppo;
-    //private Posizione posizione;
-    //private Evento[] eventi;
+    private Attrezzatura[] attrezzatura;
+    private Gruppo gruppo;
+    private Posizione posizione;
+    private Evento[] eventi;
 
     public Aula() {
         //dati di default
@@ -99,5 +99,61 @@ public class Aula {
      */
     public void setNote(String note) {
         this.note = note;
+    }
+
+    /**
+     * @return the attrezzatura
+     */
+    public Attrezzatura[] getAttrezzatura() {
+        return attrezzatura;
+    }
+
+    /**
+     * @param attrezzatura the attrezzatura to set
+     */
+    public void setAttrezzatura(Attrezzatura[] attrezzatura) {
+        this.attrezzatura = attrezzatura;
+    }
+
+    /**
+     * @return the gruppo
+     */
+    public Gruppo getGruppo() {
+        return gruppo;
+    }
+
+    /**
+     * @param gruppo the gruppo to set
+     */
+    public void setGruppo(Gruppo gruppo) {
+        this.gruppo = gruppo;
+    }
+
+    /**
+     * @return the posizione
+     */
+    public Posizione getPosizione() {
+        return posizione;
+    }
+
+    /**
+     * @param posizione the posizione to set
+     */
+    public void setPosizione(Posizione posizione) {
+        this.posizione = posizione;
+    }
+
+    /**
+     * @return the eventi
+     */
+    public Evento[] getEventi() {
+        return eventi;
+    }
+
+    /**
+     * @param eventi the eventi to set
+     */
+    public void setEventi(Evento[] eventi) {
+        this.eventi = eventi;
     }
 }

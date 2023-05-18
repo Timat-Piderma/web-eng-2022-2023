@@ -11,9 +11,9 @@ public class Evento {
     private String descrizione;
     private String nome;
     private Integer id;
-    //private TipologiaEvento tipo;
-    //private Aula aula;
-    //private Responsabile responsabile;
+    private Tipologia tipo;
+    private Aula[] aula;
+    private Responsabile responsabile;
 
     /**
      * @return the data
@@ -97,5 +97,47 @@ public class Evento {
      */
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public Tipologia getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(Tipologia tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @return the aula
+     */
+    public Aula[] getAula() {
+        return aula;
+    }
+
+    /**
+     * @param aula the aula to set
+     */
+    public void setAula(Aula[] aula) {
+        this.aula = aula;
+    }
+
+    /**
+     * @return the responsabile
+     */
+    public Responsabile getResponsabile() {
+        return responsabile;
+    }
+
+    /**
+     * @param responsabile the responsabile to set
+     */
+    public void setResponsabile(Responsabile responsabile) {
+        this.responsabile = responsabile;
     }
 }
