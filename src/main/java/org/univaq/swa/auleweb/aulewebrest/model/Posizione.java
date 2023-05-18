@@ -1,11 +1,13 @@
 package org.univaq.swa.auleweb.aulewebrest.model;
 
+import java.util.List;
+
 public class Posizione {
     private Integer id;
     private String nome;
     private String edificio;
     private String piano;
-    private Aula[] aule;
+    private List<Aula> aule;
 
     /**
      * @return the id
@@ -66,14 +68,14 @@ public class Posizione {
     /**
      * @return the aule
      */
-    public Aula[] getAule() {
+    public List<Aula> getAule() {
         return aule;
     }
 
     /**
      * @param aule the aule to set
      */
-    public void setAule(Aula[] aule) {
+    public void setAule(List<Aula> aule) {
         this.aule = aule;
     }
     

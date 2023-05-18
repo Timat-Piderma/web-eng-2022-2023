@@ -1,10 +1,12 @@
 package org.univaq.swa.auleweb.aulewebrest.model;
 
+import java.util.List;
+
 public class Gruppo {
     private Integer id;
     private String nome;
     private String descrizione;
-    private Aula[] aule;
+    private List<Aula> aule;
     
     /**
      * @return the id
@@ -51,14 +53,14 @@ public class Gruppo {
     /**
      * @return the aule
      */
-    public Aula[] getAule() {
+    public List<Aula> getAule() {
         return aule;
     }
 
     /**
      * @param aule the aule to set
      */
-    public void setAule(Aula[] aule) {
+    public void setAule(List<Aula> aule) {
         this.aule = aule;
     }
 }
