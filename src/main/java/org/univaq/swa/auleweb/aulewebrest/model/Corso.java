@@ -1,9 +1,11 @@
 package org.univaq.swa.auleweb.aulewebrest.model;
 
+import java.util.List;
+
 public class Corso {
     private String nome;
     private Integer id;
-    private Evento[] eventi;
+    private List<Evento> eventi;
 
     /**
      * @return the nome
@@ -36,14 +38,14 @@ public class Corso {
     /**
      * @return the eventi
      */
-    public Evento[] getEventi() {
+    public List<Evento>  getEventi() {
         return eventi;
     }
 
     /**
      * @param eventi the eventi to set
      */
-    public void setEventi(Evento[] eventi) {
+    public void setEventi(List<Evento> eventi) {
         this.eventi = eventi;
     }
 }

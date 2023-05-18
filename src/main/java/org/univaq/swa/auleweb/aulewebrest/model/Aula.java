@@ -1,5 +1,7 @@
 package org.univaq.swa.auleweb.aulewebrest.model;
 
+import java.util.List;
+
 public class Aula {
 
     private String nome;
@@ -8,10 +10,10 @@ public class Aula {
     private int numeroPreseElettriche;
     private int numeroPreseRete;
     private String note;
-    private Attrezzatura[] attrezzatura;
+    private List<Attrezzatura> attrezzature;
     private Gruppo gruppo;
     private Posizione posizione;
-    private Evento[] eventi;
+    private List<Evento> eventi;
 
     public Aula() {
         //dati di default
@@ -104,15 +106,15 @@ public class Aula {
     /**
      * @return the attrezzatura
      */
-    public Attrezzatura[] getAttrezzatura() {
-        return attrezzatura;
+    public List<Attrezzatura> getAttrezzature() {
+        return attrezzature;
     }
 
     /**
-     * @param attrezzatura the attrezzatura to set
+     * @param attrezzature the attrezzature to set
      */
-    public void setAttrezzatura(Attrezzatura[] attrezzatura) {
-        this.attrezzatura = attrezzatura;
+    public void setAttrezzature(List<Attrezzatura> attrezzature) {
+        this.attrezzature = attrezzature;
     }
 
     /**
@@ -146,14 +148,14 @@ public class Aula {
     /**
      * @return the eventi
      */
-    public Evento[] getEventi() {
+    public List<Evento> getEventi() {
         return eventi;
     }
 
     /**
      * @param eventi the eventi to set
      */
-    public void setEventi(Evento[] eventi) {
+    public void setEventi(List<Evento> eventi) {
         this.eventi = eventi;
     }
 }
