@@ -27,10 +27,6 @@ public interface Evento extends DataItem<Integer>{
     
     void setNome(String nome);
     
-    int getId();
-    
-    void setId(int id);
-    
     Tipologia getTipologia();
     
     void setTipologia(Tipologia tipologia);
@@ -38,6 +34,8 @@ public interface Evento extends DataItem<Integer>{
     List<Aula> getAule();
     
     void setAule(List<Aula> aule);
+    
+    void addAula(Aula aula);
     
     Responsabile getResponsabile();
     

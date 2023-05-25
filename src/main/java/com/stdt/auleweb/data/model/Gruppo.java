@@ -5,10 +5,6 @@ import java.util.List;
 
 public interface Gruppo extends DataItem<Integer>{
     
-    int getId();
-        
-    void setId(int id);
-    
     String getNome(String nome);
     
     void setNome();
@@ -20,4 +16,6 @@ public interface Gruppo extends DataItem<Integer>{
     List<Aula> getAule();
     
     void setAule(List<Aula> aule);
+    
+    void addAula(Aula aula);
 }
