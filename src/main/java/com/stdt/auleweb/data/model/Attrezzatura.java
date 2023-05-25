@@ -1,8 +1,9 @@
 package com.stdt.auleweb.data.model;
 
+import com.stdt.auleweb.framework.data.DataItem;
 import java.util.List;
 
-public interface Attrezzatura {
+public interface Attrezzatura extends DataItem<Integer>{
     
     int getId();
     

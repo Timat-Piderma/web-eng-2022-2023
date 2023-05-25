@@ -1,8 +1,9 @@
 package com.stdt.auleweb.data.model;
 
+import com.stdt.auleweb.framework.data.DataItem;
 import java.util.List;
 
-public interface Aula {
+public interface Aula extends DataItem<Integer>{
     
     String getNome();
     
@@ -32,6 +33,8 @@ public interface Aula {
     
     void setAttrezzature(List<Attrezzatura> attrezzature);
     
+    void addAttrezzatura(Attrezzatura attrezzatura);
+    
     Gruppo getGruppo();
     
     void setGruppo(Gruppo gruppo);
@@ -43,5 +46,7 @@ public interface Aula {
     List<Evento> getEventi();
     
     void setEventi(List<Evento> eventi);
+    
+    void addEvento(Evento evento);
     
 }

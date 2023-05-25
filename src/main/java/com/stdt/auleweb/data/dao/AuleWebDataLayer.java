@@ -1,7 +1,7 @@
 package com.stdt.auleweb.data.dao;
 
-import com.stdt.auleweb.data.DataException;
-import com.stdt.auleweb.data.DataLayer;
+import com.stdt.auleweb.framework.data.DataException;
+import com.stdt.auleweb.framework.data.DataLayer;
 import com.stdt.auleweb.data.model.Aula;
 import java.sql.SQLException;
 import javax.sql.DataSource;

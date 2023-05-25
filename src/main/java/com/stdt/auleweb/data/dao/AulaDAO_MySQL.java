@@ -1,8 +1,8 @@
 package com.stdt.auleweb.data.dao;
 
-import com.stdt.auleweb.data.DAO;
-import com.stdt.auleweb.data.DataException;
-import com.stdt.auleweb.data.DataLayer;
+import com.stdt.auleweb.framework.data.DAO;
+import com.stdt.auleweb.framework.data.DataException;
+import com.stdt.auleweb.framework.data.DataLayer;
 import com.stdt.auleweb.data.model.Aula;
 import com.stdt.auleweb.data.model.Posizione;
 import java.sql.PreparedStatement;

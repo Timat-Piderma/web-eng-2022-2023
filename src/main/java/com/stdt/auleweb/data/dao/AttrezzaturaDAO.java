@@ -1,6 +1,6 @@
 package com.stdt.auleweb.data.dao;
 
-import com.stdt.auleweb.data.DataException;
+import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.data.model.Attrezzatura;
 import com.stdt.auleweb.data.model.Aula;
 import java.util.List;

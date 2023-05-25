@@ -1,8 +1,8 @@
 package com.stdt.auleweb.data.impl;
 
-import com.stdt.auleweb.data.DataItemImpl;
+import com.stdt.auleweb.framework.data.DataItemImpl;
 import com.stdt.auleweb.data.model.Posizione;
-import com.stdt.auleweb.rest.model.Aula;
+import com.stdt.auleweb.template.model.Aula;
 import java.util.List;
 
 public class PosizioneImpl extends DataItemImpl<Integer> implements Posizione {

@@ -1,7 +1,7 @@
 package com.stdt.auleweb.data.model;
 
-import com.stdt.auleweb.data.DataItem;
-import com.stdt.auleweb.rest.model.Aula;
+import com.stdt.auleweb.framework.data.DataItem;
+import com.stdt.auleweb.template.model.Aula;
 import java.util.List;
 
 public interface Posizione extends DataItem<Integer> {
