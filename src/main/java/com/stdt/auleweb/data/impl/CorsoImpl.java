@@ -37,7 +37,7 @@ public class CorsoImpl extends DataItemImpl<Integer> implements Corso {
     }
 
     @Override
-    public void addEventi(Evento evento) {
+    public void addEvento(Evento evento) {
         this.eventi.add(evento);
     }
 }

@@ -4,6 +4,7 @@ import com.stdt.auleweb.data.model.Aula;
 import com.stdt.auleweb.data.model.Corso;
 import com.stdt.auleweb.data.model.Evento;
 import com.stdt.auleweb.data.model.Gruppo;
+import com.stdt.auleweb.data.model.Responsabile;
 import com.stdt.auleweb.framework.data.DAO;
 import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.data.DataLayer;
@@ -114,6 +115,16 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO{
 
     @Override
     public Evento getEvento(int evento_key) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Evento> getEventiByResponsabile(Responsabile responsabile) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Evento> getEventiByCorso(Corso corso) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

@@ -15,6 +15,8 @@ public interface EventoDAO {
     
     Evento getEvento(int evento_key) throws DataException;
     
+    List<Evento> getEventiByCorso (Corso corso) throws DataException;
+    
     List<Evento> getEventiByResponsabile(Responsabile responsabile) throws DataException;
 
     List<Evento> getEventi() throws DataException;
