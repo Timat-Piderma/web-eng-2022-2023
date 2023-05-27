@@ -20,6 +20,7 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
 
     protected boolean modified;
     protected int posizione_key = 0;
+    protected int gruppo_key = 0;
 
     protected DataLayer dataLayer;
 
@@ -35,6 +36,16 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
     public void setKey(Integer key) {
         super.setKey(key);
         this.modified = true;
+    }
+
+    public void setGruppoKey(int gruppo_key) {
+        this.gruppo_key = gruppo_key;
+        super.setGruppo(null);
+    }
+
+    public void setPosizioneKey(int posizione_key) {
+        this.posizione_key = posizione_key;
+        super.setPosizione(null);
     }
 
     @Override
@@ -158,7 +169,7 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
         super.addEvento(evento);
         this.modified = true;
     }
-    
+
     //METODI DEL PROXY
     //PROXY-ONLY METHODS
     @Override
@@ -169,13 +180,6 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
     @Override
     public boolean isModified() {
         return modified;
-    }
-
-    public void setPosizioneKey(int posizione_key) {
-        this.posizione_key = posizione_key;
-        //resettiamo la cache dell'autore
-        //reset author cache
-        super.setPosizione(null);
     }
 
 }

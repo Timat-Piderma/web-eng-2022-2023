@@ -5,22 +5,24 @@ import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.data.DataLayer;
 import com.stdt.auleweb.data.model.Aula;
 import com.stdt.auleweb.data.model.Posizione;
+import com.stdt.auleweb.data.proxy.AulaProxy;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-public class AulaDAO_MySQL extends DAO implements AulaDAO{
+public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
     private PreparedStatement sAulaByID;
     private PreparedStatement sAule, sAulaByPosizione;
     private PreparedStatement iAula, uAula, dAula;
-    
+
     public AulaDAO_MySQL(DataLayer d) {
         super(d);
     }
-    
-        @Override
+
+    @Override
     public void init() throws DataException {
         try {
             super.init();
@@ -38,11 +40,9 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO{
             //note the last parameter in this call to prepareStatement:
             //it is used to ensure that the JDBC will sotre and return
             //the auto generated key for the inserted recors
-            
-           // iAula = connection.prepareStatement("INSERT INTO article (title,text,authorID,issueID,page) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            // iAula = connection.prepareStatement("INSERT INTO article (title,text,authorID,issueID,page) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             //uAula = connection.prepareStatement("UPDATE article SET title=?,text=?,authorID=?,issueID=?, page=?, version=? WHERE ID=? and version=?");
             //dAula = connection.prepareStatement("DELETE FROM article WHERE ID=?");
-
         } catch (SQLException ex) {
             throw new DataException("Error initializing auleweb data layer", ex);
         }
@@ -69,10 +69,29 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO{
         super.destroy();
     }
 
-
     @Override
     public Aula createAula() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new AulaProxy(getDataLayer());
+    }
+
+    public Aula createAula(ResultSet rs) throws DataException {
+        AulaProxy a = (AulaProxy) createAula();
+        try {
+            a.setKey(rs.getInt("ID"));
+            a.setGruppoKey(rs.getInt("gruppoID"));
+            a.setPosizioneKey(rs.getInt("posizioneID"));
+            a.setNome(rs.getString("nome"));
+            a.setCapienza(rs.getInt("capienza"));
+            a.setNumeroPreseElettriche(rs.getInt("numeroPreseElettriche"));
+            a.setNumeroPreseRete(rs.getInt("numeroPreseRete"));
+            a.setEmailResponsabile(rs.getString("emailResponsabile"));
+            a.setNote(rs.getString("note"));
+            a.setVersion(rs.getLong("version"));
+        } catch (SQLException ex) {
+            throw new DataException("Unable to create article object form ResultSet", ex);
+
+        }
+        return a;
     }
 
     @Override
@@ -89,5 +108,5 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO{
     public void setAule(List<Aula> aule) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }
