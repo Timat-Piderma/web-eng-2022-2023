@@ -88,7 +88,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             a.setNote(rs.getString("note"));
             a.setVersion(rs.getLong("version"));
         } catch (SQLException ex) {
-            throw new DataException("Unable to create article object form ResultSet", ex);
+            throw new DataException("Unable to create aula object form ResultSet", ex);
 
         }
         return a;

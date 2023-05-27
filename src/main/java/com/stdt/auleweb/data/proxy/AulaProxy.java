@@ -30,6 +30,7 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
         this.dataLayer = d;
         this.modified = false;
         this.posizione_key = 0;
+        this.gruppo_key = 0;
     }
 
     @Override

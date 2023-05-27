@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface Gruppo extends DataItem<Integer>{
     
-    String getNome(String nome);
+    String getNome();
     
-    void setNome();
+    void setNome(String nome);
     
     String getDescrizione();
     

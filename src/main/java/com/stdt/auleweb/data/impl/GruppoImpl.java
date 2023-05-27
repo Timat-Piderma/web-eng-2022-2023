@@ -19,12 +19,12 @@ public class GruppoImpl extends DataItemImpl<Integer> implements Gruppo {
     }
 
     @Override
-    public String getNome(String nome) {
+    public String getNome() {
         return nome;
     }
 
     @Override
-    public void setNome() {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
