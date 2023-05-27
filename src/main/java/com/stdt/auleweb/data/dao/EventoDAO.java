@@ -5,6 +5,7 @@ import com.stdt.auleweb.data.model.Aula;
 import com.stdt.auleweb.data.model.Corso;
 import com.stdt.auleweb.data.model.Evento;
 import com.stdt.auleweb.data.model.Gruppo;
+import com.stdt.auleweb.data.model.Responsabile;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,6 +14,8 @@ public interface EventoDAO {
     Evento createEvento() throws DataException;
     
     Evento getEvento(int evento_key) throws DataException;
+    
+    List<Evento> getEventiByResponsabile(Responsabile responsabile) throws DataException;
 
     List<Evento> getEventi() throws DataException;
 
@@ -27,5 +30,7 @@ public interface EventoDAO {
     List<Evento> getEventiBySettimanaAndCorso(Corso corso, LocalDate giorno) throws DataException;
     
     void storeEvento(Evento evento) throws DataException;
+    
+  
 
 }
