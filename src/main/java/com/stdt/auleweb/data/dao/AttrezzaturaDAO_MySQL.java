@@ -83,4 +83,14 @@ public class AttrezzaturaDAO_MySQL extends DAO implements AttrezzaturaDAO{
     public List<Attrezzatura> getAttrezzature(Aula aula) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void storeAttrezzatura(Attrezzatura attrezzatura) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Attrezzatura getAttrezzatura(int attrezzatura_key) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

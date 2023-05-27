@@ -4,11 +4,9 @@ import com.stdt.auleweb.framework.data.DAO;
 import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.data.DataLayer;
 import com.stdt.auleweb.data.model.Aula;
-import com.stdt.auleweb.data.model.Gruppo;
 import com.stdt.auleweb.data.model.Posizione;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO{
 
@@ -75,17 +73,17 @@ public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO{
     }
 
     @Override
-    public Posizione getPosizione() throws DataException {
+    public Posizione getPosizioneByAula(Aula aula) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Posizione getPosizione(int id) throws DataException {
+    public void storePosizione(Posizione posizione) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Posizione getPosizione(Aula aula) throws DataException {
+    public Posizione getPosizione(int posizione_key) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

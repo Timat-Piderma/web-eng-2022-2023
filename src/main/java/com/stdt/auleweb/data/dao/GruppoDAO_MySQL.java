@@ -3,7 +3,6 @@ package com.stdt.auleweb.data.dao;
 import com.stdt.auleweb.framework.data.DAO;
 import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.data.DataLayer;
-import com.stdt.auleweb.data.model.Aula;
 import com.stdt.auleweb.data.model.Gruppo;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -74,12 +73,17 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO{
     }
 
     @Override
-    public Gruppo getGruppo(Aula aula) throws DataException {
+    public List<Gruppo> getGruppi() throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Gruppo> getGruppi() throws DataException {
+    public void storeGruppo(Gruppo gruppo) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Gruppo getGruppo(int gruppo_key) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

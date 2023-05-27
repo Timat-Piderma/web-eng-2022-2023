@@ -1,11 +1,13 @@
 package com.stdt.auleweb.data.dao;
 
+import com.stdt.auleweb.data.model.Corso;
 import com.stdt.auleweb.data.model.Evento;
 import com.stdt.auleweb.framework.data.DAO;
 import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.data.DataLayer;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 public class CorsoDAO_MySQL extends DAO implements CorsoDAO{
     
@@ -68,12 +70,32 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO{
     }
 
     @Override
-    public CorsoDAO createCorso() throws DataException {
+    public Corso getCorsoByEvento(Evento evento) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public CorsoDAO getCorso(Evento evento) throws DataException {
+    public Corso getCorsoByNome(String nome) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Corso> getCorsi() throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void storeCorso(Corso corso) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Corso createCorso() throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Corso getCorso(int corso_key) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

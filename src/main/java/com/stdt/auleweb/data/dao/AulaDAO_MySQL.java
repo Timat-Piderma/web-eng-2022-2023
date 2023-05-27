@@ -4,12 +4,12 @@ import com.stdt.auleweb.framework.data.DAO;
 import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.data.DataLayer;
 import com.stdt.auleweb.data.model.Aula;
+import com.stdt.auleweb.data.model.Gruppo;
 import com.stdt.auleweb.data.model.Posizione;
 import com.stdt.auleweb.data.proxy.AulaProxy;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 public class AulaDAO_MySQL extends DAO implements AulaDAO {
@@ -100,12 +100,32 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
 
     @Override
-    public List<Aula> getAule(Posizione posizione) {
+    public Aula getAulaByNome(String nome) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void setAule(List<Aula> aule) {
+    public Aula getAulaById(int id) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Aula> getAuleByPosizione(Posizione posizione) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Aula> getAuleByGruppo(Gruppo gruppo) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void storeAula(Aula aula) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Aula getAula(int aula_key) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

@@ -9,7 +9,11 @@ public interface AttrezzaturaDAO {
     
     Attrezzatura createAttrezzatura() throws DataException;
     
+    Attrezzatura getAttrezzatura(int attrezzatura_key) throws DataException;
+    
     List<Attrezzatura> getAttrezzature() throws DataException;
     
     List<Attrezzatura> getAttrezzature(Aula aula) throws DataException;
+    
+    void storeAttrezzatura(Attrezzatura attrezzatura) throws DataException;
 }

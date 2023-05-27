@@ -1,12 +1,15 @@
 package com.stdt.auleweb.data.dao;
 
 import com.stdt.auleweb.data.model.Aula;
+import com.stdt.auleweb.data.model.Corso;
 import com.stdt.auleweb.data.model.Evento;
+import com.stdt.auleweb.data.model.Gruppo;
 import com.stdt.auleweb.framework.data.DAO;
 import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.data.DataLayer;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class EventoDAO_MySQL extends DAO implements EventoDAO{
@@ -81,6 +84,36 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO{
 
     @Override
     public List<Evento> getEventi(Aula aula) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Evento> getEventiBySettimana(Aula aula, LocalDate giorno) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Evento> getEventiByGiorno(Gruppo gruppo, LocalDate giorno) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Evento> getEventiNextThreeHours(Gruppo gruppo) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Evento> getEventiBySettimanaAndCorso(Corso corso, LocalDate giorno) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void storeEvento(Evento evento) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Evento getEvento(int evento_key) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

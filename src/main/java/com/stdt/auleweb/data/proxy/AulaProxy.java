@@ -138,7 +138,7 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
     public Gruppo getGruppo() {
         if (super.getGruppo() == null) {
             try {
-                super.setGruppo(((GruppoDAO) dataLayer.getDAO(Gruppo.class)).getGruppo(this));
+                super.setGruppo(((GruppoDAO) dataLayer.getDAO(Gruppo.class)).getGruppo(gruppo_key));
             } catch (DataException ex) {
                 //Logger.getLogger(GruppoProxy.class.getName()).log(Level.SEVERE, null, ex);
             }
