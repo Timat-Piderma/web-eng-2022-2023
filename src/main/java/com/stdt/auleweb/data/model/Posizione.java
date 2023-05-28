@@ -1,7 +1,6 @@
 package com.stdt.auleweb.data.model;
 
 import com.stdt.auleweb.framework.data.DataItem;
-import com.stdt.auleweb.template.model.Aula;
 import java.util.List;
 
 public interface Posizione extends DataItem<Integer> {
@@ -21,5 +20,7 @@ public interface Posizione extends DataItem<Integer> {
     List<Aula> getAule();
     
     void setAule(List<Aula> aule);
+    
+    void addAula(Aula aula);
 
 }

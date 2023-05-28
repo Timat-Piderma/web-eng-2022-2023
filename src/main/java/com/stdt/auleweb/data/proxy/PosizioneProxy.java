@@ -1,8 +1,8 @@
 package com.stdt.auleweb.data.proxy;
 
-import com.stdt.auleweb.data.dao.EventoDAO;
-import com.stdt.auleweb.data.impl.CorsoImpl;
-import com.stdt.auleweb.data.model.Evento;
+import com.stdt.auleweb.data.dao.AulaDAO;
+import com.stdt.auleweb.data.impl.PosizioneImpl;
+import com.stdt.auleweb.data.model.Aula;
 import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.data.DataItemProxy;
 import com.stdt.auleweb.framework.data.DataLayer;
@@ -10,14 +10,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CorsoProxy extends CorsoImpl implements DataItemProxy{
-
+public class PosizioneProxy extends PosizioneImpl implements DataItemProxy {
 
     protected boolean modified;
 
     protected DataLayer dataLayer;
 
-    public CorsoProxy(DataLayer d) {
+    public PosizioneProxy(DataLayer d) {
         super();
         //dependency injection
         this.dataLayer = d;
@@ -31,32 +30,44 @@ public class CorsoProxy extends CorsoImpl implements DataItemProxy{
     }
 
     @Override
-    public void setEventi(List<Evento> eventi) {
-        super.setEventi(eventi);
+    public void setAule(List<Aula> aule) {
+        super.setAule(aule);
         this.modified = true;
     }
 
     @Override
-    public List<Evento> getEventi() {
-        if (super.getEventi() == null) {
+    public List<Aula> getAule() {
+        if (super.getAule() == null) {
             try {
-                super.setEventi(((EventoDAO) dataLayer.getDAO(Evento.class)).getEventiByCorso(this));
+                super.setAule(((AulaDAO) dataLayer.getDAO(Aula.class)).getAuleByPosizione(this));
             } catch (DataException ex) {
-                Logger.getLogger(CorsoProxy.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PosizioneProxy.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return super.getEventi();
+        return super.getAule();
     }
 
     @Override
-    public void addEvento(Evento evento) {
-        super.addEvento(evento);
+    public void addAula(Aula aula) {
+        super.addAula(aula);
         this.modified = true;
     }
 
     @Override
     public void setNome(String nome) {
         super.setNome(nome);
+        this.modified = true;
+    }
+
+    @Override
+    public void setEdificio(String edificio) {
+        super.setEdificio(edificio);
+        this.modified = true;
+    }
+
+    @Override
+    public void setPiano(String piano) {
+        super.setPiano(piano);
         this.modified = true;
     }
 
@@ -71,5 +82,5 @@ public class CorsoProxy extends CorsoImpl implements DataItemProxy{
     public boolean isModified() {
         return modified;
     }
-  
+
 }

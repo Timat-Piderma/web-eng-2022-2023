@@ -1,13 +1,13 @@
 package com.stdt.auleweb.data.impl;
 
 import com.stdt.auleweb.data.model.Aula;
+import com.stdt.auleweb.data.model.Corso;
 import com.stdt.auleweb.data.model.Evento;
 import com.stdt.auleweb.data.model.Responsabile;
 import com.stdt.auleweb.data.model.Tipologia;
 import com.stdt.auleweb.framework.data.DataItemImpl;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 public class EventoImpl extends DataItemImpl<Integer> implements Evento {
 
@@ -17,8 +17,9 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     private String descrizione;
     private String nome;
     private Tipologia tipologia;
-    private List<Aula> aule;
+    private Aula aula;
     private Responsabile responsabile;
+    private Corso corso;
 
     public EventoImpl() {
         super();
@@ -28,8 +29,9 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
         descrizione = "";
         nome = "";
         tipologia = null;
-        aule = null;
+        aula = null;
         responsabile = null;
+        corso = null;
     }
 
     @Override
@@ -93,18 +95,13 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     }
 
     @Override
-    public List<Aula> getAule() {
-        return aule;
+    public Aula getAula() {
+        return aula;
     }
 
     @Override
-    public void setAule(List<Aula> aule) {
-        this.aule = aule;
-    }
-
-    @Override
-    public void addAula(Aula aula) {
-        this.aule.add(aula);
+    public void setAula(Aula aul) {
+        this.aula = aul;
     }
 
     @Override
@@ -115,5 +112,15 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     @Override
     public void setResponsabile(Responsabile responsabile) {
         this.responsabile = responsabile;
+    }
+
+    @Override
+    public Corso getCorso() {
+        return corso;
+    }
+
+    @Override
+    public void setCorso(Corso corso) {
+        this.corso = corso;
     }
 }

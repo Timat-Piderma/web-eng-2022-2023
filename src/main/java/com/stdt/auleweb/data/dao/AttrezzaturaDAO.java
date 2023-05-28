@@ -13,7 +13,7 @@ public interface AttrezzaturaDAO {
     
     List<Attrezzatura> getAttrezzature() throws DataException;
     
-    List<Attrezzatura> getAttrezzature(Aula aula) throws DataException;
+    List<Attrezzatura> getAttrezzatureByAula(Aula aula) throws DataException;
     
     void storeAttrezzatura(Attrezzatura attrezzatura) throws DataException;
 }

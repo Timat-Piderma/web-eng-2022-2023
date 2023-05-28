@@ -1,8 +1,8 @@
 package com.stdt.auleweb.data.impl;
 
-import com.stdt.auleweb.framework.data.DataItemImpl;
+import com.stdt.auleweb.data.model.Aula;
 import com.stdt.auleweb.data.model.Posizione;
-import com.stdt.auleweb.template.model.Aula;
+import com.stdt.auleweb.framework.data.DataItemImpl;
 import java.util.List;
 
 public class PosizioneImpl extends DataItemImpl<Integer> implements Posizione {
@@ -60,4 +60,8 @@ public class PosizioneImpl extends DataItemImpl<Integer> implements Posizione {
         this.aule = aule;
     }
 
+    @Override
+    public void addAula(Aula aula) {
+        this.aule.add(aula);
+    }
 }

@@ -17,5 +17,5 @@ public interface Responsabile extends DataItem<Integer> {
 
     void setEventi(List<Evento> eventi);
 
-    void addEventi(Evento evento);
+    void addEvento(Evento evento);
 }

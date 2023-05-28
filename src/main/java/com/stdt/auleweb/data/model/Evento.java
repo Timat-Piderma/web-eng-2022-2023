@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public interface Evento extends DataItem<Integer>{
+public interface Evento extends DataItem<Integer> {
 
     LocalDate getData();
 
@@ -18,28 +18,29 @@ public interface Evento extends DataItem<Integer>{
     LocalTime getOraFine();
 
     void setOraFine(LocalTime oraFine);
-    
+
     String getDescrizione();
-    
+
     void setDescrizione(String descrizione);
-    
+
     String getNome();
-    
+
     void setNome(String nome);
-    
+
     Tipologia getTipologia();
-    
+
     void setTipologia(Tipologia tipologia);
-    
-    List<Aula> getAule();
-    
-    void setAule(List<Aula> aule);
-    
-    void addAula(Aula aula);
-    
+
+    Aula getAula();
+
+    void setAula(Aula aula);
+
     Responsabile getResponsabile();
-    
+
     void setResponsabile(Responsabile responsabile);
-    
+
+    Corso getCorso();
+
+    void setCorso(Corso corso);
 
 }

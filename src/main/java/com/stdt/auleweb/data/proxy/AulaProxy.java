@@ -115,7 +115,7 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
     public List<Attrezzatura> getAttrezzature() {
         if (super.getAttrezzature() == null) {
             try {
-                super.setAttrezzature(((AttrezzaturaDAO) dataLayer.getDAO(Attrezzatura.class)).getAttrezzature(this));
+                super.setAttrezzature(((AttrezzaturaDAO) dataLayer.getDAO(Attrezzatura.class)).getAttrezzatureByAula(this));
             } catch (DataException ex) {
                 Logger.getLogger(AulaProxy.class.getName()).log(Level.SEVERE, null, ex);
             }

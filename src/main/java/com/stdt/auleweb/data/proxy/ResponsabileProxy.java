@@ -1,7 +1,7 @@
 package com.stdt.auleweb.data.proxy;
 
 import com.stdt.auleweb.data.dao.EventoDAO;
-import com.stdt.auleweb.data.impl.CorsoImpl;
+import com.stdt.auleweb.data.impl.ResponsabileImpl;
 import com.stdt.auleweb.data.model.Evento;
 import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.data.DataItemProxy;
@@ -10,14 +10,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CorsoProxy extends CorsoImpl implements DataItemProxy{
-
+public class ResponsabileProxy extends ResponsabileImpl implements DataItemProxy {
 
     protected boolean modified;
 
     protected DataLayer dataLayer;
 
-    public CorsoProxy(DataLayer d) {
+    public ResponsabileProxy(DataLayer d) {
         super();
         //dependency injection
         this.dataLayer = d;
@@ -40,9 +39,9 @@ public class CorsoProxy extends CorsoImpl implements DataItemProxy{
     public List<Evento> getEventi() {
         if (super.getEventi() == null) {
             try {
-                super.setEventi(((EventoDAO) dataLayer.getDAO(Evento.class)).getEventiByCorso(this));
+                super.setEventi(((EventoDAO) dataLayer.getDAO(Evento.class)).getEventiByResponsabile(this));
             } catch (DataException ex) {
-                Logger.getLogger(CorsoProxy.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ResponsabileProxy.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return super.getEventi();
@@ -60,6 +59,12 @@ public class CorsoProxy extends CorsoImpl implements DataItemProxy{
         this.modified = true;
     }
 
+    @Override
+    public void setEmailResponsabile(String emailResponsabile) {
+        super.setEmailResponsabile(emailResponsabile);
+        this.modified = true;
+    }
+
     //METODI DEL PROXY
     //PROXY-ONLY METHODS
     @Override
@@ -71,5 +76,5 @@ public class CorsoProxy extends CorsoImpl implements DataItemProxy{
     public boolean isModified() {
         return modified;
     }
-  
+
 }
