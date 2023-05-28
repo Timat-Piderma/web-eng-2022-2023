@@ -1,12 +1,12 @@
 package com.stdt.auleweb.data.dao;
 
-import com.stdt.auleweb.framework.data.DAO;
-import com.stdt.auleweb.framework.data.DataException;
-import com.stdt.auleweb.framework.data.DataLayer;
 import com.stdt.auleweb.data.model.Evento;
 import com.stdt.auleweb.data.model.Responsabile;
 import com.stdt.auleweb.data.proxy.ResponsabileProxy;
+import com.stdt.auleweb.framework.data.DAO;
+import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.data.DataItemProxy;
+import com.stdt.auleweb.framework.data.DataLayer;
 import jakarta.persistence.OptimisticLockException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,7 +35,6 @@ public class ResponsabileDAO_MySQL extends DAO implements ResponsabileDAO {
             sResponsabileByID = connection.prepareStatement("SELECT * FROM responsabile WHERE ID=?");
             sResponsabileByEvento = connection.prepareStatement("SELECT * FROM responsabile WHERE eventoID=?");
             sResponsabili = connection.prepareStatement("SELECT ID AS responsabiliID FROM responsabile");
-
             //notare l'ultimo paametro extra di questa chiamata a
             //prepareStatement: lo usiamo per assicurarci che il JDBC
             //restituisca la chiave generata automaticamente per il
@@ -46,7 +45,6 @@ public class ResponsabileDAO_MySQL extends DAO implements ResponsabileDAO {
             iResponsabile = connection.prepareStatement("INSERT INTO responsabile (nome,emailResponsabile) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
             uResponsabile = connection.prepareStatement("UPDATE responsabile SET nome=?,emailResponsabile=?,version=? WHERE ID=? and version=?");
             dResponsabile = connection.prepareStatement("DELETE FROM responsabile WHERE ID=?");
-
         } catch (SQLException ex) {
             throw new DataException("Error initializing auleweb data layer", ex);
         }
@@ -57,7 +55,6 @@ public class ResponsabileDAO_MySQL extends DAO implements ResponsabileDAO {
         //anche chiudere i PreparedStamenent � una buona pratica...
         //also closing PreparedStamenents is a good practice...
         try {
-
             sResponsabileByID.close();
             sResponsabileByEvento.close();
 

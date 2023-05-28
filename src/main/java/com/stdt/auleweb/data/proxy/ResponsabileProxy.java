@@ -36,6 +36,7 @@ public class ResponsabileProxy extends ResponsabileImpl implements DataItemProxy
     }
 
     @Override
+
     public List<Evento> getEventi() {
         if (super.getEventi() == null) {
             try {
@@ -76,5 +77,4 @@ public class ResponsabileProxy extends ResponsabileImpl implements DataItemProxy
     public boolean isModified() {
         return modified;
     }
-
 }
