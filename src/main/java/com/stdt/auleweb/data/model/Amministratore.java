@@ -4,17 +4,19 @@
  */
 package com.stdt.auleweb.data.model;
 
+import com.stdt.auleweb.framework.data.DataItem;
+
 /**
  *
  * @author andre
  */
-public interface Amministratore {
-    String getNome();
+public interface Amministratore extends DataItem<Integer>{
+    String getUsername();
 
-    void setNome(String nome);
+    void setUsername(String username);
     
     String getPassword();
     
-    void setPassword();
+    void setPassword(String password);
     
 }

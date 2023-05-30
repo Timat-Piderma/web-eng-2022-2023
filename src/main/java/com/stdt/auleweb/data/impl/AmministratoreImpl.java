@@ -12,17 +12,17 @@ import com.stdt.auleweb.framework.data.DataItemImpl;
  * @author andre
  */
 public class AmministratoreImpl extends DataItemImpl<Integer> implements Amministratore{
-    String nome;
+    String username;
     String password;
     
     @Override
-    public String getNome() {
-        return nome;
+    public String getUsername() {
+        return username;
     }
 
     @Override
-    public void setNome(String nome) {
-        this.nome=nome;
+    public void setUsername(String username) {
+        this.username=username;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class AmministratoreImpl extends DataItemImpl<Integer> implements Amminis
     }
 
     @Override
-    public void setPassword() {
+    public void setPassword(String password) {
         this.password=password;
     }
 }
