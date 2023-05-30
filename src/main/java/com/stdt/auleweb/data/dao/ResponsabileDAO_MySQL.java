@@ -72,7 +72,7 @@ public class ResponsabileDAO_MySQL extends DAO implements ResponsabileDAO {
 
     @Override
     public Responsabile createResponsabile() throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new ResponsabileProxy(getDataLayer());
     }
 
     //helper

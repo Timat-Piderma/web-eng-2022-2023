@@ -71,7 +71,7 @@ public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO {
 
     @Override
     public Posizione createPosizione() throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new PosizioneProxy(getDataLayer());
     }
 
     //helper
