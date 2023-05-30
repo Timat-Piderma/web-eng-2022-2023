@@ -18,7 +18,7 @@ import java.util.List;
 
 public class AmministratoreDAO_MySQL extends DAO implements AmministratoreDAO {
 
-    private PreparedStatement sAmministratoreByID;
+    private PreparedStatement sAmministratoreByID, sAmministratoreByUsername;
     private PreparedStatement iAmministratore, uAmministratore, dAmministratore;
 
     public AmministratoreDAO_MySQL(DataLayer d) {
@@ -33,6 +33,7 @@ public class AmministratoreDAO_MySQL extends DAO implements AmministratoreDAO {
             //precompiliamo tutte le query utilizzate nella classe
             //precompile all the queries uses in this class
             sAmministratoreByID = connection.prepareStatement("SELECT * FROM amministratore WHERE ID=?");
+            sAmministratoreByUsername = connection.prepareStatement("SELECT * FROM amministratore WHERE username=?");
             //notare l'ultimo paametro extra di questa chiamata a
             //prepareStatement: lo usiamo per assicurarci che il JDBC
             //restituisca la chiave generata automaticamente per il
@@ -41,7 +42,7 @@ public class AmministratoreDAO_MySQL extends DAO implements AmministratoreDAO {
             //it is used to ensure that the JDBC will sotre and return
             //the auto generated key for the inserted recors
             iAmministratore = connection.prepareStatement("INSERT INTO amministratore (username,password) VALUES(?)", Statement.RETURN_GENERATED_KEYS);
-            uAmministratore = connection.prepareStatement("UPDATE amministratore SET nome=?, password=?, version=? WHERE ID=? and version=?");
+            uAmministratore = connection.prepareStatement("UPDATE amministratore SET username=?, password=?, version=? WHERE ID=? and version=?");
             dAmministratore = connection.prepareStatement("DELETE FROM amministratore WHERE ID=?");
 
         } catch (SQLException ex) {
@@ -56,6 +57,7 @@ public class AmministratoreDAO_MySQL extends DAO implements AmministratoreDAO {
         try {
 
             sAmministratoreByID.close();
+            sAmministratoreByUsername.close();
             iAmministratore.close();
             uAmministratore.close();
             dAmministratore.close();
@@ -111,7 +113,7 @@ public class AmministratoreDAO_MySQL extends DAO implements AmministratoreDAO {
         return a;
     }
 
-        @Override
+    @Override
     public void storeAmministratore(Amministratore amministratore) throws DataException {
         try {
             if (amministratore.getKey() != null && amministratore.getKey() > 0) { //update
@@ -183,9 +185,23 @@ public class AmministratoreDAO_MySQL extends DAO implements AmministratoreDAO {
                 ((DataItemProxy) amministratore).setModified(false);
             }
         } catch (SQLException | OptimisticLockException ex) {
-            throw new DataException("Unable to store article", ex);
+            throw new DataException("Unable to store amministratore", ex);
         }
     }
 
- 
+    @Override
+    public Amministratore getAmministratoreByUsername(String username) throws DataException {
+        try {
+            sAmministratoreByUsername.setString(1, username);
+            try (ResultSet rs = sAmministratoreByUsername.executeQuery()) {
+                if (rs.next()) {
+                    return getAmministratore(rs.getInt("ID"));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to find amministratore", ex);
+        }
+        return null;
+    }
+
 }
