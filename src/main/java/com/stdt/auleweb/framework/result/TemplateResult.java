@@ -15,6 +15,7 @@
  */
 package com.stdt.auleweb.framework.result;
 
+import freemarker.cache.JavartaWebappTemplateLoader;
 import freemarker.core.HTMLOutputFormat;
 import freemarker.core.JSONOutputFormat;
 import freemarker.core.XMLOutputFormat;
@@ -41,23 +42,24 @@ import java.util.logging.Logger;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.File;
 
 /**
  *
  * @author Giuseppe Della Penna
  */
 public class TemplateResult {
-
+    
     protected ServletContext context;
     protected Configuration cfg;
     protected List<DataModelFiller> fillers;
-
-    public TemplateResult(ServletContext context) {
+    
+    public TemplateResult(ServletContext context) throws IOException {
         this.context = context;
         init();
     }
-
-    private void init() {
+    
+    private void init() throws IOException {
         cfg = new Configuration(Configuration.VERSION_2_3_26);
         //impostiamo l'encoding di default per l'input e l'output
         //set the default input and outpout encoding
@@ -73,7 +75,9 @@ public class TemplateResult {
         if (context.getInitParameter("view.template_directory") != null) {
             cfg.setServletContextForTemplateLoading(context, context.getInitParameter("view.template_directory"));
         } else {
-            cfg.setServletContextForTemplateLoading(context, "templates");
+            JavartaWebappTemplateLoader jv;
+            jv = new JavartaWebappTemplateLoader(context, context.getInitParameter("view.template_directory"));
+            cfg.setDirectoryForTemplateLoading(new File(jv.toString()));
         }
 
         //impostiamo un handler per gli errori nei template - utile per il debug
@@ -147,7 +151,7 @@ public class TemplateResult {
         for (DataModelFiller f : fillers) {
             f.fillDataModel(default_data_model, request, context);
         }
-
+        
         return default_data_model;
     }
 
@@ -263,7 +267,7 @@ public class TemplateResult {
             default:
                 break;
         }
-
+        
     }
 
     //questa versione di activate può essere usata per generare output non diretto verso il browser, ad esempio

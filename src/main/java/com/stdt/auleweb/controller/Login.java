@@ -47,7 +47,6 @@ public class Login extends AuleWebBaseController {
 //        }
     }
 
-    
     //nota: usente di default nel database: nome a, password p
     //note: default user in the database: name: a, password p
     private void action_login(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -56,11 +55,11 @@ public class Login extends AuleWebBaseController {
 
         if (!username.isEmpty() && !password.isEmpty()) {
             try {
-                Amministratore a = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAmministratoreDAO().getAmministratoreByUsername(username);
-                if (a != null && SecurityHelpers.checkPasswordHashPBKDF2(password, a.getPassword())) {
+                Amministratore u = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAmministratoreDAO().getAmministratoreByUsername(username);
+                if (u != null && SecurityHelpers.checkPasswordHashPBKDF2(password, u.getPassword())) {
                     //se la validazione ha successo
                     //if the identity validation succeeds
-                    SecurityHelpers.createSession(request, username, a.getKey());
+                    SecurityHelpers.createSession(request, username, u.getKey());
                     //se è stato trasmesso un URL di origine, torniamo a quell'indirizzo
                     //if an origin URL has been transmitted, return to it
                     if (request.getParameter("referrer") != null) {
@@ -85,14 +84,11 @@ public class Login extends AuleWebBaseController {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws jakarta.servlet.ServletException
+     * @throws javax.servlet.ServletException
      */
-    
-    
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
-        
         try {
             if (request.getParameter("login") != null) {
                 action_login(request, response);
