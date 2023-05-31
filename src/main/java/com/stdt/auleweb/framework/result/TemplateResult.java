@@ -49,17 +49,17 @@ import java.io.File;
  * @author Giuseppe Della Penna
  */
 public class TemplateResult {
-    
+
     protected ServletContext context;
     protected Configuration cfg;
     protected List<DataModelFiller> fillers;
-    
-    public TemplateResult(ServletContext context) throws IOException {
+
+    public TemplateResult(ServletContext context) {
         this.context = context;
         init();
     }
-    
-    private void init() throws IOException {
+
+    private void init() {
         cfg = new Configuration(Configuration.VERSION_2_3_26);
         //impostiamo l'encoding di default per l'input e l'output
         //set the default input and outpout encoding
@@ -75,9 +75,7 @@ public class TemplateResult {
         if (context.getInitParameter("view.template_directory") != null) {
             cfg.setServletContextForTemplateLoading(context, context.getInitParameter("view.template_directory"));
         } else {
-            JavartaWebappTemplateLoader jv;
-            jv = new JavartaWebappTemplateLoader(context, context.getInitParameter("view.template_directory"));
-            cfg.setDirectoryForTemplateLoading(new File(jv.toString()));
+            cfg.setServletContextForTemplateLoading(context, "templates");
         }
 
         //impostiamo un handler per gli errori nei template - utile per il debug
@@ -151,7 +149,7 @@ public class TemplateResult {
         for (DataModelFiller f : fillers) {
             f.fillDataModel(default_data_model, request, context);
         }
-        
+
         return default_data_model;
     }
 
@@ -267,7 +265,7 @@ public class TemplateResult {
             default:
                 break;
         }
-        
+
     }
 
     //questa versione di activate può essere usata per generare output non diretto verso il browser, ad esempio
