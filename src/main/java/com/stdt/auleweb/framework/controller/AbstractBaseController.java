@@ -2,14 +2,7 @@ package com.stdt.auleweb.framework.controller;
 
 import com.stdt.auleweb.framework.data.DataLayer;
 import com.stdt.auleweb.framework.security.SecurityHelpers;
-
 import it.univaq.f4i.iw.framework.result.FailureResult;
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -20,7 +13,11 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
