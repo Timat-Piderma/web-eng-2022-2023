@@ -51,10 +51,14 @@
         <servlet-class>com.stdt.auleweb.controller.Logout</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>gruppo</servlet-name>
+        <servlet-class>com.stdt.auleweb.controller.MakeGruppo</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>listgruppi</servlet-name>
         <servlet-class>com.stdt.auleweb.controller.ListGruppi</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>authprotec</servlet-name>
         <servlet-class>com.stdt.auleweb.controller.AuthProtec</servlet-class>
     </servlet>
@@ -67,10 +71,14 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>gruppo</servlet-name>
+        <url-pattern>/gruppo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>listgruppi</servlet-name>
         <url-pattern>/listgruppi</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>authprotec</servlet-name>
         <url-pattern>/authprotec</url-pattern>
     </servlet-mapping>

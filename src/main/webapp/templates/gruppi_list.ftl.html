@@ -3,7 +3,7 @@
 <ul>
     <#list gruppi as gruppo>
     <li>
-        <b>${gruppo.nome}</b>
+        <a href="gruppo?n=${gruppo.key}"><b>${gruppo.nome}</b> </a>
         <p>${gruppo.descrizione}<p>
     </li>
     </#list>
