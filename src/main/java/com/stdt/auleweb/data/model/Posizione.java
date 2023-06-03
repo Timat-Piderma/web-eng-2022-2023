@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface Posizione extends DataItem<Integer> {
 
-    String getNome();
+    String getLuogo();
     
-    void setNome(String nome);
+    void setLuogo(String nome);
     
     String getEdificio();
     

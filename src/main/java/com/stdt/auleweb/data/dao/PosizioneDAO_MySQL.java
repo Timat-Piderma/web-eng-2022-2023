@@ -41,7 +41,7 @@ public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO {
             //it is used to ensure that the JDBC will sotre and return
             //the auto generated key for the inserted recors
             iPosizione = connection.prepareStatement("INSERT INTO posizione (nome,edificio,piano) VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uPosizione = connection.prepareStatement("UPDATE posizione SET nome=?,edificio=?,piano=?,version=? WHERE ID=? and version=?");
+            uPosizione = connection.prepareStatement("UPDATE posizione SET luogo=?,edificio=?,piano=?,version=? WHERE ID=? and version=?");
             dPosizione = connection.prepareStatement("DELETE FROM posizione WHERE ID=?");
 
         } catch (SQLException ex) {
@@ -76,17 +76,18 @@ public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO {
 
     //helper
     private PosizioneProxy createPosizione(ResultSet rs) throws DataException {
-        PosizioneProxy p = (PosizioneProxy) createPosizione();
+
         try {
+            PosizioneProxy p = (PosizioneProxy) createPosizione();
             p.setKey(rs.getInt("ID"));
-            p.setNome(rs.getString("nome"));
+            p.setLuogo(rs.getString("luogo"));
             p.setEdificio(rs.getString("edificio"));
             p.setPiano(rs.getString("piano"));
             p.setVersion(rs.getLong("version"));
+            return p;
         } catch (SQLException ex) {
             throw new DataException("Unable to create posizione object from ResultSet", ex);
         }
-        return p;
     }
 
     @Override
@@ -101,7 +102,7 @@ public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO {
             //otherwise load it from database
             try {
                 sPosizioneByID.setInt(1, posizione_key);
-                try (ResultSet rs = sPosizioneByID.executeQuery()) {
+                try ( ResultSet rs = sPosizioneByID.executeQuery()) {
                     if (rs.next()) {
                         p = createPosizione(rs);
                         //e lo mettiamo anche nella cache
@@ -120,7 +121,7 @@ public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO {
     public Posizione getPosizioneByAula(Aula aula) throws DataException {
         try {
             sPosizioneByAula.setInt(1, aula.getKey());
-            try (ResultSet rs = sPosizioneByAula.executeQuery()) {
+            try ( ResultSet rs = sPosizioneByAula.executeQuery()) {
                 if (rs.next()) {
                     return getPosizione(rs.getInt("ID"));
                 }
@@ -140,7 +141,7 @@ public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO {
                 if (posizione instanceof DataItemProxy && !((DataItemProxy) posizione).isModified()) {
                     return;
                 }
-                uPosizione.setString(1, posizione.getNome());
+                uPosizione.setString(1, posizione.getLuogo());
                 uPosizione.setString(2, posizione.getEdificio());
                 uPosizione.setString(3, posizione.getPiano());
 
@@ -157,7 +158,7 @@ public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO {
                     posizione.setVersion(next_version);
                 }
             } else { //insert
-                iPosizione.setString(1, posizione.getNome());
+                iPosizione.setString(1, posizione.getLuogo());
                 iPosizione.setString(2, posizione.getEdificio());
                 iPosizione.setString(3, posizione.getPiano());
             }
@@ -167,7 +168,7 @@ public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO {
                 //getGeneratedKeys sullo statement.
                 //to read the generated record key from the database
                 //we use the getGeneratedKeys method on the same statement
-                try (ResultSet keys = iPosizione.getGeneratedKeys()) {
+                try ( ResultSet keys = iPosizione.getGeneratedKeys()) {
                     //il valore restituito è un ResultSet con un record
                     //per ciascuna chiave generata (uno solo nel nostro caso)
                     //the returned value is a ResultSet with a distinct record for

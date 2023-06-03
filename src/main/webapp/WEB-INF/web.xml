@@ -59,6 +59,10 @@
         <servlet-class>com.stdt.auleweb.controller.ListGruppi</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>aula</servlet-name>
+        <servlet-class>com.stdt.auleweb.controller.MakeAula</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>authprotec</servlet-name>
         <servlet-class>com.stdt.auleweb.controller.AuthProtec</servlet-class>
     </servlet>
@@ -77,6 +81,10 @@
     <servlet-mapping>
         <servlet-name>listgruppi</servlet-name>
         <url-pattern>/listgruppi</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>aula</servlet-name>
+        <url-pattern>/aula</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>authprotec</servlet-name>

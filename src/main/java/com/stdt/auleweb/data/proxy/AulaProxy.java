@@ -39,16 +39,6 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
         this.modified = true;
     }
 
-    public void setGruppoKey(int gruppo_key) {
-        this.gruppo_key = gruppo_key;
-        super.setGruppo(null);
-    }
-
-    public void setPosizioneKey(int posizione_key) {
-        this.posizione_key = posizione_key;
-        super.setPosizione(null);
-    }
-
     @Override
     public void setPosizione(Posizione posizione) {
         super.setPosizione(posizione);
@@ -183,4 +173,13 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
         return modified;
     }
 
+    public void setGruppoKey(int gruppo_key) {
+        this.gruppo_key = gruppo_key;
+        super.setGruppo(null);
+    }
+
+    public void setPosizioneKey(int posizione_key) {
+        this.posizione_key = posizione_key;
+        super.setPosizione(null);
+    }
 }

@@ -7,27 +7,27 @@ import java.util.List;
 
 public class PosizioneImpl extends DataItemImpl<Integer> implements Posizione {
 
-    private String nome;
+    private String luogo;
     private String edificio;
     private String piano;
     private List<Aula> aule;
 
     public PosizioneImpl() {
         super();
-        nome = "";
+        luogo = "";
         edificio = "";
         piano = "";
         aule = null;
     }
 
     @Override
-    public String getNome() {
-        return nome;
+    public String getLuogo() {
+        return luogo;
     }
 
     @Override
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setLuogo(String luogo) {
+        this.luogo = luogo;
     }
 
     @Override

@@ -54,8 +54,8 @@ public class PosizioneProxy extends PosizioneImpl implements DataItemProxy {
     }
 
     @Override
-    public void setNome(String nome) {
-        super.setNome(nome);
+    public void setLuogo(String nome) {
+        super.setLuogo(nome);
         this.modified = true;
     }
 

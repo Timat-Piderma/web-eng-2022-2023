@@ -5,7 +5,7 @@
     <#list gruppo.aule as aula>
     <li>
         <p>
-            <b>${strip_slashes(aula.nome)}</b>
+            <a href="aula?id=${aula.key}"><b>${strip_slashes(aula.nome)}</b></a>
             <br/><small>posti: ${aula.capienza}</small>
         </p>
     </li>
