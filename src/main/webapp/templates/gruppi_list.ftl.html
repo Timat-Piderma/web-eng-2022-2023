@@ -1,0 +1,11 @@
+<h2>Gruppi disponibili</h2>
+<#if (gruppi?size>0)>
+<ul>
+    <#list gruppi as gruppo>
+    <li>
+        <b>${gruppo.nome}</b>
+        <p>${gruppo.descrizione}<p>
+    </li>
+    </#list>
+</ul>
+</#if>

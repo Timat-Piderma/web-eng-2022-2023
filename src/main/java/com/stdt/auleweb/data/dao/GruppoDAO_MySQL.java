@@ -32,7 +32,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
             //precompiliamo tutte le query utilizzate nella classe
             //precompile all the queries uses in this class
             sGruppoByID = connection.prepareStatement("SELECT * FROM Gruppo WHERE ID=?");
-            sGruppi = connection.prepareStatement("SELECT ID AS gruppiID FROM Gruppo");
+            sGruppi = connection.prepareStatement("SELECT ID FROM Gruppo");
             //note the last parameter in this call to prepareStatement:
             //it is used to ensure that the JDBC will sotre and return
             //the auto generated key for the inserted recors
@@ -77,16 +77,17 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
 
     //healper
     public Gruppo createGruppo(ResultSet rs) throws DataException {
-        GruppoProxy a = (GruppoProxy) createGruppo();
+
         try {
-            a.setKey(rs.getInt("ID"));
-            a.setNome(rs.getString("nome"));
-            a.setDescrizione(rs.getString("descrizione"));
-            a.setVersion(rs.getLong("version"));
+            GruppoProxy g = (GruppoProxy) createGruppo();
+            g.setKey(rs.getInt("ID"));
+            g.setNome(rs.getString("nome"));
+            g.setDescrizione(rs.getString("descrizione"));
+            g.setVersion(rs.getLong("version"));
+            return g;
         } catch (SQLException ex) {
-            throw new DataException("Unable to create gruppo object form ResultSet", ex);
+            throw new DataException("Unable to create gruppo object from ResultSet", ex);
         }
-        return a;
     }
 
     @Override
@@ -101,7 +102,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
             //otherwise load it from database
             try {
                 sGruppoByID.setInt(1, gruppo_key);
-                try (ResultSet rs = sGruppoByID.executeQuery()) {
+                try ( ResultSet rs = sGruppoByID.executeQuery()) {
                     if (rs.next()) {
                         g = createGruppo(rs);
                         //e lo mettiamo anche nella cache
@@ -120,9 +121,9 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
     public List<Gruppo> getGruppi() throws DataException {
         List<Gruppo> result = new ArrayList();
 
-        try (ResultSet rs = sGruppi.executeQuery()) {
+        try ( ResultSet rs = sGruppi.executeQuery()) {
             while (rs.next()) {
-                result.add((Gruppo) getGruppo(rs.getInt("gruppoID")));
+                result.add((Gruppo) getGruppo(rs.getInt("ID")));
             }
         } catch (SQLException ex) {
             throw new DataException("Unable to load gruppi", ex);
@@ -164,7 +165,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
                     //getGeneratedKeys sullo statement.
                     //to read the generated record key from the database
                     //we use the getGeneratedKeys method on the same statement
-                    try (ResultSet keys = iGruppo.getGeneratedKeys()) {
+                    try ( ResultSet keys = iGruppo.getGeneratedKeys()) {
                         //il valore restituito è un ResultSet con un record
                         //per ciascuna chiave generata (uno solo nel nostro caso)
                         //the returned value is a ResultSet with a distinct record for
@@ -204,5 +205,6 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
             }
         } catch (SQLException | OptimisticLockException ex) {
             throw new DataException("Unable to store gruppo", ex);
-        }}
+        }
+    }
 }

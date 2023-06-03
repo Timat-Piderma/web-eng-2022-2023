@@ -20,7 +20,8 @@ GRANT ALL ON progettoDB.* TO 'website'@'localhost';
 create table Gruppo (
 	ID integer auto_increment primary key,
     nome varchar(255) not null unique,
-    descrizione varchar(255) not null
+    descrizione varchar(255) not null,
+    `version` int unsigned NOT NULL DEFAULT '1'
 );
 
 create table Posizione (
@@ -34,13 +35,14 @@ create table Posizione (
 create table Aula (
 	ID integer auto_increment primary key,
 	nome varchar(255) not null unique,
-    capacita integer not null,
+    capienza integer not null,
 	emailResponsabile varchar(255) not null,
 	note varchar(255) not null, 
     numeroPreseRete integer not null,
     numeroPreseElettriche integer not null,
     gruppoID integer not null,
-    posizioneID integer not null
+    posizioneID integer not null,
+	`version` int unsigned NOT NULL DEFAULT '1'
 );
 
 create table Attrezzatura (
@@ -150,7 +152,7 @@ insert into Posizione (luogo, edificio, piano) values
     ("Coppito","11 B", "primo"),
     ("Coppito","11 B", "secondo");
     
-insert into Aula (nome, capacita, emailResponsabile, note, numeroPreseRete, numeroPreseElettriche, gruppoID, posizioneID ) values
+insert into Aula (nome, capienza, emailResponsabile, note, numeroPreseRete, numeroPreseElettriche, gruppoID, posizioneID ) values
 	("C1.16",46, "mattia.peccerill0o@student.univaq.it","", 1, 4, 1, 6),
     ("0.6",12, "mattia.peccerill0o@student.univaq.it","i ragazzi tendono a perdersi", 3, 4, 1, 3),
     ("1.1",24, "mattia.peccerill0o@student.univaq.it","",3, 4, 1, 4),

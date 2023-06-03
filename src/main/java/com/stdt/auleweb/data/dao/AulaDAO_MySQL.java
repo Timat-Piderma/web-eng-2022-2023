@@ -21,7 +21,7 @@ import java.util.List;
 public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
     private PreparedStatement sAulaByID;
-    private PreparedStatement sAule, sAuleByPosizione, sAulaByGruppo;
+    private PreparedStatement sAule, sAuleByPosizione, sAuleByGruppo;
     private PreparedStatement iAula, uAula, dAula;
 
     public AulaDAO_MySQL(DataLayer d) {
@@ -38,7 +38,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             sAulaByID = connection.prepareStatement("SELECT * FROM aula WHERE ID=?");
             sAule = connection.prepareStatement("SELECT ID AS aulaID FROM aula");
             sAuleByPosizione = connection.prepareStatement("SELECT ID AS aulaID FROM aula WHERE posizioneID=?");
-            sAulaByGruppo = connection.prepareStatement("SELECT ID AS aulaID FROM aula WHERE gruppoID=?");
+            sAuleByGruppo = connection.prepareStatement("SELECT ID AS aulaID FROM aula WHERE gruppoID=?");
 
             //notare l'ultimo paametro extra di questa chiamata a
             //prepareStatement: lo usiamo per assicurarci che il JDBC
@@ -65,7 +65,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
             sAule.close();
             sAuleByPosizione.close();
-            sAulaByGruppo.close();
+            sAuleByGruppo.close();
 
             iAula.close();
             uAula.close();
@@ -173,8 +173,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         List<Aula> result = new ArrayList();
 
         try {
-            sAuleByPosizione.setInt(1, gruppo.getKey());
-            try (ResultSet rs = sAuleByPosizione.executeQuery()) {
+            sAuleByGruppo.setInt(1, gruppo.getKey());
+            try (ResultSet rs = sAuleByGruppo.executeQuery()) {
                 while (rs.next()) {
                     //la query  estrae solo gli ID degli articoli selezionati
                     //poi sarà getArticle che, con le relative query, popolerà
@@ -184,11 +184,11 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                     //then getArticle, with its queries, will populate the 
                     //corresponding objects. Less efficient, but in this way
                     //article creation logic is better encapsulated
-                    result.add((Aula) getAula(rs.getInt("posizioneID")));
+                    result.add((Aula) getAula(rs.getInt("aulaID")));
                 }
             }
         } catch (SQLException ex) {
-            throw new DataException("Unable to load aule by posizione", ex);
+            throw new DataException("Unable to load aule by gruppo", ex);
         }
         return result;
     }
