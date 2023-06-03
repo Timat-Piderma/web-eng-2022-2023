@@ -6,7 +6,7 @@ import com.stdt.auleweb.framework.data.DataLayer;
 import com.stdt.auleweb.data.model.Gruppo;
 import com.stdt.auleweb.data.proxy.GruppoProxy;
 import com.stdt.auleweb.framework.data.DataItemProxy;
-import jakarta.persistence.OptimisticLockException;
+import com.stdt.auleweb.framework.data.OptimisticLockException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

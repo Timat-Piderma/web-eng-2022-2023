@@ -1,29 +1,82 @@
+/*
+ * Login.java
+ *
+ * Questo esempio mostra come utilizzare le sessioni per autenticare un utente
+ * 
+ * This example shows how to use sessions to authenticate the user
+ *
+ */
 package com.stdt.auleweb.controller;
 
-import freemarker.cache.JavartaWebappTemplateLoader;
-import freemarker.core.HTMLOutputFormat;
-import freemarker.core.ParseException;
-import freemarker.template.Configuration;
-import freemarker.template.DefaultObjectWrapperBuilder;
-import freemarker.template.MalformedTemplateNameException;
-import freemarker.template.Template;
-import freemarker.template.TemplateDateModel;
-import freemarker.template.TemplateException;
-import freemarker.template.TemplateExceptionHandler;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import com.stdt.auleweb.data.dao.AuleWebDataLayer;
+import com.stdt.auleweb.data.model.Amministratore;
+import com.stdt.auleweb.framework.data.DataException;
+import com.stdt.auleweb.framework.result.TemplateManagerException;
+import com.stdt.auleweb.framework.result.TemplateResult;
+import com.stdt.auleweb.framework.security.SecurityHelpers;
+import java.io.*;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.servlet.*;
+import javax.servlet.http.*;
+
 /**
  *
- * @author IngegneriaDelWeb
+ * @author Ingegneria del Web
+ * @version
  */
 public class Login extends AuleWebBaseController {
+
+    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, TemplateManagerException {
+        TemplateResult result = new TemplateResult(getServletContext());
+        request.setAttribute("referrer", request.getParameter("referrer"));
+        result.activate("login.ftl.html", request, response);
+
+        //esempio di creazione utente
+        //create user example
+        /*      try {
+            Amministratore a = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAmministratoreDAO().createAmministratore();
+            a.setUsername("username");
+            a.setPassword(SecurityHelpers.getPasswordHashPBKDF2("password"));
+            ((AuleWebDataLayer) request.getAttribute("datalayer")).getAmministratoreDAO().storeAmministratore(a);
+        } catch (DataException | NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+    }
+
+    //nota: usente di default nel database: nome a, password p
+    //note: default user in the database: name: a, password p
+    private void action_login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String username = request.getParameter("u");
+        String password = request.getParameter("p");
+
+        if (!username.isEmpty() && !password.isEmpty()) {
+            try {
+                Amministratore a = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAmministratoreDAO().getAmministratoreByUsername(username);
+                if (a != null && SecurityHelpers.checkPasswordHashPBKDF2(password, a.getPassword())) {
+                    //se la validazione ha successo
+                    //if the identity validation succeeds
+                    SecurityHelpers.createSession(request, username, a.getKey());
+                    //se è stato trasmesso un URL di origine, torniamo a quell'indirizzo
+                    //if an origin URL has been transmitted, return to it
+                    if (request.getParameter("referrer") != null) {
+                        response.sendRedirect(request.getParameter("referrer"));
+                    } else {
+                        response.sendRedirect("login");
+                    }
+                    return;
+                }
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException | DataException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        //se la validazione fallisce...
+        //if the validation fails...
+        handleError("Login failed", request, response);
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,99 +84,21 @@ public class Login extends AuleWebBaseController {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws javax.servlet.ServletException
      */
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
-
-        response.setContentType("text/html;charset=utf-8");
-
-        //configurazione di Freemarker (compatibile con la versione 2.3.26)
-        //Freemarker configuration (compatible with version 2.3.26)
-        Configuration cfg = new Configuration(Configuration.VERSION_2_3_30);
-        //impostiamo l'encoding di default per l'input e l'output
-        //set the default input and outpout encoding
-        cfg.setOutputEncoding("utf-8");
-        cfg.setDefaultEncoding("utf-8");
-        //impostiamo la directory (relativa al contesto) da cui caricare i templates (Jakarta version)
-        //set the (context relative) directory for template loading (Jakarta version)
-        cfg.setTemplateLoader(new JavartaWebappTemplateLoader(getServletContext(), "templates"));
-        //impostiamo un handler per gli errori nei template - utile per il debug
-        //set an error handler for debug purposes
-        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
-        //impostiamo il gestore degli oggetti - trasformerà in hash i Java beans
-        //set the object handler that allows us to "view" Java beans as hashes
-        DefaultObjectWrapperBuilder owb = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_30);
-        owb.setForceLegacyNonListCollections(false);
-        owb.setDefaultDateType(TemplateDateModel.DATETIME);
-        cfg.setObjectWrapper(owb.build());
-        //impostiamo il tipo di output: in questo modo freemarker abiliterà il necessario escaping
-        //set the output format, so that freemarker will enable the correspondoing escaping
-        cfg.setOutputFormat(HTMLOutputFormat.INSTANCE);
-
-        //creiamo il data model - la root deve essere una hash (Map)
-        //create the data model - the root must be an hash (Map)
-        Map<String, Object> datamodel = new HashMap<>();
-
-        //impostiamo il nome del file che verrà incluso tramite la direttiva include
-        //set the file name to be included through the include directive
-        //notare come il template incluso vede lo stesso data model di quello principale
-        //note that the included template views the same data model as the main tamplate
-
-        //carichiamo il template
-        //load the template
-        Template t;
         try {
-            t = cfg.getTemplate("outline_footer.ftl.html");
-            t.process(datamodel, response.getWriter());
-        } catch (MalformedTemplateNameException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException | TemplateException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            if (request.getParameter("login") != null) {
+                action_login(request, response);
+            } else {
+                String https_redirect_url = SecurityHelpers.checkHttps(request);
+                request.setAttribute("https-redirect", https_redirect_url);
+                action_default(request, response);
+            }
+        } catch (IOException | TemplateManagerException ex) {
+            handleError(ex, request, response);
         }
-
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 }

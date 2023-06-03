@@ -1,5 +1,10 @@
 package com.stdt.auleweb.framework.data;
 
+/**
+ *
+ * @author giuse
+ * @param <KT> the key type
+ */
 public class DataItemImpl<KT> implements DataItem<KT> {
 
     private KT key;

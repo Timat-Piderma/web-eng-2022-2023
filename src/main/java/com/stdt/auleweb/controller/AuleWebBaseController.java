@@ -4,7 +4,7 @@ import com.stdt.auleweb.data.dao.AuleWebDataLayer;
 import com.stdt.auleweb.framework.controller.AbstractBaseController;
 import com.stdt.auleweb.framework.data.DataLayer;
 import java.sql.SQLException;
-import jakarta.servlet.ServletException;
+import javax.servlet.ServletException;
 import javax.sql.DataSource;
 
 /**

@@ -11,7 +11,7 @@ import com.stdt.auleweb.framework.data.DAO;
 import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.data.DataItemProxy;
 import com.stdt.auleweb.framework.data.DataLayer;
-import jakarta.persistence.OptimisticLockException;
+import com.stdt.auleweb.framework.data.OptimisticLockException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

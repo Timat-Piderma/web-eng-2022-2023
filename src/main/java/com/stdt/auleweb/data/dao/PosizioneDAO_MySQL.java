@@ -7,7 +7,7 @@ import com.stdt.auleweb.data.model.Aula;
 import com.stdt.auleweb.data.model.Posizione;
 import com.stdt.auleweb.data.proxy.PosizioneProxy;
 import com.stdt.auleweb.framework.data.DataItemProxy;
-import jakarta.persistence.OptimisticLockException;
+import com.stdt.auleweb.framework.data.OptimisticLockException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

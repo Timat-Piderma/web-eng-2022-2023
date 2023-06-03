@@ -1,8 +1,8 @@
 package com.stdt.auleweb.framework.controller;
 
 import com.stdt.auleweb.framework.data.DataLayer;
+import com.stdt.auleweb.framework.result.FailureResult;
 import com.stdt.auleweb.framework.security.SecurityHelpers;
-import it.univaq.f4i.iw.framework.result.FailureResult;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -13,12 +13,12 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
@@ -69,7 +69,7 @@ public abstract class AbstractBaseController extends HttpServlet {
         //variables leading to unexpected results. To always have different connections and statements on a per-request
         //(i.e., per-thread) basis, declare them in the doGet, doPost etc. (or in methods called by them) and 
         //(possibly) pass such variables through the request.        
-        try (DataLayer datalayer = createDataLayer(ds)) {
+        try ( DataLayer datalayer = createDataLayer(ds)) {
             datalayer.init();
             initRequest(request, datalayer);
             //questo blocco di controlli può essere usato in alternativa al SessionCheckFilter

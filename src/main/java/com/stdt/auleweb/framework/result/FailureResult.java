@@ -13,15 +13,14 @@
  * the class uses simple http errors.
  * 
  */
-package it.univaq.f4i.iw.framework.result;
+package com.stdt.auleweb.framework.result;
 
-import com.stdt.auleweb.framework.result.TemplateResult;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *

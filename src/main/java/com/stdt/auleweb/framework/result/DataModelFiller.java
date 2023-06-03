@@ -20,8 +20,8 @@
 package com.stdt.auleweb.framework.result;
 
 import java.util.Map;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
