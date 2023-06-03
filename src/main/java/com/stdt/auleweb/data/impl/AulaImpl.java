@@ -52,7 +52,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula {
     }
 
     @Override
-    public void setCapienza(int id) {
+    public void setCapienza(int capienza) {
         this.capienza = capienza;
     }
 

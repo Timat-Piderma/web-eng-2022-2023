@@ -29,7 +29,8 @@ create table Posizione (
     luogo varchar(255) not null,
     edificio varchar(255) not null,
     piano varchar(255) not null,
-    constraint posizione unique (luogo, edificio, piano)
+    constraint posizione unique (luogo, edificio, piano),
+    `version` int unsigned NOT NULL DEFAULT '1'
 );
 
 create table Aula (
@@ -47,18 +48,21 @@ create table Aula (
 
 create table Attrezzatura (
 	ID integer auto_increment primary key,
-    nome varchar(255) not null unique
+    nome varchar(255) not null unique,
+    `version` int unsigned NOT NULL DEFAULT '1'
 );
 
 create table Tipologia (
 	ID integer auto_increment primary key,
-	nome varchar(255) not null unique
+	nome varchar(255) not null unique,
+    `version` int unsigned NOT NULL DEFAULT '1'
 );
 
 create table Responsabile (
 	ID integer not null auto_increment primary key,
 	nome varchar(255) not null,
-	email varchar(255) not null unique
+	email varchar(255) not null unique,
+    `version` int unsigned NOT NULL DEFAULT '1'
 );
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -87,18 +91,21 @@ create table Evento (
 	nome varchar(255) not null,
 	descrizione varchar(255) not null,
 	tipologia varchar(255) not null,
-	responsabileID integer not null
+	responsabileID integer not null,
+    `version` int unsigned NOT NULL DEFAULT '1'
 );
 
 create table Corso (
 	ID integer auto_increment primary key,
-	nome varchar(255) not null unique
+	nome varchar(255) not null unique,
+    `version` int unsigned NOT NULL DEFAULT '1'
 );
 
 create table Fornito (
 	aulaID integer not null,
 	attrezzaturaID integer not null,
 	constraint chiaveFornito primary key (aulaID, attrezzaturaID)
+    
 );
 
 create table Tiene (

@@ -1,4 +1,16 @@
 <h2>${gruppo.nome}</h2>
 <p>Pagina del gruppo: ${gruppo.nome}<p>
+    <#if (gruppo.aule?size > 0)>
+<ul>
+    <#list gruppo.aule as aula>
+    <li>
+        <p>
+            <b>${strip_slashes(aula.nome)}</b>
+            <br/><small>posti: ${aula.capienza}</small>
+        </p>
+    </li>
+    </#list>
+</ul>
+</#if>
 
 
