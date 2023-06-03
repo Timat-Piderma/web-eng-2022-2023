@@ -1,23 +1,22 @@
 package com.stdt.auleweb.data.model;
 
 import com.stdt.auleweb.framework.data.DataItem;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
+import java.sql.Date;
+import java.sql.Time;
 
 public interface Evento extends DataItem<Integer> {
 
-    LocalDate getData();
+    Date getGiorno();
 
-    void setData(LocalDate data);
+    void setGiorno(Date data);
 
-    LocalTime getOraInizio();
+    Time getOraInizio();
 
-    void setOraInizio(LocalTime oraInizio);
+    void setOraInizio(Time oraInizio);
 
-    LocalTime getOraFine();
+    Time getOraFine();
 
-    void setOraFine(LocalTime oraFine);
+    void setOraFine(Time oraFine);
 
     String getDescrizione();
 

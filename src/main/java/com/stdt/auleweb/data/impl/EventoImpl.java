@@ -6,14 +6,16 @@ import com.stdt.auleweb.data.model.Evento;
 import com.stdt.auleweb.data.model.Responsabile;
 import com.stdt.auleweb.data.model.Tipologia;
 import com.stdt.auleweb.framework.data.DataItemImpl;
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class EventoImpl extends DataItemImpl<Integer> implements Evento {
 
-    private LocalDate data;
-    private LocalTime oraInizio;
-    private LocalTime oraFine;
+    private Date giorno;
+    private Time oraInizio;
+    private Time oraFine;
     private String descrizione;
     private String nome;
     private Tipologia tipologia;
@@ -23,7 +25,7 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
 
     public EventoImpl() {
         super();
-        data = null;
+        giorno = null;
         oraFine = null;
         oraInizio = null;
         descrizione = "";
@@ -35,32 +37,32 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     }
 
     @Override
-    public LocalDate getData() {
-        return data;
+    public Date getGiorno() {
+        return giorno;
     }
 
     @Override
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setGiorno(Date giorno) {
+        this.giorno = giorno;
     }
 
     @Override
-    public LocalTime getOraInizio() {
+    public Time getOraInizio() {
         return oraInizio;
     }
 
     @Override
-    public void setOraInizio(LocalTime oraInizio) {
+    public void setOraInizio(Time oraInizio) {
         this.oraInizio = oraInizio;
     }
 
     @Override
-    public LocalTime getOraFine() {
+    public Time getOraFine() {
         return oraFine;
     }
 
     @Override
-    public void setOraFine(LocalTime oraFine) {
+    public void setOraFine(Time oraFine) {
         this.oraFine = oraFine;
     }
 

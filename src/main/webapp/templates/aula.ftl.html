@@ -1,14 +1,25 @@
 <h2>${aula.nome}</h2>
-<p>Pagina dell'aula: ${aula.nome}<p>
+<i>Pagina dell'aula: ${aula.nome}</i>
+<p>
+    Capienza: ${aula.capienza} persone
+    <br>Numero di prese elettriche: ${aula.numeroPreseElettriche}
+    <br>Numero di prese di rete: ${aula.numeroPreseRete}
+    <br>Email responsabile: ${aula.emailResponsabile}
+    <br>Posizione: ${aula.posizione.luogo}, ${aula.posizione.edificio}, ${aula.posizione.piano}
+</p>
+<br>
+<#if (aula.eventi?size>0)>
+<h3>Eventi</h3>
+
 <ul>
+    <#list aula.eventi as evento>
     <li>
-        Capienza: ${aula.capienza} persone
-        <br>Numero di prese elettriche: ${aula.numeroPreseElettriche}
-        <br>Numero di prese di rete: ${aula.numeroPreseRete}
-        <br>Email responsabile: ${aula.emailResponsabile}
-        <br>Posizione: ${aula.posizione.luogo}, ${aula.posizione.edificio}, ${aula.posizione.piano}
+        <b>${evento.tipologia} ${evento.nome}</b>&nbsp; ${evento.giorno} &nbsp; ${evento.oraInizio} - ${evento.oraFine}
+        <p>${evento.descrizione}<p>
     </li>
+    </#list>
 </ul>
+</#if>
 
 
 

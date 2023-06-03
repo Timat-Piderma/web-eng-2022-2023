@@ -63,6 +63,10 @@
         <servlet-class>com.stdt.auleweb.controller.MakeAula</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>evento</servlet-name>
+        <servlet-class>com.stdt.auleweb.controller.MakeEvento</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>authprotec</servlet-name>
         <servlet-class>com.stdt.auleweb.controller.AuthProtec</servlet-class>
     </servlet>
@@ -85,6 +89,10 @@
     <servlet-mapping>
         <servlet-name>aula</servlet-name>
         <url-pattern>/aula</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>evento</servlet-name>
+        <url-pattern>/evento</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>authprotec</servlet-name>
