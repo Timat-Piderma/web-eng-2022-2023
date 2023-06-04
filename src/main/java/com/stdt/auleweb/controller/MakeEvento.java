@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class MakeEvento extends AuleWebBaseController {
 
-    private void action_aula(HttpServletRequest request, HttpServletResponse response, int id) throws IOException, ServletException, TemplateManagerException {
+    private void action_evento(HttpServletRequest request, HttpServletResponse response, int id) throws IOException, ServletException, TemplateManagerException {
         try {
             Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(id);
             if (evento != null) {
@@ -45,7 +45,7 @@ public class MakeEvento extends AuleWebBaseController {
         int id;
         try {
             id = SecurityHelpers.checkNumeric(request.getParameter("id"));
-            action_aula(request, response, id);
+            action_evento(request, response, id);
         } catch (NumberFormatException ex) {
             handleError("Invalid number specified", request, response);
         } catch (IOException | TemplateManagerException ex) {

@@ -34,7 +34,7 @@ public class AttrezzaturaDAO_MySQL extends DAO implements AttrezzaturaDAO {
             //precompile all the queries uses in this class
             sAttrezzaturaByID = connection.prepareStatement("SELECT * FROM attrezzatura WHERE ID=?");
             sAttrezzature = connection.prepareStatement("SELECT ID AS attrezzaturaID FROM attrezzatura");
-            sAttrezzatureByAula = connection.prepareStatement("SELECT ID AS attrezzaturaID FROM aula WHERE aulaID=?");
+            sAttrezzatureByAula = connection.prepareStatement("SELECT attrezzaturaID AS attrezzaturaID FROM Fornito WHERE aulaID=?");
 
             //notare l'ultimo paametro extra di questa chiamata a
             //prepareStatement: lo usiamo per assicurarci che il JDBC

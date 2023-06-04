@@ -1,12 +1,16 @@
 <div class="row" id="header">
-    <div class="sixteen columns">AuleWeb Univaq
+    <div class="three columns">
+        <image src="\main\webapp\images\IMG_0.jpg">
+    </div>
+    <div class="ten columns">AuleWeb Univaq
         <div class="subtitle">${page_title!"Untitled page"}</div>
     </div>
-    <div class="logininfo">
-        <#if logininfo??>
-        ${logininfo.username} (<a href="logout?referrer=${thispageurl?url}">logout</a>)
-        <#else>
-        <em>not logged in</em> (<a href="login?referrer=${thispageurl?url}">login</a>)
-        </#if>
-    </div>
+    <div class="three columns">
+        <div class="logininfo">
+            <#if logininfo??>
+            ${logininfo.username} (<a href="logout?referrer=${thispageurl?url}">logout</a>)
+            <#else>
+            <em>not logged in</em> (<a href="login?referrer=${thispageurl?url}">login</a>)
+            </#if>
+        </div></div>
 </div>
