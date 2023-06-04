@@ -9,9 +9,9 @@ public interface Responsabile extends DataItem<Integer> {
 
     void setNome(String nome);
 
-    String getemailResponsabile();
+    String getEmail();
 
-    void setEmailResponsabile(String emailResponsabile);
+    void setEmail(String email);
 
     List<Evento> getEventi();
 

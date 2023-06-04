@@ -8,8 +8,6 @@ import com.stdt.auleweb.data.model.Tipologia;
 import com.stdt.auleweb.framework.data.DataItemImpl;
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class EventoImpl extends DataItemImpl<Integer> implements Evento {
 

@@ -213,10 +213,10 @@ insert into Amministratore(username, `password`) values
     ("Timat", "admin"),
     ("Seba", "admin");
     
-insert into Evento(giorno, oraInizio, oraFine, nome, descrizione, tipologia, responsabileID, aulaID, CorsoID) values
+insert into Evento(giorno, oraInizio, oraFine, nome, descrizione, tipologia, responsabileID, aulaID, corsoID) values
 	("2023-05-22", "10:30", "13:30", "I2I007","docente mascio tania", "lezione",2,1,1),
-    ("2023-05-22", "14:30", "17:30", "DT0761", "docente masi anna" , "lezione",2,1, null),
-    ("2023-05-22", "11:30", "13:30", "F0140","docente smriglio stefano", "lezione", 1,2, null),
+    ("2023-05-22", "14:30", "17:30", "DT0761", "docente masi anna" , "lezione",2,1,null),
+    ("2023-05-22", "11:30", "13:30", "F0140","docente smriglio stefano", "lezione", 1,1,null),
     ("2023-05-22", "16:30", "18:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1);
     
     
@@ -248,10 +248,10 @@ insert into Fornito(aulaID, attrezzaturaID) values
 (2,11);
 
 insert into Tiene(aulaID, eventoID) values
-(2, 1),
-(2, 2),
-(16, 3),
-(11, 4);
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4);
 
 insert into Richiede (eventoID, corsoID) values
 (1,1),
@@ -268,6 +268,6 @@ insert into Richiede (eventoID, corsoID) values
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 
-SELECT posizioneID from aula
+SELECT aulaID from evento
 
 

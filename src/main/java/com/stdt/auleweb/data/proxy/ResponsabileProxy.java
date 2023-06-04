@@ -61,8 +61,8 @@ public class ResponsabileProxy extends ResponsabileImpl implements DataItemProxy
     }
 
     @Override
-    public void setEmailResponsabile(String emailResponsabile) {
-        super.setEmailResponsabile(emailResponsabile);
+    public void setEmail(String email) {
+        super.setEmail(email);
         this.modified = true;
     }
 

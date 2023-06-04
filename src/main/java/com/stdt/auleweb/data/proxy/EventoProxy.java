@@ -1,5 +1,6 @@
 package com.stdt.auleweb.data.proxy;
 
+import com.stdt.auleweb.data.dao.AulaDAO;
 import com.stdt.auleweb.data.dao.CorsoDAO;
 import com.stdt.auleweb.data.dao.ResponsabileDAO;
 import com.stdt.auleweb.data.impl.EventoImpl;
@@ -12,9 +13,6 @@ import com.stdt.auleweb.framework.data.DataItemProxy;
 import com.stdt.auleweb.framework.data.DataLayer;
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,16 +41,6 @@ public class EventoProxy extends EventoImpl implements DataItemProxy {
         this.modified = true;
     }
 
-    public void setAulaKey(int aula_key) {
-        this.aula_key = aula_key;
-        super.setAula(null);
-    }
-
-    public void setResponsabileKey(int responsabile_key) {
-        this.responsabile_key = responsabile_key;
-        super.setResponsabile(null);
-    }
-
     @Override
     public Responsabile getResponsabile() {
         if (super.getResponsabile() == null && responsabile_key > 0) {
@@ -63,11 +51,6 @@ public class EventoProxy extends EventoImpl implements DataItemProxy {
             }
         }
         return super.getResponsabile();
-    }
-
-    public void setCorsoKey(int corso_key) {
-        this.corso_key = corso_key;
-        super.setCorso(null);
     }
 
     @Override
@@ -120,13 +103,14 @@ public class EventoProxy extends EventoImpl implements DataItemProxy {
     }
 
     @Override
-    public void setAula(Aula aula) {
-        super.setAula(aula);
-        this.modified = true;
-    }
-
-    @Override
     public Aula getAula() {
+        if (super.getAula() == null && aula_key > 0) {
+            try {
+                super.setAula(((AulaDAO) dataLayer.getDAO(Aula.class)).getAula(aula_key));
+            } catch (DataException ex) {
+                Logger.getLogger(EventoProxy.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return super.getAula();
     }
 
@@ -142,4 +126,18 @@ public class EventoProxy extends EventoImpl implements DataItemProxy {
         return modified;
     }
 
+    public void setAulaKey(int aula_key) {
+        this.aula_key = aula_key;
+        super.setAula(null);
+    }
+
+    public void setResponsabileKey(int responsabile_key) {
+        this.responsabile_key = responsabile_key;
+        super.setResponsabile(null);
+    }
+
+    public void setCorsoKey(int corso_key) {
+        this.corso_key = corso_key;
+        super.setCorso(null);
+    }
 }

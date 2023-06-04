@@ -47,8 +47,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             //note the last parameter in this call to prepareStatement:
             //it is used to ensure that the JDBC will sotre and return
             //the auto generated key for the inserted recors
-            iAula = connection.prepareStatement("INSERT INTO aula (nome,capienza,numeroPreseElettriche,numeroPreseRete,emailResponsabile,note,gruppoID,posizioneID) VALUES(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uAula = connection.prepareStatement("UPDATE aula SET nome=?,capienza=?,numeroPreseElettriche=?,numeroPreseRete=?, emailResponsabile=?, note=?, gruppoID=?, posizioneID=?, version=? WHERE ID=? and version=?");
+            iAula = connection.prepareStatement("INSERT INTO aula (nome,capienza,emailResponsabile,note,numeroPreseElettriche,numeroPreseRete,gruppoID,posizioneID) VALUES(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            uAula = connection.prepareStatement("UPDATE aula SET nome=?,capienza=?,emailResponsabile=?,numeroPreseRete=?, note=?, numeroPreseElettriche=?, gruppoID=?, posizioneID=?, version=? WHERE ID=? and version=?");
             dAula = connection.prepareStatement("DELETE FROM aula WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing auleweb data layer", ex);
@@ -114,7 +114,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             //otherwise load it from database
             try {
                 sAulaByID.setInt(1, aula_key);
-                try (ResultSet rs = sAulaByID.executeQuery()) {
+                try ( ResultSet rs = sAulaByID.executeQuery()) {
                     if (rs.next()) {
                         a = createAula(rs);
                         //e lo mettiamo anche nella cache
@@ -133,7 +133,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     public List<Aula> getAule() throws DataException {
         List<Aula> result = new ArrayList();
 
-        try (ResultSet rs = sAule.executeQuery()) {
+        try ( ResultSet rs = sAule.executeQuery()) {
             while (rs.next()) {
                 result.add((Aula) getAula(rs.getInt("aulaID")));
             }
@@ -149,7 +149,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
         try {
             sAuleByPosizione.setInt(1, posizione.getKey());
-            try (ResultSet rs = sAuleByPosizione.executeQuery()) {
+            try ( ResultSet rs = sAuleByPosizione.executeQuery()) {
                 while (rs.next()) {
                     //la query  estrae solo gli ID degli articoli selezionati
                     //poi sarà getArticle che, con le relative query, popolerà
@@ -174,7 +174,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
         try {
             sAuleByGruppo.setInt(1, gruppo.getKey());
-            try (ResultSet rs = sAuleByGruppo.executeQuery()) {
+            try ( ResultSet rs = sAuleByGruppo.executeQuery()) {
                 while (rs.next()) {
                     //la query  estrae solo gli ID degli articoli selezionati
                     //poi sarà getArticle che, con le relative query, popolerà
@@ -199,7 +199,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
         try {
             sAuleByPosizione.setInt(1, attrezzatura.getKey());
-            try (ResultSet rs = sAuleByPosizione.executeQuery()) {
+            try ( ResultSet rs = sAuleByPosizione.executeQuery()) {
                 while (rs.next()) {
                     //la query  estrae solo gli ID degli articoli selezionati
                     //poi sarà getArticle che, con le relative query, popolerà
@@ -224,7 +224,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
         try {
             sAuleByPosizione.setInt(1, evento.getKey());
-            try (ResultSet rs = sAuleByPosizione.executeQuery()) {
+            try ( ResultSet rs = sAuleByPosizione.executeQuery()) {
                 while (rs.next()) {
                     //la query  estrae solo gli ID degli articoli selezionati
                     //poi sarà getArticle che, con le relative query, popolerà
@@ -254,10 +254,10 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 }
                 uAula.setString(1, aula.getNome());
                 uAula.setInt(2, aula.getCapienza());
-                uAula.setInt(3, aula.getNumeroPreseElettriche());
-                uAula.setInt(4, aula.getNumeroPreseRete());
-                uAula.setString(5, aula.getEmailResponsabile());
-                uAula.setString(6, aula.getNote());
+                uAula.setString(3, aula.getEmailResponsabile());
+                uAula.setString(4, aula.getNote());
+                uAula.setInt(5, aula.getNumeroPreseElettriche());
+                uAula.setInt(6, aula.getNumeroPreseRete());
 
                 if (aula.getGruppo() != null) {
                     uAula.setInt(7, aula.getGruppo().getKey());
@@ -285,10 +285,10 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             } else { //insert
                 iAula.setString(1, aula.getNome());
                 iAula.setInt(2, aula.getCapienza());
-                iAula.setInt(3, aula.getNumeroPreseElettriche());
-                iAula.setInt(4, aula.getNumeroPreseRete());
-                iAula.setString(5, aula.getEmailResponsabile());
-                iAula.setString(6, aula.getNome());
+                iAula.setString(3, aula.getEmailResponsabile());
+                iAula.setString(4, aula.getNote());
+                iAula.setInt(5, aula.getNumeroPreseElettriche());
+                iAula.setInt(6, aula.getNumeroPreseRete());
 
                 if (aula.getGruppo() != null) {
                     iAula.setInt(7, aula.getGruppo().getKey());
@@ -308,7 +308,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                     //getGeneratedKeys sullo statement.
                     //to read the generated record key from the database
                     //we use the getGeneratedKeys method on the same statement
-                    try (ResultSet keys = iAula.getGeneratedKeys()) {
+                    try ( ResultSet keys = iAula.getGeneratedKeys()) {
                         //il valore restituito è un ResultSet con un record
                         //per ciascuna chiave generata (uno solo nel nostro caso)
                         //the returned value is a ResultSet with a distinct record for

@@ -42,8 +42,8 @@ public class ResponsabileDAO_MySQL extends DAO implements ResponsabileDAO {
             //note the last parameter in this call to prepareStatement:
             //it is used to ensure that the JDBC will sotre and return
             //the auto generated key for the inserted recors
-            iResponsabile = connection.prepareStatement("INSERT INTO responsabile (nome,emailResponsabile) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
-            uResponsabile = connection.prepareStatement("UPDATE responsabile SET nome=?,emailResponsabile=?,version=? WHERE ID=? and version=?");
+            iResponsabile = connection.prepareStatement("INSERT INTO responsabile (nome,email) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
+            uResponsabile = connection.prepareStatement("UPDATE responsabile SET nome=?,email=?,version=? WHERE ID=? and version=?");
             dResponsabile = connection.prepareStatement("DELETE FROM responsabile WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing auleweb data layer", ex);
@@ -81,7 +81,7 @@ public class ResponsabileDAO_MySQL extends DAO implements ResponsabileDAO {
         try {
             r.setKey(rs.getInt("ID"));
             r.setNome(rs.getString("nome"));
-            r.setEmailResponsabile(rs.getString("emailResponsabile"));
+            r.setEmail(rs.getString("email"));
             r.setVersion(rs.getLong("version"));
         } catch (SQLException ex) {
             throw new DataException("Unable to create responsabile object from ResultSet", ex);
@@ -155,7 +155,7 @@ public class ResponsabileDAO_MySQL extends DAO implements ResponsabileDAO {
                     return;
                 }
                 uResponsabile.setString(1, responsabile.getNome());
-                uResponsabile.setString(2, responsabile.getemailResponsabile());
+                uResponsabile.setString(2, responsabile.getEmail());
 
                 long current_version = responsabile.getVersion();
                 long next_version = current_version + 1;
@@ -171,7 +171,7 @@ public class ResponsabileDAO_MySQL extends DAO implements ResponsabileDAO {
                 }
             } else { //insert
                 iResponsabile.setString(1, responsabile.getNome());
-                iResponsabile.setString(2, responsabile.getemailResponsabile());
+                iResponsabile.setString(2, responsabile.getEmail());
 
                 if (iResponsabile.executeUpdate() == 1) {
                     //per leggere la chiave generata dal database

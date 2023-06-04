@@ -8,13 +8,13 @@ import java.util.List;
 public class ResponsabileImpl extends DataItemImpl<Integer> implements Responsabile {
 
     private String nome;
-    private String emailResponsabile;
+    private String email;
     private List<Evento> eventi;
 
     public ResponsabileImpl() {
         super();
         nome = "";
-        emailResponsabile = "";
+        email = "";
         eventi = null;
     }
 
@@ -29,13 +29,13 @@ public class ResponsabileImpl extends DataItemImpl<Integer> implements Responsab
     }
 
     @Override
-    public String getemailResponsabile() {
-        return emailResponsabile;
+    public String getEmail() {
+        return email;
     }
 
     @Override
-    public void setEmailResponsabile(String emailResponsabile) {
-        this.emailResponsabile = emailResponsabile;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
