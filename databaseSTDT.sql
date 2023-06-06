@@ -249,7 +249,7 @@ insert into Fornito(aulaID, attrezzaturaID) values
 
 insert into Tiene(aulaID, eventoID) values
 (1, 1),
-(1, 2),
+(2, 2),
 (1, 3),
 (1, 4);
 
@@ -267,7 +267,9 @@ insert into Richiede (eventoID, corsoID) values
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+/*SELECT ID AS eventoID FROM evento WHERE giorno=? AND gruppoID=?*/
 
-SELECT aulaID from evento
 
+
+SELECT evento.ID as eventoID from evento inner join tiene on tiene.eventoID = evento.ID inner join aula on tiene.aulaID = aula.ID where evento.giorno = "2023-05-22" and aula.gruppoID = 1     
 

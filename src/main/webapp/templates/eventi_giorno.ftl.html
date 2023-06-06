@@ -1,0 +1,11 @@
+
+<h3>Eventi</h3>
+<#if (eventi?size>0)>
+<ul>
+    <#list eventi as evento>
+    <li>
+        <p>${evento.nome} &nbsp; ${evento.giorno}<p>
+    </li>
+    </#list>
+</ul>
+</#if>

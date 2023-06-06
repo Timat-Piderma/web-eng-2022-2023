@@ -1,5 +1,6 @@
 <h2>${gruppo.nome}</h2>
 <p>Pagina del gruppo: ${gruppo.nome}<p>
+<p><a href="eventigiorno?IDgruppo=${gruppo.key}&data=${data}">Eventi per Giorno</p>
     <#if (gruppo.aule?size > 0)>
 <ul>
     <#list gruppo.aule as aula>
