@@ -1,6 +1,6 @@
 <div class="row" id="header">
     <div class="three columns">
-        <image src="images/IMG_0.jpg">
+        <image title="Logo" src="images/Logo_Univaq.png">
     </div>
     <div class="ten columns">AuleWeb Univaq
         <div class="subtitle">${page_title!"Untitled page"}</div>
@@ -10,7 +10,8 @@
             <#if logininfo??>
             ${logininfo.username} (<a href="logout?referrer=${thispageurl?url}">logout</a>)
             <#else>
-            <em>not logged in</em> (<a href="login?referrer=${thispageurl?url}">login</a>)
+            (<a href="login?referrer=${thispageurl?url}">login</a>)
             </#if>
         </div></div>
 </div>
+
