@@ -1,5 +1,5 @@
 
-<h3>Eventi</h3>
+<h3>Eventi delle aule ${gruppo.nome} del giorno ${giorno} </h3>   <a href="eventigiorno?IDgruppo=${gruppo.key}&data=${ieri}"> Ieri </a> &nbsp;<a href="eventigiorno?IDgruppo=${gruppo.key}&data=${domani}"> Domani </a>
 <#if (eventi?size>0)>
 <ul>
     <#list eventi as evento>

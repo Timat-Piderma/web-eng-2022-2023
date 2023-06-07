@@ -10,6 +10,7 @@ import com.stdt.auleweb.framework.result.TemplateResult;
 import com.stdt.auleweb.framework.security.SecurityHelpers;
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,7 +32,10 @@ public class MakeEventiGiorno extends AuleWebBaseController {
 
             if (eventi != null) {
                 request.setAttribute("eventi", eventi);
+                request.setAttribute("gruppo", gruppo);
                 request.setAttribute("giorno", data);
+                request.setAttribute("domani", LocalDate.parse(data).plusDays(1));
+                request.setAttribute("ieri", LocalDate.parse(data).plusDays(-1));
                 //verr� usato automaticamente il template di outline spcificato tra i context parameters
                 //the outlne template specified through the context parameters will be added by the TemplateResult to the specified template
                 TemplateResult res = new TemplateResult(getServletContext());
