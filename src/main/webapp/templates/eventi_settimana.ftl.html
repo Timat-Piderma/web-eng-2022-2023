@@ -1,0 +1,11 @@
+
+<h3>Eventi dell' aule ${aula.nome} </h3>   <a href="eventisettimana?IDaula=${aula.key}&data=${settiamanaprecedente}"> Settimana Precedente </a> &nbsp;<a href="eventisettimana?IDaula=${aula.key}&data=${settimanasuccessiva}"> Settiamana Prossima </a>
+<#if (eventi?size>0)>
+<ul>
+    <#list eventi as evento>
+    <li>
+        <p>${evento.nome} &nbsp; ${evento.giorno} &nbsp; ${evento.aula.nome}<p>
+    </li>
+    </#list>
+</ul>
+</#if>

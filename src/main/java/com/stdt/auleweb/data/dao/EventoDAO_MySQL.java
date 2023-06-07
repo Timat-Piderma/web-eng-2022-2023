@@ -46,7 +46,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventiByCorso = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE corsoID=?");
             sEventiByResponsabile = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE responsabileID=?");
 
-            sEventiBySettimana = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE WEEK(giorno)=WEEK(?) AND aulaID=?");
+            sEventiBySettimana = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE WEEK(evento.giorno)=WEEK(?) AND aulaID=?");
             sEventiByGiorno = connection.prepareStatement("SELECT evento.ID as eventoID from evento inner join tiene on tiene.eventoID = evento.ID inner join aula on tiene.aulaID = aula.ID where evento.giorno = ? and aula.gruppoID = ?");
             sEventiNextThreeHours = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE TIMEDIFF(oraInizio,?) <= 3 AND TIMEDIFF(oraInizio, ?) >= 0 AND giorno=? AND gruppoID=?");
             sEventiBySettimanaAndCorso = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE WEEK(giorno)=WEEK(?) AND corsoID=?");
@@ -156,7 +156,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
     @Override
     public List<Evento> getEventiBySettimana(Aula aula, Date giorno) throws DataException {
-        List<Evento> result = new ArrayList();;
+        List<Evento> result = new ArrayList();
 
         try {
             sEventiBySettimana.setObject(1, giorno);

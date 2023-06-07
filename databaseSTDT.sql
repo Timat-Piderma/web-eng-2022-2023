@@ -267,9 +267,5 @@ insert into Richiede (eventoID, corsoID) values
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-/*SELECT ID AS eventoID FROM evento WHERE giorno=? AND gruppoID=?*/
 
-
-
-SELECT evento.ID as eventoID from evento inner join tiene on tiene.eventoID = evento.ID inner join aula on tiene.aulaID = aula.ID where evento.giorno = "2023-05-22" and aula.gruppoID = 1     
-
+SELECT ID AS eventoID FROM evento WHERE WEEK(evento.giorno)=WEEK("2023-05-23") AND aulaID=1

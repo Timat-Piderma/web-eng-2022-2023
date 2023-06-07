@@ -69,6 +69,10 @@
     <servlet>
         <servlet-name>eventigiorno</servlet-name>
         <servlet-class>com.stdt.auleweb.controller.MakeEventiGiorno</servlet-class>
+    </servlet>    
+    <servlet>
+        <servlet-name>eventisettimana</servlet-name>
+        <servlet-class>com.stdt.auleweb.controller.MakeEventiSettimana</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>attrezzatura</servlet-name>
@@ -105,6 +109,10 @@
     <servlet-mapping>
         <servlet-name>eventigiorno</servlet-name>
         <url-pattern>/eventigiorno</url-pattern>
+    </servlet-mapping>    
+    <servlet-mapping>
+        <servlet-name>eventisettimana</servlet-name>
+        <url-pattern>/eventisettimana</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>attrezzatura</servlet-name>

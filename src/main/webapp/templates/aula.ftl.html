@@ -9,18 +9,9 @@
         <br>Posizione: ${aula.posizione.luogo}, ${aula.posizione.edificio}, ${aula.posizione.piano}
     </p>
     <br>
-    <#if (aula.eventi?size>0)>
+    
     <h3>Eventi</h3>
-
-    <ul>
-        <#list aula.eventi as evento>
-        <li>
-            <a href="evento?id=${evento.key}"><b>${evento.oraInizio} - ${evento.oraFine} ${evento.nome} ${evento.tipologia}</b>&nbsp; ${evento.giorno} &nbsp; </a>
-            <p>${evento.descrizione}<p>
-        </li>
-        </#list>
-    </ul>
-    </#if>
+    <a href="eventisettimana?IDaula=${aula.key}&data=${giorno}"> Eventi per settimana </a>
 </div>
 <div class="six cloumns">
     <#if (aula.attrezzature?size>0)>
