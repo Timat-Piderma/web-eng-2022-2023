@@ -1,17 +1,17 @@
 <h2>${gruppo.nome}</h2>
 <p>Pagina del gruppo: ${gruppo.nome}<p>
-<p><a href="eventigiorno?IDgruppo=${gruppo.key}&data=${data}">Eventi per Giorno</p>
-    <#if (gruppo.aule?size > 0)>
-<ul>
-    <#list gruppo.aule as aula>
-    <li>
-        <p>
-            <a href="aula?id=${aula.key}"><b>${strip_slashes(aula.nome)}</b></a>
-            <br/><small>posti: ${aula.capienza}</small>
-        </p>
-    </li>
-    </#list>
-</ul>
-</#if>
+<p><a href="eventigiorno?IDgruppo=${gruppo.key}&data=${data}">Eventi per Giorno &nbsp; <a href="eventitreore?IDgruppo=${gruppo.key}">Eventi nelle prossime 3 ore</p>
+            <#if (gruppo.aule?size > 0)>
+            <ul>
+                <#list gruppo.aule as aula>
+                <li>
+                    <p>
+                        <a href="aula?id=${aula.key}"><b>${strip_slashes(aula.nome)}</b></a>
+                        <br/><small>posti: ${aula.capienza}</small>
+                    </p>
+                </li>
+                </#list>
+            </ul>
+            </#if>
 
 

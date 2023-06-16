@@ -3,7 +3,7 @@
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40103 SET TIME_ZONE='+02:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
@@ -214,10 +214,10 @@ insert into Amministratore(username, `password`) values
     ("Seba", "admin");
     
 insert into Evento(giorno, oraInizio, oraFine, nome, descrizione, tipologia, responsabileID, aulaID, corsoID) values
-	("2023-05-22", "10:30", "13:30", "I2I007","docente mascio tania", "lezione",2,1,1),
-    ("2023-05-22", "14:30", "17:30", "DT0761", "docente masi anna" , "lezione",2,1,null),
-    ("2023-05-22", "11:30", "13:30", "F0140","docente smriglio stefano", "lezione", 1,1,null),
-    ("2023-05-22", "16:30", "18:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1);
+	("2023-06-16", "22:00", "13:30", "I2I007","docente mascio tania", "lezione",2,1,1),
+    ("2023-06-16", "00:30", "17:30", "DT0761", "docente masi anna" , "lezione",2,1,null),
+    ("2023-06-16", "11:30", "13:30", "F0140","docente smriglio stefano", "lezione", 1,1,null),
+    ("2023-05-16", "16:30", "18:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1);
     
     
 insert into Corso(nome) values
@@ -268,4 +268,14 @@ insert into Richiede (eventoID, corsoID) values
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 
-SELECT ID AS eventoID FROM evento WHERE WEEK(evento.giorno)=WEEK("2023-05-23") AND aulaID=1
+SELECT evento.oraInizio
+	AS eventoID
+	FROM evento 
+	JOIN tiene on evento.ID = tiene.eventoID 
+	JOIN Aula on aula.ID = tiene.aulaID 
+    WHERE evento.oraInizio >= CURRENT_TIMESTAMP 
+    AND evento.oraInizio <= CURRENT_TIMESTAMP + INTERVAL 3 HOUR
+    AND aula.gruppoID=1
+    AND evento.giorno = curdate();
+    
+

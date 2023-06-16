@@ -32,7 +32,4 @@ public interface EventoDAO {
     List<Evento> getEventiBySettimanaAndCorso(Corso corso, Date giorno) throws DataException;
     
     void storeEvento(Evento evento) throws DataException;
-    
-  
-
 }

@@ -1,0 +1,11 @@
+
+<h3>Eventi nelle prossime 3 ore </h3>  
+<#if (eventi?size>0)>
+<ul>
+    <#list eventi as evento>
+    <li>
+        <p>${evento.nome} &nbsp; ${evento.giorno} &nbsp; ${evento.aula.nome}&nbsp; ${evento.oraInizio}<p>
+    </li>
+    </#list>
+</ul>
+</#if>

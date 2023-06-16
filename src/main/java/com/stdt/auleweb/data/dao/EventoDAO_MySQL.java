@@ -12,14 +12,17 @@ import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.data.DataItemProxy;
 import com.stdt.auleweb.framework.data.DataLayer;
 import com.stdt.auleweb.framework.data.OptimisticLockException;
+import java.io.Console;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class EventoDAO_MySQL extends DAO implements EventoDAO {
@@ -48,7 +51,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
             sEventiBySettimana = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE WEEK(evento.giorno)=WEEK(?) AND aulaID=?");
             sEventiByGiorno = connection.prepareStatement("SELECT evento.ID as eventoID from evento inner join tiene on tiene.eventoID = evento.ID inner join aula on tiene.aulaID = aula.ID where evento.giorno = ? and aula.gruppoID = ?");
-            sEventiNextThreeHours = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE TIMEDIFF(oraInizio,?) <= 3 AND TIMEDIFF(oraInizio, ?) >= 0 AND giorno=? AND gruppoID=?");
+            sEventiNextThreeHours = connection.prepareStatement("SELECT evento.ID AS eventoID FROM evento JOIN tiene on evento.ID = tiene.eventoID JOIN aula on aula.ID = tiene.aulaID WHERE evento.oraInizio >= CURRENT_TIMESTAMP AND evento.oraInizio <= CURRENT_TIMESTAMP + INTERVAL 3 HOUR AND aula.gruppoID=? AND evento.giorno= curdate()");
             sEventiBySettimanaAndCorso = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE WEEK(giorno)=WEEK(?) AND corsoID=?");
 
             iEvento = connection.prepareStatement("INSERT INTO evento (giorno,oraInizio,oraFine,descrizione,nome,tipologia,aulaID,responsabileID,corsoID) VALUES(?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -192,14 +195,12 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
     @Override
     public List<Evento> getEventiNextThreeHours(Gruppo gruppo) throws DataException {
-        List<Evento> result = null;
+        List<Evento> result = new ArrayList();
 
         try {
+            sEventiNextThreeHours.setInt(1, gruppo.getKey());
 
-            sEventiBySettimana.setObject(1, Time.valueOf(LocalTime.now()));
-            sEventiBySettimana.setObject(2, Time.valueOf(LocalTime.now()));
-            sEventiBySettimana.setObject(3, gruppo);
-            ResultSet rs = sEventiBySettimana.executeQuery();
+            ResultSet rs = sEventiNextThreeHours.executeQuery();
 
             while (rs.next()) {
                 result.add((Evento) getEvento(rs.getInt("eventoID")));
