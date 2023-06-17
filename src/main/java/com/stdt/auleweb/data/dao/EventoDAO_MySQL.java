@@ -20,18 +20,20 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EventoDAO_MySQL extends DAO implements EventoDAO {
-    
+
     private PreparedStatement sEventoByID;
     private PreparedStatement sEventi, sEventiByAula, sEventiByCorso, sEventiByResponsabile;
     private PreparedStatement sEventiBySettimana, sEventiByGiorno, sEventiNextThreeHours, sEventiBySettimanaAndCorso;
     private PreparedStatement iEvento, uEvento, dEvento;
-    
+
     public EventoDAO_MySQL(DataLayer d) {
         super(d);
     }
-    
+
     @Override
     public void init() throws DataException {
         try {
@@ -44,49 +46,49 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventiByAula = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE aulaID=?");
             sEventiByCorso = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE corsoID=?");
             sEventiByResponsabile = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE responsabileID=?");
-            
+
             sEventiBySettimana = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE WEEK(evento.giorno)=WEEK(?) AND aulaID=?");
             sEventiByGiorno = connection.prepareStatement("SELECT evento.ID as eventoID from evento inner join tiene on tiene.eventoID = evento.ID inner join aula on tiene.aulaID = aula.ID where evento.giorno = ? and aula.gruppoID = ?");
             sEventiNextThreeHours = connection.prepareStatement("SELECT evento.ID AS eventoID FROM evento JOIN tiene on evento.ID = tiene.eventoID JOIN aula on aula.ID = tiene.aulaID WHERE evento.oraInizio >= CURRENT_TIMESTAMP AND evento.oraInizio <= CURRENT_TIMESTAMP + INTERVAL 3 HOUR AND aula.gruppoID=? AND evento.giorno= curdate()");
             sEventiBySettimanaAndCorso = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE WEEK(giorno)=WEEK(?) AND corsoID=?");
-            
+
             iEvento = connection.prepareStatement("INSERT INTO evento (giorno,oraInizio,oraFine,descrizione,nome,tipologia,aulaID,responsabileID,corsoID) VALUES(?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             uEvento = connection.prepareStatement("UPDATE evento SET giorno=?,oraInizio=?,oraFine=?,descrizione=?, nome=?, tipologia=?, aulaID=?, responsabileID=?, corsoID=?, version=? WHERE ID=? and version=?");
             dEvento = connection.prepareStatement("DELETE FROM evento WHERE ID=?");
-            
+
         } catch (SQLException ex) {
             throw new DataException("Error initializing auleweb data layer", ex);
         }
     }
-    
+
     @Override
     public void destroy() throws DataException {
         //anche chiudere i PreparedStamenent � una buona pratica...
         //also closing PreparedStamenents is a good practice...
         try {
-            
+
             sEventoByID.close();
-            
+
             sEventi.close();
             sEventiByAula.close();
             sEventiByCorso.close();
             sEventiByResponsabile.close();
-            
+
             sEventiBySettimana.close();
             sEventiByGiorno.close();
             sEventiNextThreeHours.close();
             sEventiBySettimanaAndCorso.close();
-            
+
             iEvento.close();
             uEvento.close();
             dEvento.close();
-            
+
         } catch (SQLException ex) {
             //
         }
         super.destroy();
     }
-    
+
     @Override
     public Evento createEvento() throws DataException {
         return new EventoProxy(getDataLayer());
@@ -97,7 +99,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         EventoProxy e = (EventoProxy) createEvento();
         try {
             e.setKey(rs.getInt("ID"));
-            
+
             e.setGiorno((Date) rs.getObject("giorno"));
             e.setOraInizio(Time.valueOf(rs.getString("oraInizio")));
             e.setOraFine(Time.valueOf(rs.getString("oraFine")));
@@ -113,11 +115,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
         return e;
     }
-    
+
     @Override
     public List<Evento> getEventi() throws DataException {
         List<Evento> result = new ArrayList();
-        
+
         try ( ResultSet rs = sEventi.executeQuery()) {
             while (rs.next()) {
                 result.add((Evento) getEvento(rs.getInt("eventoID")));
@@ -127,11 +129,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
         return result;
     }
-    
+
     @Override
     public List<Evento> getEventi(Aula aula) throws DataException {
         List<Evento> result = new ArrayList();
-        
+
         try {
             sEventiByAula.setInt(1, aula.getKey());
             try ( ResultSet rs = sEventiByAula.executeQuery()) {
@@ -152,16 +154,16 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
         return result;
     }
-    
+
     @Override
     public List<Evento> getEventiBySettimana(Aula aula, Date giorno) throws DataException {
         List<Evento> result = new ArrayList();
-        
+
         try {
             sEventiBySettimana.setObject(1, giorno);
             sEventiBySettimana.setInt(2, aula.getKey());
             ResultSet rs = sEventiBySettimana.executeQuery();
-            
+
             while (rs.next()) {
                 result.add((Evento) getEvento(rs.getInt("eventoID")));
             }
@@ -170,16 +172,16 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             throw new DataException("Unable to load eventi", ex);
         }
     }
-    
+
     @Override
     public List<Evento> getEventiByGiorno(Gruppo gruppo, Date giorno) throws DataException {
         List<Evento> result = new ArrayList();
-        
+
         try {
             sEventiByGiorno.setString(1, giorno.toString());
             sEventiByGiorno.setInt(2, gruppo.getKey());
             ResultSet rs = sEventiByGiorno.executeQuery();
-            
+
             while (rs.next()) {
                 result.add((Evento) getEvento(rs.getInt("eventoID")));
             }
@@ -188,16 +190,16 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             throw new DataException("Unable to load eventi giorno.toString()", ex);
         }
     }
-    
+
     @Override
     public List<Evento> getEventiNextThreeHours(Gruppo gruppo) throws DataException {
         List<Evento> result = new ArrayList();
-        
+
         try {
             sEventiNextThreeHours.setInt(1, gruppo.getKey());
-            
+
             ResultSet rs = sEventiNextThreeHours.executeQuery();
-            
+
             while (rs.next()) {
                 result.add((Evento) getEvento(rs.getInt("eventoID")));
             }
@@ -206,17 +208,17 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             throw new DataException("Unable to load eventi", ex);
         }
     }
-    
+
     @Override
     public List<Evento> getEventiBySettimanaAndCorso(Corso corso, Date giorno) throws DataException {
         List<Evento> result = null;
-        
+
         try {
-            
+
             sEventiBySettimana.setObject(1, giorno);
             sEventiBySettimana.setObject(2, corso);
             ResultSet rs = sEventiBySettimana.executeQuery();
-            
+
             while (rs.next()) {
                 result.add((Evento) getEvento(rs.getInt("eventoID")));
             }
@@ -225,7 +227,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             throw new DataException("Unable to load eventi", ex);
         }
     }
-    
+
     @Override
     public void storeEvento(Evento evento) throws DataException {
         try {
@@ -241,7 +243,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 uEvento.setString(4, evento.getDescrizione());
                 uEvento.setString(5, evento.getNome());
                 uEvento.setString(6, evento.getTipologia().toString());
-                
+
                 if (evento.getAula() != null) {
                     uEvento.setInt(7, evento.getAula().getKey());
                 } else {
@@ -257,27 +259,27 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     uEvento.setNull(9, java.sql.Types.INTEGER);
                 }
-                
+
                 long current_version = evento.getVersion();
                 long next_version = current_version + 1;
-                
+
                 uEvento.setLong(10, next_version);
                 uEvento.setInt(11, evento.getKey());
                 uEvento.setLong(12, current_version);
-                
+
                 if (uEvento.executeUpdate() == 0) {
                     throw new OptimisticLockException(evento);
                 } else {
                     evento.setVersion(next_version);
                 }
             } else { //insert
-                iEvento.setDate(1, new Date(evento.getGiorno().getTime()));            
+                iEvento.setDate(1, new Date(evento.getGiorno().getTime()));
                 iEvento.setTime(2, new Time(evento.getOraInizio().getTime()));
                 iEvento.setTime(3, new Time(evento.getOraFine().getTime()));
                 iEvento.setString(4, evento.getDescrizione());
                 iEvento.setString(5, evento.getNome());
                 iEvento.setString(6, evento.getTipologia().toString());
-                
+
                 if (evento.getAula() != null) {
                     iEvento.setInt(7, evento.getAula().getKey());
                 } else {
@@ -341,7 +343,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             throw new DataException("Unable to store evento", ex);
         }
     }
-    
+
     @Override
     public Evento getEvento(int evento_key) throws DataException {
         Evento e = null;
@@ -372,11 +374,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
         return e;
     }
-    
+
     @Override
     public List<Evento> getEventiByResponsabile(Responsabile responsabile) throws DataException {
         List<Evento> result = new ArrayList();
-        
+
         try {
             sEventiByResponsabile.setInt(1, responsabile.getKey());
             try ( ResultSet rs = sEventiByResponsabile.executeQuery()) {
@@ -397,11 +399,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
         return result;
     }
-    
+
     @Override
     public List<Evento> getEventiByCorso(Corso corso) throws DataException {
         List<Evento> result = new ArrayList();
-        
+
         try {
             sEventiByCorso.setInt(1, corso.getKey());
             try ( ResultSet rs = sEventiByCorso.executeQuery()) {
@@ -422,5 +424,19 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
         return result;
     }
-    
+
+    @Override
+    public void deleteEvento(Evento evento) throws DataException {
+        try {
+            dEvento.setInt(1, evento.getKey());
+            int affectedRows = dEvento.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new DataException("Failed to delete evento");
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to delete evento", ex);
+        }
+    }
+
 }

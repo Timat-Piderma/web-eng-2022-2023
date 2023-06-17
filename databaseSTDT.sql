@@ -136,7 +136,7 @@ insert into Gruppo (nome, descrizione) values
     ("CLA", "Centro linguistico di ateneo"), 
     ("COSBE", "Polo laboratoriale didattico biologico-chimico"), 
     ("DICEAA", "Dipartimento Ingegneria civile edile-architettura-ambiente"), 
-    ("DIIIE aule roio", "Dipartimento di ingegneria industriale e dell'informazione e di economia"), 
+    ("DIIIE aule Roio", "Dipartimento di ingegneria industriale e dell'informazione e di economia"), 
     ("DIIIE aule Acquasanta", "Dipartimento di ingegneria industriale e dell'informazione e di economia"), 
     ("DISCAB", "Dipartimento scienze chimiche applicate e biotecnologiche"), 
     ("DSFC", "Dipartimento di scienze fisiche e chimiche"), 

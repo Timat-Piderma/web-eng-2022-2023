@@ -13,19 +13,37 @@
     </div>
     <div class="row">
         <div class="four columns clabel">Giorno</div>
+        <#if !evento.giorno??>
         <div class="twelve columns"><input  type="date" name="giorno"/></div>
+        </#if>
+        <#if evento.giorno??>
+        <div class="twelve columns"><input  type="date" name="giorno" value="${evento.giorno}"/></div>
+        </#if>
+
     </div>
 
     <div class="row">
 
         <div class="four columns clabel">oraInizio</div>
+        <#if !evento.oraInizio??>
         <div class="twelve columns"><input type="time" name="oraInizio" step="900"/></div>
+        </#if>
+        <#if evento.oraInizio??>
+        <div class="twelve columns"><input type="time" name="oraInizio" step="900" value="${evento.oraInizio}"/></div>
+        </#if>
+
     </div>
     <div class="row">
         <div class="four columns clabel">oraFine</div>
+        <#if !evento.oraFine??>
         <div class="twelve columns"><input type="time" name="oraFine" step="900"/></div>
+        </#if>
+        <#if evento.oraFine??>
+        <div class="twelve columns"><input type="time" name="oraFine" step="900" value="${evento.oraFine}"/></div>
+        </#if>
+
     </div>
-    
+
     <div class="row">
         <div class="four columns clabel">Nome</div>
         <div class="twelve columns"><input name="nome" value="${strip_slashes(evento.nome)}"/> </div>
@@ -33,7 +51,7 @@
 
     <div class="row">
         <div class="four columns clabel">Descrizione</div>
-        <div class="twelve columns"><textarea name="descrizione"></textarea></div>
+        <div class="twelve columns"><textarea name="descrizione" >${strip_slashes(evento.descrizione)}</textarea></div>
     </div>
 
     <div class="row">
@@ -63,6 +81,13 @@
             </select>
         </div>
     </div>
+    <#if !evento.key??>
+    <div class="row"><input type="submit" name="update" value="Crea Evento"/> </div>
+    </#if>
+    <#if evento.key??>
+    <div class="row"><input type="submit" name="update" value="Modifica Evento"/> <a href="gestioneeventi?IDtoDelete=${evento.key}&data=${data}&IDaula=${aula.key}">Elimina Evento</a></div>
+    </#if>
 
-    <div class="row"><input type="submit" name="update" value="Update"/></div>
+
+
 </form>

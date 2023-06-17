@@ -17,6 +17,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,12 +28,13 @@ import javax.servlet.http.HttpServletResponse;
  * @author Giuseppe
  */
 public class GestioneEventi extends AuleWebBaseController {
-    
+
     private void action_default(HttpServletRequest request, HttpServletResponse response, int IDaula, String data) throws IOException, ServletException, TemplateManagerException {
         try {
             Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(IDaula);
-            
+
             TemplateResult res = new TemplateResult(getServletContext());
+            request.setAttribute("data", data);
             request.setAttribute(("aula"), aula);
             request.setAttribute("settiamanaprecedente", LocalDate.parse(data).plusDays(-7));
             request.setAttribute("settimanasuccessiva", LocalDate.parse(data).plusDays(7));
@@ -41,20 +44,21 @@ public class GestioneEventi extends AuleWebBaseController {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
-    
-    private void action_write(HttpServletRequest request, HttpServletResponse response, int IDevento, int IDaula) throws IOException, ServletException, TemplateManagerException {
+
+    private void action_write(HttpServletRequest request, HttpServletResponse response, int IDevento, int IDaula, String data) throws IOException, ServletException, TemplateManagerException {
         try {
-            
+
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
-            
+            request.setAttribute("data", data);
+
             Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(IDaula);
-            
+
             List<Responsabile> responsabili = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabili();
-            
+
             List<Tipologia> tipologie = new ArrayList<>();
             tipologie.addAll(Arrays.asList(Tipologia.values()));
-            
+
             request.setAttribute(("aula"), aula);
             request.setAttribute("responsabili", responsabili);
             request.setAttribute("tipologie", tipologie);
@@ -76,8 +80,8 @@ public class GestioneEventi extends AuleWebBaseController {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
-    
-    private void action_update(HttpServletRequest request, HttpServletResponse response, int IDevento, int IDaula) throws IOException, ServletException, TemplateManagerException {
+
+    private void action_update(HttpServletRequest request, HttpServletResponse response, int IDevento, int IDaula, String data) throws IOException, ServletException, TemplateManagerException {
         try {
             Evento evento;
             if (IDevento > 0) {
@@ -91,56 +95,76 @@ public class GestioneEventi extends AuleWebBaseController {
                     && request.getParameter("responsabile") != null) {
                 Responsabile responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabile(SecurityHelpers.checkNumeric(request.getParameter("responsabile")));
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(IDaula);
-                
+
                 if (responsabile != null) {
-                    
+
                     evento.setGiorno(Date.valueOf(SecurityHelpers.addSlashes(request.getParameter("giorno"))));
-                    
+
                     /////////////////////////////////////////////////////////////////////////////////////////////// +00
-                    evento.setOraInizio(Time.valueOf(SecurityHelpers.addSlashes(request.getParameter("oraInizio") + ":00")));                      
+                    evento.setOraInizio(Time.valueOf(SecurityHelpers.addSlashes(request.getParameter("oraInizio") + ":00")));
                     evento.setOraFine(Time.valueOf(SecurityHelpers.addSlashes(request.getParameter("oraFine") + ":00")));
-                    
+
                     evento.setNome(SecurityHelpers.addSlashes(request.getParameter("nome")));
                     evento.setDescrizione(SecurityHelpers.addSlashes(request.getParameter("descrizione")));
                     evento.setTipologia(Tipologia.valueOf(SecurityHelpers.addSlashes(request.getParameter("tipologia"))));
                     evento.setResponsabile(responsabile);
                     evento.setAula(aula);
-                    
+
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(evento);
                     //delega il resto del processo all'azione write
                     //delegates the rest of the process to the write action
-                    action_write(request, response, evento.getKey(), IDaula);
+                    action_write(request, response, evento.getKey(), IDaula, data);
                 } else {
                     handleError("Cannot update evento: undefined responsabile", request, response);
                 }
             } else {
                 handleError("Cannot update evento: insufficient parameters", request, response);
-                
+
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
-    
+
+    private void action_delete(HttpServletRequest request, HttpServletResponse response, int IDevento, String data, int IDaula) throws IOException, ServletException, TemplateManagerException {
+        try {
+
+            request.setAttribute("IDaula", IDaula);
+            request.setAttribute("data", data);
+            Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(IDevento);
+            ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().deleteEvento(evento);
+
+        } catch (DataException ex) {
+            Logger.getLogger(GestioneEventi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
-        
+
+        int IDaula;
         int IDevento;
         String data;
-        int IDaula;
+
         try {
+
+            data = SecurityHelpers.sanitizeFilename(request.getParameter("data"));
             IDaula = SecurityHelpers.checkNumeric(request.getParameter("IDaula"));
-            
+            if (request.getParameter("IDtoDelete") != null) {
+                IDevento = SecurityHelpers.checkNumeric(request.getParameter("IDtoDelete"));
+
+                action_delete(request, response, IDevento, data, IDaula);
+            }
+
             if (request.getParameter("k") != null) {
                 IDevento = SecurityHelpers.checkNumeric(request.getParameter("k"));
                 if (request.getParameter("update") != null) {
-                    action_update(request, response, IDevento, IDaula);
+                    action_update(request, response, IDevento, IDaula, data);
                 } else {
-                    action_write(request, response, IDevento, IDaula);
+                    action_write(request, response, IDevento, IDaula, data);
                 }
             } else {
-                data = SecurityHelpers.sanitizeFilename(request.getParameter("data"));
                 action_default(request, response, IDaula, data);
             }
         } catch (NumberFormatException ex) {
@@ -149,5 +173,5 @@ public class GestioneEventi extends AuleWebBaseController {
             handleError(ex, request, response);
         }
     }
-    
+
 }

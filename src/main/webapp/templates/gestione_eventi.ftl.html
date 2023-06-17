@@ -5,9 +5,9 @@
 <ul>
     <#list eventi as evento>
     <li>
-        <p>${evento.nome} &nbsp; ${evento.giorno} &nbsp; ${evento.aula.nome}&nbsp; ${evento.oraInizio} <a href="gestioneeventi?k=${evento.key}&IDaula=${aula.key}">Modifica</a> <a href="write?k=0">Elimina</a><p> 
+        <p>${evento.nome} &nbsp; ${evento.giorno} &nbsp; ${evento.aula.nome}&nbsp; ${evento.oraInizio} <a href="gestioneeventi?k=${evento.key}&IDaula=${aula.key}&data=${data}">Modifica</a> <p> 
     </li>
     </#list>
 </ul>
 </#if>
-<p><a href="gestioneeventi?k=0&IDaula=${aula.key}">Aggiungi evento</a></p>
+<p><a href="gestioneeventi?k=0&IDaula=${aula.key}&data=${data}">Aggiungi evento</a></p>
