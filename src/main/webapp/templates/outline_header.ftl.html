@@ -9,9 +9,9 @@
     <div class="three columns">
         <div class="logininfo">
             <#if logininfo??>
-            ${logininfo.username} (<a href="logout?referrer=${thispageurl?url}">logout</a>)
+            ${logininfo.username} <a href="logout?referrer=${thispageurl?url}"><image class="log" title="login" src="images/login.svg"/></a>
             <#else>
-            (<a href="login?referrer=${thispageurl?url}">login</a>)
+            <a href="login?referrer=${thispageurl?url}"><image class="log" title="login" src="images/login.svg"/></a>
             </#if>
         </div></div>
 </div>
