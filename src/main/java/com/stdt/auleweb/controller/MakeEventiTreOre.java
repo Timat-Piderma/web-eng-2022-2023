@@ -1,7 +1,6 @@
 package com.stdt.auleweb.controller;
 
 import com.stdt.auleweb.data.dao.AuleWebDataLayer;
-import com.stdt.auleweb.data.model.Aula;
 import com.stdt.auleweb.data.model.Evento;
 import com.stdt.auleweb.data.model.Gruppo;
 import com.stdt.auleweb.framework.data.DataException;
@@ -10,11 +9,6 @@ import com.stdt.auleweb.framework.result.TemplateManagerException;
 import com.stdt.auleweb.framework.result.TemplateResult;
 import com.stdt.auleweb.framework.security.SecurityHelpers;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

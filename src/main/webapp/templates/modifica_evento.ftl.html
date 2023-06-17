@@ -1,0 +1,68 @@
+<h2>Modifica Evento</h2>
+
+<form method="post" action="gestioneeventi">
+
+    <div class="container">
+        <input type="hidden" name="k" value="${evento.key!0}"/>
+        <input type="hidden" name="data" value="${data!0}"/>
+        <input type="hidden" name="IDaula" value="${aula.key!0}"/>
+        <div class="row">
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="four columns clabel">Giorno</div>
+        <div class="twelve columns"><input  type="date" name="giorno"/></div>
+    </div>
+
+    <div class="row">
+
+        <div class="four columns clabel">oraInizio</div>
+        <div class="twelve columns"><input type="time" name="oraInizio" step="900"/></div>
+    </div>
+    <div class="row">
+        <div class="four columns clabel">oraFine</div>
+        <div class="twelve columns"><input type="time" name="oraFine" step="900"/></div>
+    </div>
+    
+    <div class="row">
+        <div class="four columns clabel">Nome</div>
+        <div class="twelve columns"><input name="nome" value="${strip_slashes(evento.nome)}"/> </div>
+    </div>
+
+    <div class="row">
+        <div class="four columns clabel">Descrizione</div>
+        <div class="twelve columns"><textarea name="descrizione"></textarea></div>
+    </div>
+
+    <div class="row">
+        <div class="four columns clabel">Tipologia</div>
+        <div class="twelve columns"><select name="tipologia">
+                <#list tipologie as tipologia>
+                <option value="${tipologia}"
+                        <#if (evento.tipologia?? && tipologia=evento.tipologia)>
+                    selected="selected"
+                    </#if>
+                    >${tipologia}</option>
+                </#list> 
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="four columns clabel">Responsabile</div>
+        <div class="twelve columns"><select name="responsabile">
+                <#list responsabili as responsabile>
+                <option value="${responsabile.key}"
+                        <#if (evento.responsabile?? && responsabile.key=evento.responsabile.key)>
+                    selected="selected"
+                    </#if>
+                    >${responsabile.nome} ${responsabile.email}</option>
+                </#list> 
+            </select>
+        </div>
+    </div>
+
+    <div class="row"><input type="submit" name="update" value="Update"/></div>
+</form>
