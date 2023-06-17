@@ -1,18 +1,27 @@
 <div class="row" id="header">
     <div class="three columns">
-        <image title="Logo" src="images/Logo_Univaq.png">
-
+        <div id="logo">
+        <a href="https://www.univaq.it/"><image title="Logo" src="images/Logo_Univaq.png" hspace="25"></a>
+        </div>
     </div>
-    <div class="ten columns">AuleWeb Univaq
-        <div class="subtitle">${page_title!"Untitled page"}</div>
+    <div class="ten columns">
+        <div id="title">Universita' degli studi dell'Aquila</div>
     </div>
     <div class="three columns">
         <div class="logininfo">
             <#if logininfo??>
-            ${logininfo.username} (<a href="logout?referrer=${thispageurl?url}">logout</a>)
+            ${logininfo.username} <a href="logout?referrer=${thispageurl?url}"><button class="login-button">Logout</button></a>
             <#else>
-            (<a href="login?referrer=${thispageurl?url}">login</a>)
+            <a href="login?referrer=${thispageurl?url}"><button class="login-button">Login</button></a>
             </#if>
         </div></div>
 </div>
-
+<div class="row" id="header">
+<div class="sixteen columns">
+        <div class="topnav">
+        <a class="active" href="listgruppi">Homepage</a>
+        <a href="authprotec">pagina protetta da autenticazione</a>
+        <a href="#contact">Altro</a>
+  </div>
+ </div> 
+</div>
