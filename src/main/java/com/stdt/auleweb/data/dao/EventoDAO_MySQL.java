@@ -51,7 +51,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventiBySettimanaAndCorso = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE WEEK(giorno)=WEEK(?) AND corsoID=?");
             
             iEvento = connection.prepareStatement("INSERT INTO evento (giorno,oraInizio,oraFine,descrizione,nome,tipologia,aulaID,responsabileID,corsoID) VALUES(?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uEvento = connection.prepareStatement("UPDATE evento SET data=?,oraInizio=?,oraFine=?,descrizione=?, nome=?, tipologia=?, aulaID=?, responsabileID=?, corsoID=?, version=? WHERE ID=? and version=?");
+            uEvento = connection.prepareStatement("UPDATE evento SET giorno=?,oraInizio=?,oraFine=?,descrizione=?, nome=?, tipologia=?, aulaID=?, responsabileID=?, corsoID=?, version=? WHERE ID=? and version=?");
             dEvento = connection.prepareStatement("DELETE FROM evento WHERE ID=?");
             
         } catch (SQLException ex) {
@@ -240,7 +240,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 uEvento.setObject(3, evento.getOraFine());
                 uEvento.setString(4, evento.getDescrizione());
                 uEvento.setString(5, evento.getNome());
-                uEvento.setObject(6, evento.getTipologia());
+                uEvento.setString(6, evento.getTipologia().toString());
                 
                 if (evento.getAula() != null) {
                     uEvento.setInt(7, evento.getAula().getKey());
