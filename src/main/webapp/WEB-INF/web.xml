@@ -26,7 +26,7 @@
     </context-param>
     <context-param>
         <param-name>view.encoding</param-name>
-        <param-value>ISO-8859-1</param-value>
+        <param-value>UTF-8</param-value>
     </context-param>
     <context-param>
         <param-name>view.error_template</param-name>
@@ -35,7 +35,7 @@
     <context-param>
         <param-name>security.protect.patterns</param-name>
         <!-- qui configuriamo i pattern delle URL da proteggere -->
-        <param-value>/authprotec</param-value>
+        <param-value>/authprotec,/gestioneeventi,/selezionegruppo,/selezioneaula</param-value>
     </context-param>
     <context-param>
         <param-name>data.source</param-name>
@@ -65,6 +65,18 @@
     <servlet>
         <servlet-name>evento</servlet-name>
         <servlet-class>com.stdt.auleweb.controller.MakeEvento</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>gestioneeventi</servlet-name>
+        <servlet-class>com.stdt.auleweb.controller.GestioneEventi</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>selezionegruppo</servlet-name>
+        <servlet-class>com.stdt.auleweb.controller.SelezioneGruppo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>selezioneaula</servlet-name>
+        <servlet-class>com.stdt.auleweb.controller.SelezioneAula</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>eventigiorno</servlet-name>
@@ -109,6 +121,18 @@
     <servlet-mapping>
         <servlet-name>evento</servlet-name>
         <url-pattern>/evento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>gestioneeventi</servlet-name>
+        <url-pattern>/gestioneeventi</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>selezionegruppo</servlet-name>
+        <url-pattern>/selezionegruppo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>selezioneaula</servlet-name>
+        <url-pattern>/selezioneaula</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>eventigiorno</servlet-name>

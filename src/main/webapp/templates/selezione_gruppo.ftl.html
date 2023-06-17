@@ -1,0 +1,10 @@
+<h2>Gruppi disponibili</h2>
+<#if (gruppi?size>0)>
+<ul>
+    <#list gruppi as gruppo>
+    <li>
+        <a href="selezioneaula?IDgruppo=${gruppo.key}"><b>${gruppo.nome}</b> </a>
+    </li>
+    </#list>
+</ul>
+</#if>

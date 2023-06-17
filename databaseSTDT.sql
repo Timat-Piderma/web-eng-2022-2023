@@ -268,14 +268,6 @@ insert into Richiede (eventoID, corsoID) values
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 
-SELECT evento.oraInizio
-	AS eventoID
-	FROM evento 
-	JOIN tiene on evento.ID = tiene.eventoID 
-	JOIN Aula on aula.ID = tiene.aulaID 
-    WHERE evento.oraInizio >= CURRENT_TIMESTAMP 
-    AND evento.oraInizio <= CURRENT_TIMESTAMP + INTERVAL 3 HOUR
-    AND aula.gruppoID=1
-    AND evento.giorno = curdate();
+SELECT * from evento
     
 
