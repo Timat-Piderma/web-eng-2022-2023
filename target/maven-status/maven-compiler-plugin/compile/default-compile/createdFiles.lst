@@ -15,11 +15,13 @@ com\stdt\auleweb\framework\data\OptimisticLockException.class
 com\stdt\auleweb\data\impl\AulaImpl.class
 com\stdt\auleweb\controller\MakeEventiGiorno.class
 com\stdt\auleweb\controller\MakeEvento.class
+com\stdt\auleweb\controller\SelezioneGruppo.class
 com\stdt\auleweb\data\impl\GruppoImpl.class
 com\stdt\auleweb\data\model\Amministratore.class
 com\stdt\auleweb\data\proxy\AmministratoreProxy.class
 com\stdt\auleweb\controller\MakeEventiSettimana.class
 com\stdt\auleweb\framework\security\SecurityHelpers.class
+com\stdt\auleweb\controller\SelezioneAula.class
 com\stdt\auleweb\framework\result\StreamResult.class
 com\stdt\auleweb\data\dao\AulaDAO.class
 com\stdt\auleweb\data\proxy\EventoProxy.class
@@ -68,4 +70,5 @@ com\stdt\auleweb\data\proxy\AulaProxy.class
 com\stdt\auleweb\framework\result\FailureResult.class
 com\stdt\auleweb\data\dao\EventoDAO_MySQL.class
 com\stdt\auleweb\data\dao\PosizioneDAO.class
+com\stdt\auleweb\controller\GestioneEventi.class
 com\stdt\auleweb\framework\result\TemplateManagerException.class
