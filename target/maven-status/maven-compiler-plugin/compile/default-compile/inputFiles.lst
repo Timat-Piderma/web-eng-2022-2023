@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\aless\Desktop\web-eng-2022-2023\src\main\java\com\stdt\auleweb\framework\data\DataItemProxy.java
 C:\Users\aless\Desktop\web-eng-2022-2023\src\main\java\com\stdt\auleweb\framework\data\DAO.java
 C:\Users\aless\Desktop\web-eng-2022-2023\src\main\java\com\stdt\auleweb\framework\data\DataCache.java
@@ -69,3 +70,76 @@ C:\Users\aless\Desktop\web-eng-2022-2023\src\main\java\com\stdt\auleweb\data\mod
 C:\Users\aless\Desktop\web-eng-2022-2023\src\main\java\com\stdt\auleweb\data\proxy\GruppoProxy.java
 C:\Users\aless\Desktop\web-eng-2022-2023\src\main\java\com\stdt\auleweb\data\dao\ResponsabileDAO_MySQL.java
 C:\Users\aless\Desktop\web-eng-2022-2023\src\main\java\com\stdt\auleweb\framework\result\StreamResult.java
+=======
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\controller\AuthProtec.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\proxy\CorsoProxy.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\model\Posizione.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\impl\PosizioneImpl.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\data\DataItem.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\data\DataCache.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\result\SplitSlashesFmkExt.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\EventoDAO.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\model\Tipologia.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\CorsoDAO_MySQL.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\proxy\AulaProxy.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\AmministratoreDAO.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\proxy\AmministratoreProxy.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\controller\AuleWebBaseController.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\data\DataItemProxy.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\result\FailureResult.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\controller\Logout.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\impl\AttrezzaturaImpl.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\model\Aula.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\proxy\GruppoProxy.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\data\DataException.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\impl\CorsoImpl.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\result\StreamResult.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\model\Evento.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\AulaDAO.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\controller\MakeEvento.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\model\Responsabile.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\security\SecurityHelpers.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\model\Attrezzatura.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\AuleWebDataLayer.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\AttrezzaturaDAO.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\impl\AulaImpl.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\impl\EventoImpl.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\proxy\ResponsabileProxy.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\controller\Login.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\CorsoDAO.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\model\Corso.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\proxy\EventoProxy.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\controller\AbstractBaseController.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\controller\MakeAttrezzatura.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\controller\MakeEventiGiorno.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\AttrezzaturaDAO_MySQL.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\data\DataItemProxyImpl.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\data\OptimisticLockException.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\AulaDAO_MySQL.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\data\DataItemImpl.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\model\Amministratore.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\data\DataLayer.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\EventoDAO_MySQL.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\data\DAO.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\controller\MakeGruppo.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\PosizioneDAO.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\AmministratoreDAO_MySQL.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\ResponsabileDAO.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\result\TemplateManagerException.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\GruppoDAO_MySQL.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\proxy\AttrezzaturaProxy.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\impl\AmministratoreImpl.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\proxy\PosizioneProxy.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\impl\ResponsabileImpl.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\ResponsabileDAO_MySQL.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\model\Gruppo.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\GruppoDAO.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\controller\MakeEventiTreOre.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\result\TemplateResult.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\impl\GruppoImpl.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\controller\MakeAula.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\controller\ListGruppi.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\data\dao\PosizioneDAO_MySQL.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\controller\MakeEventiSettimana.java
+C:\ANDREA\web engennering e sviluppo web\webeng\src\main\java\com\stdt\auleweb\framework\result\DataModelFiller.java
+>>>>>>> fcc29c322723ce6001b8d757bd4235b300261aee

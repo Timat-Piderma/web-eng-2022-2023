@@ -34,7 +34,7 @@ public class ResponsabileDAO_MySQL extends DAO implements ResponsabileDAO {
             //precompile all the queries uses in this class
             sResponsabileByID = connection.prepareStatement("SELECT * FROM responsabile WHERE ID=?");
             sResponsabileByEvento = connection.prepareStatement("SELECT * FROM responsabile WHERE eventoID=?");
-            sResponsabili = connection.prepareStatement("SELECT ID AS responsabiliID FROM responsabile");
+            sResponsabili = connection.prepareStatement("SELECT ID FROM responsabile");
             //notare l'ultimo paametro extra di questa chiamata a
             //prepareStatement: lo usiamo per assicurarci che il JDBC
             //restituisca la chiave generata automaticamente per il
@@ -137,7 +137,7 @@ public class ResponsabileDAO_MySQL extends DAO implements ResponsabileDAO {
 
         try (ResultSet rs = sResponsabili.executeQuery()) {
             while (rs.next()) {
-                result.add((Responsabile) getResponsabile(rs.getInt("responsabileID")));
+                result.add((Responsabile) getResponsabile(rs.getInt("ID")));
             }
         } catch (SQLException ex) {
             throw new DataException("Unable to load responsabili", ex);

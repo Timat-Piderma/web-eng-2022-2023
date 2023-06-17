@@ -1,0 +1,13 @@
+<h2>Eventi programmati per l'aula: ${aula.nome}</h2>
+
+<a href="gestioneeventi?IDaula=${aula.key}&data=${settiamanaprecedente}"> Settimana Precedente </a> &nbsp;<a href="gestioneeventi?IDaula=${aula.key}&data=${settimanasuccessiva}"> Settiamana Prossima </a>
+<#if (eventi?size>0)>
+<ul>
+    <#list eventi as evento>
+    <li>
+        <p>${evento.nome} &nbsp; ${evento.giorno} &nbsp; ${evento.aula.nome}&nbsp; ${evento.oraInizio} <a href="gestioneeventi?k=${evento.key}&IDaula=${aula.key}">Modifica</a> <a href="write?k=0">Elimina</a><p> 
+    </li>
+    </#list>
+</ul>
+</#if>
+<p><a href="gestioneeventi?k=0&IDaula=${aula.key}">Aggiungi evento</a></p>

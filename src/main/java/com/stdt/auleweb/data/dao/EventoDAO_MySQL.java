@@ -271,12 +271,12 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                     evento.setVersion(next_version);
                 }
             } else { //insert
-                iEvento.setObject(1, evento.getGiorno());
-                iEvento.setObject(2, evento.getOraInizio());
-                iEvento.setObject(3, evento.getOraFine());
+                iEvento.setDate(1, new Date(evento.getGiorno().getTime()));            
+                iEvento.setTime(2, new Time(evento.getOraInizio().getTime()));
+                iEvento.setTime(3, new Time(evento.getOraFine().getTime()));
                 iEvento.setString(4, evento.getDescrizione());
                 iEvento.setString(5, evento.getNome());
-                iEvento.setObject(6, evento.getTipologia());
+                iEvento.setString(6, evento.getTipologia().toString());
                 
                 if (evento.getAula() != null) {
                     iEvento.setInt(7, evento.getAula().getKey());
@@ -315,9 +315,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                             evento.setKey(key);
                             //inseriamo il nuovo oggetto nella cache
                             //add the new object to the cache
-                            dataLayer
-                                    .getCache().add(Evento.class,
-                                            evento);
+                            dataLayer.getCache().add(Evento.class, evento);
                         }
                     }
                 }
@@ -340,7 +338,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 ((DataItemProxy) evento).setModified(false);
             }
         } catch (SQLException | OptimisticLockException ex) {
-            throw new DataException("Unable to store article", ex);
+            throw new DataException("Unable to store evento", ex);
         }
     }
     
