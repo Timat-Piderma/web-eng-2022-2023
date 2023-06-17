@@ -1,9 +1,9 @@
-<h2>Gruppi disponibili</h2>
+<h2 style="text-align: center">Gruppi disponibili</h2>
 <#if (gruppi?size>0)>
     <div class="row" style="text-align: center">
     <#list gruppi as gruppo>
     <div class="four columns" style="margin: 10px">
-        <a href="gruppo?n=${gruppo.key}"><image title="Logo" src="images/Logo_Univaq.png"><br><b>${gruppo.nome}</b></a>
+        <a href="gruppo?n=${gruppo.key}"><image title="img" src="images/${gruppo.nome}.png"><br><b>${gruppo.nome}</b></a>
     </div>
     </#list>
     </div>
