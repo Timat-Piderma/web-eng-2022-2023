@@ -13,9 +13,12 @@ import com.stdt.auleweb.framework.security.SecurityHelpers;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +37,7 @@ public class GestioneEventi extends AuleWebBaseController {
             Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(IDaula);
 
             TemplateResult res = new TemplateResult(getServletContext());
-            request.setAttribute("data", data);
+
             request.setAttribute(("aula"), aula);
             request.setAttribute("settiamanaprecedente", LocalDate.parse(data).plusDays(-7));
             request.setAttribute("settimanasuccessiva", LocalDate.parse(data).plusDays(7));
@@ -45,12 +48,11 @@ public class GestioneEventi extends AuleWebBaseController {
         }
     }
 
-    private void action_write(HttpServletRequest request, HttpServletResponse response, int IDevento, int IDaula, String data) throws IOException, ServletException, TemplateManagerException {
+    private void action_write(HttpServletRequest request, HttpServletResponse response, int IDevento, int IDaula) throws IOException, ServletException, TemplateManagerException {
         try {
 
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
-            request.setAttribute("data", data);
 
             Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(IDaula);
 
@@ -59,10 +61,11 @@ public class GestioneEventi extends AuleWebBaseController {
             List<Tipologia> tipologie = new ArrayList<>();
             tipologie.addAll(Arrays.asList(Tipologia.values()));
 
-            request.setAttribute(("aula"), aula);
+            request.setAttribute("aula", aula);
             request.setAttribute("responsabili", responsabili);
             request.setAttribute("tipologie", tipologie);
             if (IDevento > 0) {
+                //Se si tratta di una modifica, prende dal datalayer l'evento da modificare in base all'id
                 Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(IDevento);
                 if (evento != null) {
                     request.setAttribute("evento", evento);
@@ -81,18 +84,21 @@ public class GestioneEventi extends AuleWebBaseController {
         }
     }
 
-    private void action_update(HttpServletRequest request, HttpServletResponse response, int IDevento, int IDaula, String data) throws IOException, ServletException, TemplateManagerException {
+    private void action_update(HttpServletRequest request, HttpServletResponse response, int IDevento, int IDaula) throws IOException, ServletException, TemplateManagerException {
         try {
+
             Evento evento;
             if (IDevento > 0) {
                 evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(IDevento);
             } else {
                 evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().createEvento();
             }
+
             if (evento != null && request.getParameter("giorno") != null && request.getParameter("oraInizio") != null
                     && !request.getParameter("nome").isEmpty() && request.getParameter("oraFine") != null
                     && request.getParameter("descrizione") != null && request.getParameter("tipologia") != null
                     && request.getParameter("responsabile") != null) {
+
                 Responsabile responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabile(SecurityHelpers.checkNumeric(request.getParameter("responsabile")));
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(IDaula);
 
@@ -100,10 +106,14 @@ public class GestioneEventi extends AuleWebBaseController {
 
                     evento.setGiorno(Date.valueOf(SecurityHelpers.addSlashes(request.getParameter("giorno"))));
 
-                    /////////////////////////////////////////////////////////////////////////////////////////////// +00
-                    evento.setOraInizio(Time.valueOf(SecurityHelpers.addSlashes(request.getParameter("oraInizio") + ":00")));
-                    evento.setOraFine(Time.valueOf(SecurityHelpers.addSlashes(request.getParameter("oraFine") + ":00")));
+                    String formato = "HH:mm";
 
+                    // Crea un'istanza di DateTimeFormatter con il formato specificato
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato);
+
+                    /////////////////////////////////////////////////////////////////////////////////////////////// +00
+                    evento.setOraInizio(Time.valueOf(SecurityHelpers.addSlashes(request.getParameter("oraInizio").substring(0, 5)) + ":00"));
+                    evento.setOraFine(Time.valueOf(SecurityHelpers.addSlashes(request.getParameter("oraFine").substring(0, 5)) + ":00"));
                     evento.setNome(SecurityHelpers.addSlashes(request.getParameter("nome")));
                     evento.setDescrizione(SecurityHelpers.addSlashes(request.getParameter("descrizione")));
                     evento.setTipologia(Tipologia.valueOf(SecurityHelpers.addSlashes(request.getParameter("tipologia"))));
@@ -113,7 +123,8 @@ public class GestioneEventi extends AuleWebBaseController {
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(evento);
                     //delega il resto del processo all'azione write
                     //delegates the rest of the process to the write action
-                    action_write(request, response, evento.getKey(), IDaula, data);
+                    action_write(request, response, evento.getKey(), aula.getKey());
+
                 } else {
                     handleError("Cannot update evento: undefined responsabile", request, response);
                 }
@@ -126,12 +137,10 @@ public class GestioneEventi extends AuleWebBaseController {
         }
     }
 
-    private void action_delete(HttpServletRequest request, HttpServletResponse response, int IDevento, String data, int IDaula) throws IOException, ServletException, TemplateManagerException {
+    private void action_delete(HttpServletRequest request, HttpServletResponse response, int IDevento) throws IOException, ServletException, TemplateManagerException {
         try {
-
-            request.setAttribute("IDaula", IDaula);
-            request.setAttribute("data", data);
             Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(IDevento);
+
             ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().deleteEvento(evento);
 
         } catch (DataException ex) {
@@ -142,31 +151,47 @@ public class GestioneEventi extends AuleWebBaseController {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
-
         int IDaula;
         int IDevento;
         String data;
 
         try {
 
-            data = SecurityHelpers.sanitizeFilename(request.getParameter("data"));
-            IDaula = SecurityHelpers.checkNumeric(request.getParameter("IDaula"));
-            if (request.getParameter("IDtoDelete") != null) {
-                IDevento = SecurityHelpers.checkNumeric(request.getParameter("IDtoDelete"));
-
-                action_delete(request, response, IDevento, data, IDaula);
+            if (request.getParameter("data") == null) {
+                data = Calendar.getInstance().toString();
+            } else {
+                data = SecurityHelpers.sanitizeFilename(request.getParameter("data"));
             }
 
-            if (request.getParameter("k") != null) {
-                IDevento = SecurityHelpers.checkNumeric(request.getParameter("k"));
+            IDaula = SecurityHelpers.checkNumeric(request.getParameter("IDaula"));
+            request.setAttribute("IDaula", IDaula);
+
+            request.setAttribute("data", data);
+
+            //Se gli viene passato l'id di un evento da cancellare chiama action_delete
+            if (request.getParameter("delete") != null) {
+                IDevento = SecurityHelpers.checkNumeric(request.getParameter("IDevento"));
+                action_delete(request, response, IDevento);
+            }
+
+            //Se gli viene passato l'id di un evento, controlla se si tratta di un aggiornamento o di un inserimento
+            if (request.getParameter("IDevento") != null) {
+
+                IDevento = SecurityHelpers.checkNumeric(request.getParameter("IDevento"));
+
                 if (request.getParameter("update") != null) {
-                    action_update(request, response, IDevento, IDaula, data);
+
+                    //aggiornamento
+                    action_update(request, response, IDevento, IDaula);
                 } else {
-                    action_write(request, response, IDevento, IDaula, data);
+                    //inserimento
+                    action_write(request, response, IDevento, IDaula);
                 }
             } else {
+                //Altrimenti effettua l'azione di default
                 action_default(request, response, IDaula, data);
             }
+
         } catch (NumberFormatException ex) {
             handleError("Invalid number submitted", request, response);
         } catch (IOException | TemplateManagerException ex) {
