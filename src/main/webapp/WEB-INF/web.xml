@@ -35,7 +35,7 @@
     <context-param>
         <param-name>security.protect.patterns</param-name>
         <!-- qui configuriamo i pattern delle URL da proteggere -->
-        <param-value>/authprotec,/gestioneeventi,/selezionegruppo,/selezioneaula</param-value>
+        <param-value>/authprotec,/gestioneeventi,/gestionegruppi,/gestioneaule</param-value>
     </context-param>
     <context-param>
         <param-name>data.source</param-name>
@@ -71,12 +71,12 @@
         <servlet-class>com.stdt.auleweb.controller.GestioneEventi</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>selezionegruppo</servlet-name>
-        <servlet-class>com.stdt.auleweb.controller.SelezioneGruppo</servlet-class>
+        <servlet-name>gestionegruppi,</servlet-name>
+        <servlet-class>com.stdt.auleweb.controller.GestioneGruppi</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>selezioneaula</servlet-name>
-        <servlet-class>com.stdt.auleweb.controller.SelezioneAula</servlet-class>
+        <servlet-name>gestioneaule,</servlet-name>
+        <servlet-class>com.stdt.auleweb.controller.GestioneAule</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>eventigiorno</servlet-name>
@@ -127,12 +127,12 @@
         <url-pattern>/gestioneeventi</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>selezionegruppo</servlet-name>
-        <url-pattern>/selezionegruppo</url-pattern>
+        <servlet-name>gestionegruppi,</servlet-name>
+        <url-pattern>/gestionegruppi,</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>selezioneaula</servlet-name>
-        <url-pattern>/selezioneaula</url-pattern>
+        <servlet-name>gestioneaule,</servlet-name>
+        <url-pattern>/gestioneaule,</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>eventigiorno</servlet-name>
@@ -168,5 +168,4 @@
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
-
 </web-app>
