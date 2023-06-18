@@ -144,3 +144,9 @@ a {
   background-color: transparent;
   color: black;
 } 
+
+#indietro { 
+    top: 20px; 
+    right: 20px;
+    padding: 10px 20px;
+}
