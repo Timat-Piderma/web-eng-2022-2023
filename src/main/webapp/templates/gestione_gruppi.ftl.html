@@ -3,8 +3,9 @@
 <ul>
     <#list gruppi as gruppo>
     <li>
-        <a href="gestioneaule,?IDgruppo=${gruppo.key}"><b>${gruppo.nome}</b> </a>
+        <a href="gestioneaule?IDgruppo=${gruppo.key}"><b>${gruppo.nome}</b>  <a href="gestionegruppi?IDgruppo=${gruppo.key}">Modifica</a> </a>
     </li>
     </#list>
 </ul>
 </#if>
+<a href="gestionegruppi?IDgruppo=0">Aggiungi Gruppo</a>

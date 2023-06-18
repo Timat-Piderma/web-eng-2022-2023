@@ -71,11 +71,11 @@
         <servlet-class>com.stdt.auleweb.controller.GestioneEventi</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>gestionegruppi,</servlet-name>
+        <servlet-name>gestionegruppi</servlet-name>
         <servlet-class>com.stdt.auleweb.controller.GestioneGruppi</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>gestioneaule,</servlet-name>
+        <servlet-name>gestioneaule</servlet-name>
         <servlet-class>com.stdt.auleweb.controller.GestioneAule</servlet-class>
     </servlet>
     <servlet>
@@ -127,12 +127,12 @@
         <url-pattern>/gestioneeventi</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>gestionegruppi,</servlet-name>
-        <url-pattern>/gestionegruppi,</url-pattern>
+        <servlet-name>gestionegruppi</servlet-name>
+        <url-pattern>/gestionegruppi</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>gestioneaule,</servlet-name>
-        <url-pattern>/gestioneaule,</url-pattern>
+        <servlet-name>gestioneaule</servlet-name>
+        <url-pattern>/gestioneaule</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>eventigiorno</servlet-name>

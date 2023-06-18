@@ -207,4 +207,18 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
             throw new DataException("Unable to store gruppo", ex);
         }
     }
+
+    @Override
+    public void deleteGruppo(Gruppo gruppo) throws DataException {
+        try {
+            dGruppo.setInt(1, gruppo.getKey());
+            int affectedRows = dGruppo.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new DataException("Failed to delete gruppo");
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to delete gruppo", ex);
+        }
+    }
 }

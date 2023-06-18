@@ -1,91 +1,29 @@
 <h2>Modifica Evento</h2>
 
-<form method="post" action="gestioneeventi">
+<form method="post" action="gestionegruppi">
 
     <div class="container">
-        <input type="hidden" name="IDevento" value="${evento.key!0}"/>
-        <input type="hidden" name="data" value="${data}"/>
-        <input type="hidden" name="IDaula" value="${aula.key}"/>
+        <input  name="IDgruppo" value="${gruppo.key!0}"/>
         <div class="row">
 
-
         </div>
-    </div>
-    <div class="row">
-        <div class="four columns clabel">Giorno</div>
-        <#if !evento.giorno??>
-        <div class="twelve columns"><input  type="date" name="giorno"/></div>
-        </#if>
-        <#if evento.giorno??>
-        <div class="twelve columns"><input  type="date" name="giorno" value="${evento.giorno}"/></div>
-        </#if>
-
-    </div>
-
-    <div class="row">
-
-        <div class="four columns clabel">oraInizio</div>
-        <#if !evento.oraInizio??>
-        <div class="twelve columns"><input type="time" name="oraInizio" step="900"/></div>
-        </#if>
-        <#if evento.oraInizio??>
-        <div class="twelve columns"><input type="time" name="oraInizio" step="900" value="${evento.oraInizio}"/></div>
-        </#if>
-
-    </div>
-    <div class="row">
-        <div class="four columns clabel">oraFine</div>
-        <#if !evento.oraFine??>
-        <div class="twelve columns"><input type="time" name="oraFine" step="900"/></div>
-        </#if>
-        <#if evento.oraFine??>
-        <div class="twelve columns"><input type="time" name="oraFine" step="900" value="${evento.oraFine}"/></div>
-        </#if>
-
     </div>
 
     <div class="row">
         <div class="four columns clabel">Nome</div>
-        <div class="twelve columns"><input name="nome" value="${strip_slashes(evento.nome)}"/> </div>
+        <div class="twelve columns"><input name="nome" value="${strip_slashes(gruppo.nome)}"/> </div>
     </div>
 
     <div class="row">
         <div class="four columns clabel">Descrizione</div>
-        <div class="twelve columns"><textarea name="descrizione" >${strip_slashes(evento.descrizione)}</textarea></div>
+        <div class="twelve columns"><textarea name="descrizione" >${strip_slashes(gruppo.descrizione)}</textarea></div>
     </div>
-
-    <div class="row">
-        <div class="four columns clabel">Tipologia</div>
-        <div class="twelve columns"><select name="tipologia">
-                <#list tipologie as tipologia>
-                <option value="${tipologia}"
-                        <#if (evento.tipologia?? && tipologia=evento.tipologia)>
-                    selected="selected"
-                    </#if>
-                    >${tipologia}</option>
-                </#list> 
-            </select>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="four columns clabel">Responsabile</div>
-        <div class="twelve columns"><select name="responsabile">
-                <#list responsabili as responsabile>
-                <option value="${responsabile.key}"
-                        <#if (evento.responsabile?? && responsabile.key=evento.responsabile.key)>
-                    selected="selected"
-                    </#if>
-                    >${responsabile.nome} ${responsabile.email}</option>
-                </#list> 
-            </select>
-        </div>
-    </div>
-    <#if !evento.key??>
-    <div class="row"><input type="submit" name="update" value="Crea Evento"/> </div>
+    
+    <#if !gruppo.key??>
+    <div class="row"><input type="submit" name="update" value="Crea Gruppo"/> </div>
     </#if>
-    <#if evento.key??>
-    <div class="row"><input type="submit" name="update" value="Modifica Evento"/> <input type="submit" name="delete" value="Elimina Evento"/></div>
+    <#if gruppo.key??>
+    <div class="row"><input type="submit" name="update" value="Modifica Gruppo"/> <input type="submit" name="delete" value="Elimina Gruppo"/></div>
     </#if>
 
 

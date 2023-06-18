@@ -96,7 +96,7 @@ public class GestioneEventi extends AuleWebBaseController {
 
             if (evento != null && request.getParameter("giorno") != null && request.getParameter("oraInizio") != null
                     && !request.getParameter("nome").isEmpty() && request.getParameter("oraFine") != null
-                    && request.getParameter("descrizione") != null && request.getParameter("tipologia") != null
+                    && !request.getParameter("descrizione").isEmpty() && request.getParameter("tipologia") != null
                     && request.getParameter("responsabile") != null) {
 
                 Responsabile responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabile(SecurityHelpers.checkNumeric(request.getParameter("responsabile")));
