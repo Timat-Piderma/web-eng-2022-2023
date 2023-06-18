@@ -1,6 +1,5 @@
 <div class="six columns">
     <h2>${aula.nome}</h2>
-    <i>Pagina dell'aula: ${aula.nome}</i>
     <p>
         Capienza: ${aula.capienza} persone
         <br>Numero di prese elettriche: ${aula.numeroPreseElettriche}
@@ -9,22 +8,32 @@
         <br>Posizione: ${aula.posizione.luogo}, ${aula.posizione.edificio}, ${aula.posizione.piano}
     </p>
     <br>
+    <h3>Attrezzatura</h3>
+    <#if (aula.attrezzature?size>0)>
+    <table id="aule">
+    <tr>
+        <#list attrezzature as attrezzatura>
+        <th>${attrezzatura.nome} </th>
+        </#list>   
+    </tr>
+    <#list attrezzature as attrezzatura>
+                <td>
+                    <#assign attrezzaturaPresente = false>
+                    <#list aula.attrezzature as aulaAttrezzatura>
+                        <#if aulaAttrezzatura == attrezzatura>
+                            <#assign attrezzaturaPresente = true>
+                        </#if>
+                    </#list>
+                    <input type="checkbox" disabled <#if attrezzaturaPresente>checked</#if>>
+                </td>
+        </#list>
+    </table>
+   </#if>
     
+    <br>
     <h3>Eventi</h3>
     <a href="eventisettimana?IDaula=${aula.key}&data=${giorno}"> Eventi per settimana </a>
 </div>
-<div class="six cloumns">
-    <#if (aula.attrezzature?size>0)>
-    <h3>Attrezzatura</h3>
 
-    <ul>
-        <#list aula.attrezzature as attrezzatura>
-        <li>
-            ${attrezzatura.nome}
-        </li>
-        </#list>
-    </ul>
-    </#if>
-</div>
 
 

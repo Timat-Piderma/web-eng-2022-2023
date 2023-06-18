@@ -28,9 +28,6 @@ public class MakeGruppo extends AuleWebBaseController {
                 request.setAttribute("gruppo", gruppo);
                 request.setAttribute("data", LocalDate.now());
 
-                List<Attrezzatura> attrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAttrezzaturaDAO().getAttrezzature();
-
-                request.setAttribute("attrezzature", attrezzature);
                 request.setAttribute("page_title", gruppo.getNome());
                 //verr� usato automaticamente il template di outline spcificato tra i context parameters
                 //the outlne template specified through the context parameters will be added by the TemplateResult to the specified template

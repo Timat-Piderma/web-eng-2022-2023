@@ -18,11 +18,6 @@
         <th>Prese Rete</th>
         <th>Note</th>
         
-        <!-- Aggiunge una colonna per ogni attrezzatura -->
-        <#list attrezzature as attrezzatura>
-        <th>${attrezzatura.nome} </th>
-        </#list>
-        
     </tr>
     <#list gruppo.aule as aula>
     <tr>
@@ -34,7 +29,6 @@
         <td>${aula.numeroPreseElettriche}</td>
         <td>${aula.numeroPreseRete}</td>
         <td>${aula.note}</td>
-        <!-- Aggiungi altre colonne per le attrezzature, se hanno una cosa scrivi si senno no  e anche alle note-->
     </tr>
     </#list>
 </table>
