@@ -1,17 +1,39 @@
 <h2>${gruppo.nome}</h2>
-<p>Pagina del gruppo: ${gruppo.nome}<p>
-<p><a href="eventigiorno?IDgruppo=${gruppo.key}&data=${data}">Eventi per Giorno &nbsp; <a href="eventitreore?IDgruppo=${gruppo.key}">Eventi nelle prossime 3 ore</p>
-            <#if (gruppo.aule?size > 0)>
-            <ul>
-                <#list gruppo.aule as aula>
-                <li>
-                    <p>
-                        <a href="aula?id=${aula.key}"><b>${strip_slashes(aula.nome)}</b></a>
-                        <br/><small>posti: ${aula.capienza}</small>
-                    </p>
-                </li>
-                </#list>
-            </ul>
-            </#if>
 
+<p>
+    <a href="eventigiorno?IDgruppo=${gruppo.key}&data=${data}"><button class="classical-button">Eventi per Giorno</button></a>
+    &nbsp;
+    <a href="eventitreore?IDgruppo=${gruppo.key}"><button class="classical-button">Eventi nelle prossime 3 ore</button></a>
+</p>
 
+<#if (gruppo.aule?size > 0)>
+    <table id="aule">
+        <tr>
+            <th>Aula</th>
+            <th>Piano</th>
+            <th>Edificio</th>
+            <th>Luogo</th>
+            <th>Posti</th>
+            <th>Prese Elettriche</th>
+            <th>Prese Rete</th>
+            <th>Note</th>
+            <th>Attrezzature</th>
+            <!-- Devo aggiungere le attrezzature lista di attrezzature dalla classe attrezzatura e stampo i nomi <th>Attrezzatura1</th>-->
+            
+           
+        </tr>
+        <#list gruppo.aule as aula>
+            <tr>
+                <td><a href="aula?id=${aula.key}">${strip_slashes(aula.nome)}</a></td>
+                <td>${aula.posizione.piano}</td>
+                <td>${aula.posizione.edificio}</td>
+                <td>${aula.posizione.luogo}</td>
+                <td>${aula.capienza}</td>
+                <td>${aula.numeroPreseElettriche}</td>
+                <td>${aula.numeroPreseRete}</td>
+                <td>${aula.note}</td>
+                    <!-- Aggiungi altre colonne per le attrezzature, se hanno una cosa scrivi si senno no  e anche alle note-->
+            </tr>
+        </#list>
+    </table>
+</#if>

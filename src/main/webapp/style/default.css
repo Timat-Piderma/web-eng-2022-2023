@@ -106,7 +106,47 @@ body,html {
   background-color: #fcba03;
   color: black;
 }
+
+.classical-button {
+            padding: 10px 20px;
+            background-color: #003399;
+            color: white;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+.classical-button:hover {
+  background-color: #fcba03;
+  color: black;
+}
 a {
     text-decoration: none;
     color:black;
 }
+
+#aule {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#aule td, #aule th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#aule tr:nth-child(even){background-color: #f2f2f2;}
+
+#aule tr:hover {background-color: #ddd;}
+
+#aule th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: transparent;
+  color: black;
+} 
