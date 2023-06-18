@@ -2,6 +2,7 @@ package com.stdt.auleweb.controller;
 
 import com.stdt.auleweb.data.dao.AuleWebDataLayer;
 import com.stdt.auleweb.data.model.Aula;
+import com.stdt.auleweb.data.model.Corso;
 import com.stdt.auleweb.data.model.Evento;
 import com.stdt.auleweb.data.model.Responsabile;
 import com.stdt.auleweb.data.model.Tipologia;
@@ -57,12 +58,14 @@ public class GestioneEventi extends AuleWebBaseController {
             Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(IDaula);
 
             List<Responsabile> responsabili = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabili();
+            List<Corso> corsi = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getCorsi();
 
             List<Tipologia> tipologie = new ArrayList<>();
             tipologie.addAll(Arrays.asList(Tipologia.values()));
 
             request.setAttribute("aula", aula);
             request.setAttribute("responsabili", responsabili);
+            request.setAttribute("corsi", corsi);
             request.setAttribute("tipologie", tipologie);
             if (IDevento > 0) {
                 //Se si tratta di una modifica, prende dal datalayer l'evento da modificare in base all'id
@@ -109,23 +112,37 @@ public class GestioneEventi extends AuleWebBaseController {
                     responsabile.setEmail(SecurityHelpers.addSlashes(request.getParameter("emailNuovoResponsabile")));
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().storeResponsabile(responsabile);
 
-                } 
-                //Altrimenti prende quello che è stato scelto dalla select
+                } //Altrimenti prende quello che è stato scelto dalla select
                 else {
                     responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabile(SecurityHelpers.checkNumeric(request.getParameter("responsabile")));
 
                 }
+
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(IDaula);
 
                 if (responsabile != null) {
 
+                    Corso corso = null;
+
+                    if (SecurityHelpers.addSlashes(request.getParameter("tipologia")).equals("lezione")
+                            || SecurityHelpers.addSlashes(request.getParameter("tipologia")).equals("esame")
+                            || SecurityHelpers.addSlashes(request.getParameter("tipologia")).equals("parziale")) {
+
+                        if (!request.getParameter("nomeNuovoCorso").isEmpty()) {
+                            corso = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().createCorso();
+                            corso.setNome(SecurityHelpers.addSlashes(request.getParameter("nomeNuovoCorso")));
+                            ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().storeCorso(corso);
+
+                        } else {
+                            corso = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getCorso(SecurityHelpers.checkNumeric(request.getParameter("corso")));
+
+                        }
+
+                    }
+
+                    evento.setCorso(null);
+                    
                     evento.setGiorno(Date.valueOf(SecurityHelpers.addSlashes(request.getParameter("giorno"))));
-
-                    String formato = "HH:mm";
-
-                    // Crea un'istanza di DateTimeFormatter con il formato specificato
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato);
-
                     /////////////////////////////////////////////////////////////////////////////////////////////// +00
                     evento.setOraInizio(Time.valueOf(SecurityHelpers.addSlashes(request.getParameter("oraInizio").substring(0, 5)) + ":00"));
                     evento.setOraFine(Time.valueOf(SecurityHelpers.addSlashes(request.getParameter("oraFine").substring(0, 5)) + ":00"));

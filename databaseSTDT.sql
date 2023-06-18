@@ -215,8 +215,8 @@ insert into Amministratore(username, `password`) values
     
 insert into Evento(giorno, oraInizio, oraFine, nome, descrizione, tipologia, responsabileID, aulaID, corsoID) values
 	("2023-06-16", "22:00", "13:30", "I2I007","docente mascio tania", "lezione",2,1,1),
-    ("2023-06-16", "00:30", "17:30", "DT0761", "docente masi anna" , "lezione",2,1,null),
-    ("2023-06-16", "14:30", "13:30", "F0140","docente smriglio stefano", "lezione", 1,1,null),
+    ("2023-06-16", "00:30", "17:30", "DT0761", "docente masi anna" , "lezione",2,1,2),
+    ("2023-06-16", "14:30", "13:30", "F0140","docente smriglio stefano", "lezione", 1,1,2),
     ("2023-05-16", "16:30", "18:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1);
     
     
@@ -269,5 +269,7 @@ insert into Richiede (eventoID, corsoID) values
 
 
 SELECT * from evento
+
+
     
 

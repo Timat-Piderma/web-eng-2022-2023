@@ -56,7 +56,8 @@
 
     <div class="row">
         <div class="four columns clabel">Tipologia</div>
-        <div class="twelve columns"><select name="tipologia">
+        <div class="twelve columns"><select id="tipologia" name="tipologia" onchange="enableInputField()">
+                <option value="" disabled selected>Seleziona una Tipologia</option>
                 <#list tipologie as tipologia>
                 <option value="${tipologia}"
                         <#if (evento.tipologia?? && tipologia=evento.tipologia)>
@@ -70,8 +71,29 @@
 
     <div class="row">
 
+        <div class="four columns clabel">Corso</div>
+        <div class="twelve columns"><select name="corso" id="corsoSelect" disabled>
+                <option value="" disabled selected>Seleziona un Corso</option>
+                <#list corsi as corso>
+                <option value="${corso.key}"
+                        <#if (evento.corso?? && corso.key=evento.corso.key)>
+                    selected="selected"
+                    </#if>
+                    >${corso.nome}</option>
+                </#list> 
+            </select>
+            <br>
+            Oppure inserisci i dati di un nuovo Corso
+            <input id="corsoInput" disabled type="text"  name="nomeNuovoCorso" placeholder="Inserisci Nome">
+        </div>
+
+    </div>
+
+    <div class="row">
+
         <div class="four columns clabel">Responsabile</div>
-        <div class="twelve columns">Seleziona un responsabile<select name="responsabile">
+        <div class="twelve columns"><select name="responsabile">
+                <option value="" disabled selected>Seleziona un responsabile</option>
                 <#list responsabili as responsabile>
                 <option value="${responsabile.key}"
                         <#if (evento.responsabile?? && responsabile.key=evento.responsabile.key)>
@@ -81,12 +103,16 @@
                 </#list> 
             </select>
             <br>
-            Oppure inserisci i dati di un nuovo resposabile
+            Oppure inserisci i dati di un nuovo Resposabile
             <input type="text"  name="nomeNuovoResponsabile" placeholder="Inserisci Nome">
             <input type="text"  name="emailNuovoResponsabile" placeholder="Inserisci Email">
         </div>
 
     </div>
+
+
+
+
     <#if !evento.key??>
     <div class="row"><input type="submit" name="update" value="Crea Evento"/> </div>
     </#if>
@@ -97,3 +123,18 @@
 
 
 </form>
+
+<script>
+    function enableInputField() {
+        var selectTipologia = document.getElementById("tipologia");
+        var selectCorso = document.getElementById("corsoSelect");
+        var inputCorso = document.getElementById("corsoInput");
+        if (selectTipologia.value === "lezione" || selectTipologia.value === "parziale" || selectTipologia.value === "esame") {
+            inputCorso.removeAttribute("disabled");
+            selectCorso.removeAttribute("disabled");
+        } else {
+            inputCorso.setAttribute("disabled", "disabled");
+            selectCorso.setAttribute("disabled", "disabled");
+        }
+    }
+</script>
