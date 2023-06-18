@@ -1,6 +1,7 @@
 package com.stdt.auleweb.controller;
 
 import com.stdt.auleweb.data.dao.AuleWebDataLayer;
+import com.stdt.auleweb.data.model.Attrezzatura;
 import com.stdt.auleweb.data.model.Gruppo;
 import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.result.SplitSlashesFmkExt;
@@ -9,6 +10,7 @@ import com.stdt.auleweb.framework.result.TemplateResult;
 import com.stdt.auleweb.framework.security.SecurityHelpers;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +28,9 @@ public class MakeGruppo extends AuleWebBaseController {
                 request.setAttribute("gruppo", gruppo);
                 request.setAttribute("data", LocalDate.now());
 
+                List<Attrezzatura> attrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAttrezzaturaDAO().getAttrezzature();
+
+                request.setAttribute("attrezzature", attrezzature);
                 request.setAttribute("page_title", gruppo.getNome());
                 //verr� usato automaticamente il template di outline spcificato tra i context parameters
                 //the outlne template specified through the context parameters will be added by the TemplateResult to the specified template
