@@ -99,7 +99,22 @@ public class GestioneEventi extends AuleWebBaseController {
                     && !request.getParameter("descrizione").isEmpty() && request.getParameter("tipologia") != null
                     && request.getParameter("responsabile") != null) {
 
-                Responsabile responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabile(SecurityHelpers.checkNumeric(request.getParameter("responsabile")));
+                Responsabile responsabile;
+
+                //Se l'utente ha aggiunto i dati di un nuovo Responsabile, lo crea e lo aggiunge alla tabella dei responsabili
+                if (!request.getParameter("nomeNuovoResponsabile").isEmpty() && !request.getParameter("emailNuovoResponsabile").isEmpty()) {
+
+                    responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().createResponsabile();
+                    responsabile.setNome(SecurityHelpers.addSlashes(request.getParameter("nomeNuovoResponsabile")));
+                    responsabile.setEmail(SecurityHelpers.addSlashes(request.getParameter("emailNuovoResponsabile")));
+                    ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().storeResponsabile(responsabile);
+
+                } 
+                //Altrimenti prende quello che è stato scelto dalla select
+                else {
+                    responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabile(SecurityHelpers.checkNumeric(request.getParameter("responsabile")));
+
+                }
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(IDaula);
 
                 if (responsabile != null) {

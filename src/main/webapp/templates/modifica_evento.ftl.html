@@ -69,17 +69,23 @@
     </div>
 
     <div class="row">
+
         <div class="four columns clabel">Responsabile</div>
-        <div class="twelve columns"><select name="responsabile">
+        <div class="twelve columns">Seleziona un responsabile<select name="responsabile">
                 <#list responsabili as responsabile>
                 <option value="${responsabile.key}"
                         <#if (evento.responsabile?? && responsabile.key=evento.responsabile.key)>
                     selected="selected"
                     </#if>
-                    >${responsabile.nome} ${responsabile.email}</option>
+                    >${responsabile.nome}</option>
                 </#list> 
             </select>
+            <br>
+            Oppure inserisci i dati di un nuovo resposabile
+            <input type="text"  name="nomeNuovoResponsabile" placeholder="Inserisci Nome">
+            <input type="text"  name="emailNuovoResponsabile" placeholder="Inserisci Email">
         </div>
+
     </div>
     <#if !evento.key??>
     <div class="row"><input type="submit" name="update" value="Crea Evento"/> </div>
