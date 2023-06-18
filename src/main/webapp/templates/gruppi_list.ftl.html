@@ -2,8 +2,8 @@
 <#if (gruppi?size>0)>
     <div class="row" style="text-align: center">
     <#list gruppi as gruppo>
-    <div class="four columns" style="margin: 10px">
-        <a href="gruppo?n=${gruppo.key}"><image title="img" src="images/${gruppo.nome}.png"><br><b>${gruppo.nome}</b></a>
+    <div class="four columns" style=" margin-bottom: 30px;">
+        <a href="gruppo?n=${gruppo.key}"><image title="img" src="images/${gruppo.nome}.png"><br><p><b>${gruppo.nome}</b></p></a>
     </div>
     </#list>
     </div>
