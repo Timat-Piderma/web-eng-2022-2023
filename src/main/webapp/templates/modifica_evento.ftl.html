@@ -3,9 +3,9 @@
 <form method="post" action="gestioneeventi">
 
     <div class="container">
-        <input type="hidden" name="k" value="${evento.key!0}"/>
-        <input type="hidden" name="data" value="${data!0}"/>
-        <input type="hidden" name="IDaula" value="${aula.key!0}"/>
+        <input type="hidden" name="IDevento" value="${evento.key!0}"/>
+        <input type="hidden" name="data" value="${data}"/>
+        <input type="hidden" name="IDaula" value="${aula.key}"/>
         <div class="row">
 
 
@@ -85,7 +85,7 @@
     <div class="row"><input type="submit" name="update" value="Crea Evento"/> </div>
     </#if>
     <#if evento.key??>
-    <div class="row"><input type="submit" name="update" value="Modifica Evento"/> <a href="gestioneeventi?IDtoDelete=${evento.key}&data=${data}&IDaula=${aula.key}">Elimina Evento</a></div>
+    <div class="row"><input type="submit" name="update" value="Modifica Evento"/> <input type="submit" name="delete" value="Elimina Evento"/></div>
     </#if>
 
 
