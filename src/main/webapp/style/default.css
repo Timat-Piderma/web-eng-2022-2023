@@ -70,7 +70,7 @@ body,html {
 /* Style the links inside the navigation bar */
 .topnav a {
   float: left;
-  color: #f2f2f2;
+  color: #000;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -99,4 +99,8 @@ body,html {
 .login-button:hover {
   background-color: #fcba03;
   color: black;
+}
+a {
+    text-decoration: none;
+    color:black;
 }
