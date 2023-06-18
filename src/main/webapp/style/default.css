@@ -12,7 +12,13 @@ body,html {
         position:static; 
         left:0;
 }
-
+#corpo {
+	background-color:white;
+	text-align:center;	
+	border:none;
+        width: 100%;
+        position:static;  
+}
 #footer {
 	background-color:#fcba03;
 	text-align:center;
