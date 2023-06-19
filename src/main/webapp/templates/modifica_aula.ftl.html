@@ -1,0 +1,71 @@
+<h2>Modifica Aula</h2>
+
+<form method="post" action="gestioneaule">
+
+    <div class="container">
+        <input type="hidden" name="IDaula" value="${aula.key!0}"/>
+        <input type="hidden" name="IDgruppo" value="${IDgruppo}"/>
+        <div class="row">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="four columns clabel">Nome</div>
+        <div class="twelve columns"><input name="nome" value="${strip_slashes(aula.nome)}"/> </div>
+    </div>
+
+    <div class="row">
+        <div class="four columns clabel">Capienza</div>
+        <div class="twelve columns"><input name="capienza" type="number" value="${aula.capienza}" /></div>
+    </div>
+    <div class="row">
+        <div class="four columns clabel">EmailResponsabile</div>
+        <div class="twelve columns"><input name="emailresponsabile" value="${strip_slashes(aula.emailResponsabile)}"/> </div>
+    </div>
+
+    <div class="row">
+        <div class="four columns clabel">Note</div>
+        <#if !aula.key??>
+        <div class="twelve columns"><textarea name="note" ></textarea></div>   </#if>
+        <#if aula.key??>
+        <div class="twelve columns"><textarea name="note" >${strip_slashes(aula.note)}</textarea></div>  </#if>
+    </div>
+
+    <div class="row">
+        <div class="four columns clabel">Numero di prese Elettriche</div>
+        <div class="twelve columns"><input type="number" name="numeropreseelettriche" value="${aula.numeroPreseElettriche}"/> </div>
+    </div>
+
+    <div class="row">
+        <div class="four columns clabel">Numero di prese di Rete</div>
+        <div class="twelve columns"><input type="number" name="numeropreserete" value="${aula.numeroPreseRete}"/> </div>  
+    </div>
+
+    <div class="row">
+
+        <div class="four columns clabel">Posizione</div>
+        <div class="twelve columns"><select name="posizione">
+                <option value="" selected>Seleziona una Posizione</option>
+                <#list posizioni as posizione>
+                <option value="${posizione.key}"
+                        <#if (aula.posizione?? && posizione.key=aula.posizione.key)>
+                    selected="selected"
+                    </#if>
+                    >${posizione.edificio}, Piano ${posizione.piano}, ${posizione.luogo}</option>
+                </#list> 
+            </select>
+        </div>
+
+    </div>
+
+    <#if !aula.key??>
+    <div class="row"><input type="submit" name="update" value="Crea Aula"/> </div>
+    </#if>
+    <#if aula.key??>
+    <div class="row"><input type="submit" name="update" value="Modifica Aula"/> <input type="submit" name="delete" value="Elimina Aula"/></div>
+    </#if>
+
+
+
+</form>

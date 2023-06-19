@@ -12,11 +12,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO {
 
-    private PreparedStatement sPosizioneByID;
-    private PreparedStatement sPosizioneByAula;
+    private PreparedStatement sPosizioneByID, sPosizioneByAula;
+    private PreparedStatement sPosizioni;
     private PreparedStatement iPosizione, uPosizione, dPosizione;
 
     public PosizioneDAO_MySQL(DataLayer d) {
@@ -32,6 +34,7 @@ public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO {
             //precompile all the queries uses in this class
             sPosizioneByID = connection.prepareStatement("SELECT * FROM posizione WHERE ID=?");
             sPosizioneByAula = connection.prepareStatement("SELECT * FROM posizione WHERE aulaID=?");
+            sPosizioni = connection.prepareStatement("SELECT ID AS posizioneID FROM posizione");
 
             //notare l'ultimo paametro extra di questa chiamata a
             //prepareStatement: lo usiamo per assicurarci che il JDBC
@@ -56,9 +59,10 @@ public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO {
         try {
 
             sPosizioneByID.close();
-
             sPosizioneByAula.close();
-
+            
+            sPosizioni.close();
+            
             iPosizione.close();
             uPosizione.close();
             dPosizione.close();
@@ -130,6 +134,20 @@ public class PosizioneDAO_MySQL extends DAO implements PosizioneDAO {
             throw new DataException("Unable to find posizione", ex);
         }
         return null;
+    }
+
+    @Override
+    public List<Posizione> getPosizioni() throws DataException {
+        List<Posizione> result = new ArrayList();
+
+        try ( ResultSet rs = sPosizioni.executeQuery()) {
+            while (rs.next()) {
+                result.add((Posizione) getPosizione(rs.getInt("posizioneID")));
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load posizioni", ex);
+        }
+        return result;
     }
 
     @Override

@@ -3,8 +3,9 @@
 <ul>
     <#list aule as aula>
     <li>
-        <a href="gestioneeventi?IDaula=${aula.key}&data=${data}"><b>${aula.nome}</b> </a>
+        <a href="gestioneeventi?IDaula=${aula.key}"><b>${aula.nome}</b> </a><a href="gestioneaule?IDaula=${aula.key}&IDgruppo=${gruppo.key}">Modifica</a>
     </li>
     </#list>
 </ul>
 </#if>
+<a href="gestioneaule?IDaula=0&IDgruppo=${gruppo.key}">Aggiungi Aula</a>

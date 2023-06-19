@@ -48,7 +48,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             //it is used to ensure that the JDBC will sotre and return
             //the auto generated key for the inserted recors
             iAula = connection.prepareStatement("INSERT INTO aula (nome,capienza,emailResponsabile,note,numeroPreseElettriche,numeroPreseRete,gruppoID,posizioneID) VALUES(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uAula = connection.prepareStatement("UPDATE aula SET nome=?,capienza=?,emailResponsabile=?,numeroPreseRete=?, note=?, numeroPreseElettriche=?, gruppoID=?, posizioneID=?, version=? WHERE ID=? and version=?");
+            uAula = connection.prepareStatement("UPDATE aula SET nome=?,capienza=?,emailResponsabile=?, note=?, numeroPreseElettriche=?, numeroPreseRete=?, gruppoID=?, posizioneID=?, version=? WHERE ID=? and version=?");
             dAula = connection.prepareStatement("DELETE FROM aula WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing auleweb data layer", ex);
@@ -252,6 +252,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 if (aula instanceof DataItemProxy && !((DataItemProxy) aula).isModified()) {
                     return;
                 }
+
                 uAula.setString(1, aula.getNome());
                 uAula.setInt(2, aula.getCapienza());
                 uAula.setString(3, aula.getEmailResponsabile());
@@ -273,9 +274,9 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 long current_version = aula.getVersion();
                 long next_version = current_version + 1;
 
-                uAula.setLong(6, next_version);
-                uAula.setInt(7, aula.getKey());
-                uAula.setLong(8, current_version);
+                uAula.setLong(9, next_version);
+                uAula.setInt(10, aula.getKey());
+                uAula.setLong(11, current_version);
 
                 if (uAula.executeUpdate() == 0) {
                     throw new OptimisticLockException(aula);
@@ -348,6 +349,20 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             }
         } catch (SQLException | OptimisticLockException ex) {
             throw new DataException("Unable to store aula", ex);
+        }
+    }
+
+    @Override
+    public void deleteAula(Aula aula) throws DataException {
+        try {
+            dAula.setInt(1, aula.getKey());
+            int affectedRows = dAula.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new DataException("Failed to delete aulaa");
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to delete aula", ex);
         }
     }
 

@@ -141,7 +141,7 @@ public class GestioneEventi extends AuleWebBaseController {
                     }
 
                     evento.setCorso(null);
-                    
+
                     evento.setGiorno(Date.valueOf(SecurityHelpers.addSlashes(request.getParameter("giorno"))));
                     /////////////////////////////////////////////////////////////////////////////////////////////// +00
                     evento.setOraInizio(Time.valueOf(SecurityHelpers.addSlashes(request.getParameter("oraInizio").substring(0, 5)) + ":00"));
@@ -190,7 +190,7 @@ public class GestioneEventi extends AuleWebBaseController {
         try {
 
             if (request.getParameter("data") == null) {
-                data = Calendar.getInstance().toString();
+                data = LocalDate.now().toString();
             } else {
                 data = SecurityHelpers.sanitizeFilename(request.getParameter("data"));
             }
