@@ -3,7 +3,7 @@
 <form method="post" action="gestionegruppi">
 
     <div class="container">
-        <input  name="IDgruppo" value="${gruppo.key!0}"/>
+        <input type="hidden" name="IDgruppo" value="${gruppo.key!0}"/>
         <div class="row">
 
         </div>
@@ -18,7 +18,7 @@
         <div class="four columns clabel">Descrizione</div>
         <div class="twelve columns"><textarea name="descrizione" >${strip_slashes(gruppo.descrizione)}</textarea></div>
     </div>
-    
+
     <#if !gruppo.key??>
     <div class="row"><input type="submit" name="update" value="Crea Gruppo"/> </div>
     </#if>

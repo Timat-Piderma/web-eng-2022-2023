@@ -1,0 +1,30 @@
+<form method="post" action="eventicorso">
+
+    <input type="hidden" name="IDgruppo" value="${gruppo.key}"/>
+    <input type="hidden" name="data" value="${data}"/>
+    <#if (IDcorso??)>
+    <input type="hidden" name="IDcorso" value="${corso.key!0}"/>
+    </#if>
+    <select name="corsoSelect">
+        <option value="" disabled selected>Seleziona un Corso</option>
+        <#list corsi as corsos>
+        <option value="${corsos.key}"
+                <#if (corso?? && corsos.key=corso.key)>
+            selected="selected"
+            </#if>
+            >${corsos.nome}</option>
+        </#list> 
+    </select>
+    <input type="submit" value="Cerca Eventi"/>
+</form>
+<#if (eventi??)>
+<h3>Eventi del Corso ${corso.nome} </h3>   <a href="eventicorso?IDgruppo=${gruppo.key}&data=${settiamanaprecedente}&IDcorso=${corso.key}"> Settimana Precedente </a> &nbsp;<a href="eventicorso?IDcorso=${corso.key}&data=${settimanasuccessiva}&IDgruppo=${gruppo.key}"> Settiamana Prossima </a>
+
+<ul>
+    <#list eventi as evento>
+    <li>
+        <p>${evento.nome} &nbsp; ${evento.giorno} &nbsp; ${evento.aula.nome}&nbsp; ${evento.oraInizio}<p>
+    </li>
+    </#list>
+</ul>
+</#if>

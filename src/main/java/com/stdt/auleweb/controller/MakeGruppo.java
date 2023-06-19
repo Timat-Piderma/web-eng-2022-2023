@@ -1,7 +1,7 @@
 package com.stdt.auleweb.controller;
 
 import com.stdt.auleweb.data.dao.AuleWebDataLayer;
-import com.stdt.auleweb.data.model.Attrezzatura;
+import com.stdt.auleweb.data.model.Corso;
 import com.stdt.auleweb.data.model.Gruppo;
 import com.stdt.auleweb.framework.data.DataException;
 import com.stdt.auleweb.framework.result.SplitSlashesFmkExt;
@@ -24,9 +24,11 @@ public class MakeGruppo extends AuleWebBaseController {
     private void action_gruppo(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException {
         try {
             Gruppo gruppo = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo(n);
+
             if (gruppo != null) {
                 request.setAttribute("gruppo", gruppo);
                 request.setAttribute("data", LocalDate.now());
+
 
                 request.setAttribute("page_title", gruppo.getNome());
                 //verr� usato automaticamente il template di outline spcificato tra i context parameters

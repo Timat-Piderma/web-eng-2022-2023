@@ -50,7 +50,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventiBySettimana = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE WEEK(evento.giorno)=WEEK(?) AND aulaID=?");
             sEventiByGiorno = connection.prepareStatement("SELECT evento.ID as eventoID from evento inner join tiene on tiene.eventoID = evento.ID inner join aula on tiene.aulaID = aula.ID where evento.giorno = ? and aula.gruppoID = ?");
             sEventiNextThreeHours = connection.prepareStatement("SELECT evento.ID AS eventoID FROM evento JOIN tiene on evento.ID = tiene.eventoID JOIN aula on aula.ID = tiene.aulaID WHERE evento.oraInizio >= CURRENT_TIMESTAMP AND evento.oraInizio <= CURRENT_TIMESTAMP + INTERVAL 3 HOUR AND aula.gruppoID=? AND evento.giorno= curdate()");
-            sEventiBySettimanaAndCorso = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE WEEK(giorno)=WEEK(?) AND corsoID=?");
+            sEventiBySettimanaAndCorso = connection.prepareStatement("SELECT evento.ID AS eventoID FROM evento JOIN aula on evento.aulaID = aula.ID WHERE WEEK(giorno)=WEEK(?) AND corsoID=? AND aula.gruppoID=?");
 
             iEvento = connection.prepareStatement("INSERT INTO evento (giorno,oraInizio,oraFine,descrizione,nome,tipologia,aulaID,responsabileID,corsoID) VALUES(?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             uEvento = connection.prepareStatement("UPDATE evento SET giorno=?,oraInizio=?,oraFine=?,descrizione=?, nome=?, tipologia=?, aulaID=?, responsabileID=?, corsoID=?, version=? WHERE ID=? and version=?");
@@ -210,14 +210,15 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     @Override
-    public List<Evento> getEventiBySettimanaAndCorso(Corso corso, Date giorno) throws DataException {
-        List<Evento> result = null;
+    public List<Evento> getEventiBySettimanaAndCorso(Corso corso, String giorno, Gruppo gruppo) throws DataException {
+        List<Evento> result = new ArrayList();
 
         try {
 
-            sEventiBySettimana.setObject(1, giorno);
-            sEventiBySettimana.setObject(2, corso);
-            ResultSet rs = sEventiBySettimana.executeQuery();
+            sEventiBySettimanaAndCorso.setString(1, giorno);
+            sEventiBySettimanaAndCorso.setInt(2, corso.getKey());
+            sEventiBySettimanaAndCorso.setInt(3, gruppo.getKey());
+            ResultSet rs = sEventiBySettimanaAndCorso.executeQuery();
 
             while (rs.next()) {
                 result.add((Evento) getEvento(rs.getInt("eventoID")));

@@ -14,12 +14,9 @@ import com.stdt.auleweb.framework.security.SecurityHelpers;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,10 +24,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Giuseppe
- */
 public class GestioneEventi extends AuleWebBaseController {
 
     private void action_default(HttpServletRequest request, HttpServletResponse response, int IDaula, String data) throws IOException, ServletException, TemplateManagerException {
@@ -122,7 +115,7 @@ public class GestioneEventi extends AuleWebBaseController {
 
                 if (responsabile != null) {
 
-                    Corso corso = null;
+                    Corso corso;
 
                     if (SecurityHelpers.addSlashes(request.getParameter("tipologia")).equals("lezione")
                             || SecurityHelpers.addSlashes(request.getParameter("tipologia")).equals("esame")
@@ -137,10 +130,10 @@ public class GestioneEventi extends AuleWebBaseController {
                             corso = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getCorso(SecurityHelpers.checkNumeric(request.getParameter("corso")));
 
                         }
-
+                        evento.setCorso(corso);
+                    } else {
+                        evento.setCorso(null);
                     }
-
-                    evento.setCorso(null);
 
                     evento.setGiorno(Date.valueOf(SecurityHelpers.addSlashes(request.getParameter("giorno"))));
                     /////////////////////////////////////////////////////////////////////////////////////////////// +00

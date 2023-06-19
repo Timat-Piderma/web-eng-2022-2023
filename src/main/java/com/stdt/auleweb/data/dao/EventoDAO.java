@@ -29,7 +29,7 @@ public interface EventoDAO {
 
     List<Evento> getEventiNextThreeHours(Gruppo gruppo) throws DataException;
 
-    List<Evento> getEventiBySettimanaAndCorso(Corso corso, Date giorno) throws DataException;
+    List<Evento> getEventiBySettimanaAndCorso(Corso corso, String giorno, Gruppo gruppo) throws DataException;
 
     void storeEvento(Evento evento) throws DataException;
 

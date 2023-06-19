@@ -1,4 +1,7 @@
 <h2>${gruppo.nome}</h2>
+<p>
+    <a href="eventicorso?IDgruppo=${gruppo.key}&data=${data}"><button class="classical-button">Eventi per Corso</button></a>
+</p>
 
 <p>
     <a href="eventigiorno?IDgruppo=${gruppo.key}&data=${data}"><button class="classical-button">Eventi per Giorno</button></a>
@@ -17,7 +20,7 @@
         <th>Prese Elettriche</th>
         <th>Prese Rete</th>
         <th>Note</th>
-        
+
     </tr>
     <#list gruppo.aule as aula>
     <tr>
