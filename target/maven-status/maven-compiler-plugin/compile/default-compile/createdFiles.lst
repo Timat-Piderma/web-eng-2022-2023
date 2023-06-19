@@ -15,13 +15,11 @@ com\stdt\auleweb\framework\data\OptimisticLockException.class
 com\stdt\auleweb\data\impl\AulaImpl.class
 com\stdt\auleweb\controller\MakeEventiGiorno.class
 com\stdt\auleweb\controller\MakeEvento.class
-com\stdt\auleweb\controller\SelezioneGruppo.class
 com\stdt\auleweb\data\impl\GruppoImpl.class
 com\stdt\auleweb\data\model\Amministratore.class
 com\stdt\auleweb\data\proxy\AmministratoreProxy.class
 com\stdt\auleweb\controller\MakeEventiSettimana.class
 com\stdt\auleweb\framework\security\SecurityHelpers.class
-com\stdt\auleweb\controller\SelezioneAula.class
 com\stdt\auleweb\framework\result\StreamResult.class
 com\stdt\auleweb\data\dao\AulaDAO.class
 com\stdt\auleweb\data\proxy\EventoProxy.class
@@ -55,6 +53,8 @@ com\stdt\auleweb\data\model\Evento.class
 com\stdt\auleweb\data\dao\ResponsabileDAO_MySQL.class
 com\stdt\auleweb\data\model\Tipologia.class
 com\stdt\auleweb\framework\result\SplitSlashesFmkExt.class
+com\stdt\auleweb\controller\GestioneGruppi.class
+com\stdt\auleweb\controller\GestioneAule.class
 com\stdt\auleweb\data\proxy\ResponsabileProxy.class
 com\stdt\auleweb\data\dao\AmministratoreDAO.class
 com\stdt\auleweb\controller\AuleWebBaseController.class

@@ -1,4 +1,4 @@
-<h1>Site Access</h1>
+<h1>Login Form</h1>
 <#if logininfo??>
 <p>Logged in as ${logininfo.username} from address ${logininfo.ip}</p>
 <p><a href="logout">Logout</a></p>
@@ -7,22 +7,17 @@
     <#if (referrer??)>        
     <input name="referrer" type="hidden" value="${referrer}"/>
 </#if> 
-<div class="container">
-    <div class="row">
-        <div class="four columns clabel">Username:</div>
-        <div class="ten columns"> <input name="u" type="text"/>
-            <small>(try "a")</small>
-        </div>
+<div class="container_log">
+    
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Inserisci l'username" name="u" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Inserisci la Password" name="p" required>
         
     </div>
-    <div class="row">
-        <div class="four columns clabel">Password:</div>
-        <div class="ten columns"> <input name="p" type="password"/>
-        <small>(try "p")</small>
-        </div>
-    </div>
-    <div class="row"><input value="login" name="login" type="submit"/></div>
-</div>
+    <button class="login-button-inner" type="reset" style="background-color: red; color: white">Reset</button>
+    <button class="login-button-inner" type="submit" name="login">Login</button>
 </form>
 </#if>
 
