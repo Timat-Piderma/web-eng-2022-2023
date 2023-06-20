@@ -42,4 +42,5 @@ public interface Evento extends DataItem<Integer> {
 
     void setCorso(Corso corso);
 
+    void removeCorso();
 }

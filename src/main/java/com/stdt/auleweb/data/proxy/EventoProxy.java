@@ -140,4 +140,9 @@ public class EventoProxy extends EventoImpl implements DataItemProxy {
         this.corso_key = corso_key;
         super.setCorso(null);
     }
+
+    @Override
+    public void removeCorso() {
+        this.corso_key = 0;
+    }
 }

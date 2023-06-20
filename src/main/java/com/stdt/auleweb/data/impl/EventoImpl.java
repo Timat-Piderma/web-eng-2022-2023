@@ -123,4 +123,9 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     public void setCorso(Corso corso) {
         this.corso = corso;
     }
+    
+    @Override
+    public void removeCorso(){
+     //Override nella classe EventoProxy   
+    }
 }

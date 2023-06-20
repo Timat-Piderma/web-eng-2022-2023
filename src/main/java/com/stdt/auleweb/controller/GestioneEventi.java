@@ -133,6 +133,7 @@ public class GestioneEventi extends AuleWebBaseController {
                         evento.setCorso(corso);
                     } else {
                         evento.setCorso(null);
+                        evento.removeCorso();
                     }
 
                     evento.setGiorno(Date.valueOf(SecurityHelpers.addSlashes(request.getParameter("giorno"))));

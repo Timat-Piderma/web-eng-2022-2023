@@ -20,8 +20,6 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
