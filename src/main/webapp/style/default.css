@@ -213,10 +213,9 @@ ul.breadcrumb li:first-child::before {
 }
 
 .sinistra{
-    text-align: left;
-    
+    text-align: left;  
 }
 
-.blue-checkbox {
-  color: blue;
+input[type="checkbox"]:disabled {
+  opacity: 1;
 }
