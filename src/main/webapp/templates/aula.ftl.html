@@ -33,14 +33,14 @@
                             <#assign attrezzaturaPresente = true>
                         </#if>
                     </#list>
-                     <input type="checkbox" disabled <#if attrezzaturaPresente>checked</#if>>
+                    <input type="checkbox" disabled <#if attrezzaturaPresente>checked</#if>>
                 </td>
         </#list>
     </table>
     
     <br>
-    <h3>Eventi</h3>
-    <a href="eventisettimana?IDaula=${aula.key}&data=${giorno}"> Eventi per settimana </a>
+    <br>
+    <a href="eventisettimana?IDaula=${aula.key}&data=${giorno}"> <button class="classical-button">Eventi per settimana</button> </a>
 </div>
 
 

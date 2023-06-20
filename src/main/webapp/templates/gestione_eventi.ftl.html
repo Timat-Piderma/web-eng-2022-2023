@@ -12,7 +12,7 @@
 </div>
 <h2>Eventi programmati per l'aula: ${aula.nome}</h2>
 
-<a href="gestioneeventi?IDaula=${aula.key}&data=${settiamanaprecedente}"> Settimana Precedente </a> &nbsp;<a href="gestioneeventi?IDaula=${aula.key}&data=${settimanasuccessiva}"> Settiamana Prossima </a>
+<a href="gestioneeventi?IDaula=${aula.key}&data=${settiamanaprecedente}"> <button class="classical-button">Settimana Precedente</button></a> &nbsp;<a href="gestioneeventi?IDaula=${aula.key}&data=${settimanasuccessiva}"> <button class="classical-button">Settiamana Prossima</button></a>
 <#if (eventi?size>0)>
 <ul>
     <#list eventi as evento>
@@ -22,4 +22,4 @@
     </#list>
 </ul>
 </#if>
-<p><a href="gestioneeventi?IDevento=0&IDaula=${aula.key}">Aggiungi evento</a></p>
+<p><a href="gestioneeventi?IDevento=0&IDaula=${aula.key}"><button class="classical-button">Aggiungi Evento</button></a></p>

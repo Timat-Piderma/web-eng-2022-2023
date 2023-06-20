@@ -215,7 +215,3 @@ ul.breadcrumb li:first-child::before {
 .sinistra{
     text-align: left;  
 }
-
-input[type="checkbox"]:disabled {
-  opacity: 1;
-}

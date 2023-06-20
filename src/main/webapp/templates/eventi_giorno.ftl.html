@@ -8,7 +8,7 @@
     </div> 
     </div>
 </div>
-<h3>Eventi delle aule ${gruppo.nome} del giorno ${giorno} </h3>   <a href="eventigiorno?IDgruppo=${gruppo.key}&data=${ieri}"> Ieri </a> &nbsp;<a href="eventigiorno?IDgruppo=${gruppo.key}&data=${domani}"> Domani </a>
+<h3>Eventi delle aule ${gruppo.nome} del giorno ${giorno} </h3>   <a href="eventigiorno?IDgruppo=${gruppo.key}&data=${ieri}"> <button class="classical-button">Ieri</button></a> &nbsp;<a href="eventigiorno?IDgruppo=${gruppo.key}&data=${domani}"><button class="classical-button">Domani</button></a>
 <#if (eventi?size>0)>
 <ul>
     <#list eventi as evento>
