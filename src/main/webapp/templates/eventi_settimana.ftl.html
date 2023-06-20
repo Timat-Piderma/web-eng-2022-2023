@@ -1,4 +1,14 @@
-
+<div class="row" id="header" >
+    <div class="sixteen columns">
+        <div class="sinistra"> 
+        <ul class="breadcrumb">
+            <li><a href="listgruppi">Home</a></li>
+            <li><a href="gruppo?n=${aula.gruppo.key}">Lista Aule</a></li>
+            <li><a href="aula?id=${aula.key}">Info Aula</a></li>
+        </ul>
+    </div> 
+    </div>
+</div>
 <h3>Eventi dell'aule ${aula.nome} </h3>   <a href="eventisettimana?IDaula=${aula.key}&data=${settiamanaprecedente}"> Settimana Precedente </a> &nbsp;<a href="eventisettimana?IDaula=${aula.key}&data=${settimanasuccessiva}"> Settiamana Prossima </a>
 <#if (eventi?size>0)>
 <ul>

@@ -1,12 +1,21 @@
-<h2>${gruppo.nome}</h2>
-<p>
-    <a href="eventicorso?IDgruppo=${gruppo.key}&data=${data}"><button class="classical-button">Eventi per Corso</button></a>
-</p>
+<div class="row" id="header" >
+    <div class="sixteen columns">
+        <div class="sinistra"> 
+        <ul class="breadcrumb">
+            <li><a href="listgruppi">Home</a></li>
 
+        </ul>
+    </div> 
+    </div>
+</div>
+
+<h2>${gruppo.nome}</h2>
 <p>
     <a href="eventigiorno?IDgruppo=${gruppo.key}&data=${data}"><button class="classical-button">Eventi per Giorno</button></a>
     &nbsp;
     <a href="eventitreore?IDgruppo=${gruppo.key}"><button class="classical-button">Eventi nelle prossime 3 ore</button></a>
+    &nbsp;
+    <a href="eventicorso?IDgruppo=${gruppo.key}&data=${data}"><button class="classical-button">Eventi per Corso</button></a>
 </p>
 
 <#if (gruppo.aule?size > 0)>

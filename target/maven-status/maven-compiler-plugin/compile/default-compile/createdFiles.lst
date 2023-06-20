@@ -44,6 +44,7 @@ com\stdt\auleweb\controller\MakeAttrezzatura.class
 com\stdt\auleweb\data\impl\EventoImpl.class
 com\stdt\auleweb\data\proxy\GruppoProxy.class
 com\stdt\auleweb\data\dao\AttrezzaturaDAO.class
+com\stdt\auleweb\controller\MakeEventiCorso.class
 com\stdt\auleweb\framework\data\DAO.class
 com\stdt\auleweb\controller\MakeEventiTreOre.class
 com\stdt\auleweb\framework\controller\AbstractBaseController.class

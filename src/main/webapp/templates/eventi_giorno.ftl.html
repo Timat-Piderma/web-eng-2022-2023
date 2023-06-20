@@ -1,4 +1,13 @@
-
+<div class="row" id="header" >
+    <div class="sixteen columns">
+        <div class="sinistra"> 
+        <ul class="breadcrumb">
+            <li><a href="listgruppi">Home</a></li>
+            <li><a href="gruppo?n=${gruppo.key}">Lista Aule</a></li>
+        </ul>
+    </div> 
+    </div>
+</div>
 <h3>Eventi delle aule ${gruppo.nome} del giorno ${giorno} </h3>   <a href="eventigiorno?IDgruppo=${gruppo.key}&data=${ieri}"> Ieri </a> &nbsp;<a href="eventigiorno?IDgruppo=${gruppo.key}&data=${domani}"> Domani </a>
 <#if (eventi?size>0)>
 <ul>

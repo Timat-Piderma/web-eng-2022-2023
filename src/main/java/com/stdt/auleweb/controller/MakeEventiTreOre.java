@@ -51,6 +51,7 @@ public class MakeEventiTreOre extends AuleWebBaseController {
         int IDgruppo;
         try {
             IDgruppo = SecurityHelpers.checkNumeric(request.getParameter("IDgruppo"));
+            request.setAttribute("IDgruppo", IDgruppo);
 
             action_evento(request, response, IDgruppo);
         } catch (NumberFormatException ex) {

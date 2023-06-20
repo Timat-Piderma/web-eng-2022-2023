@@ -1,3 +1,15 @@
+<div class="row" id="header" >
+    <div class="sixteen columns">
+        <div class="sinistra"> 
+        <ul class="breadcrumb">
+            <li><a href="listgruppi">Home</a></li>
+            <li><a href="gestionegruppi">Gestione Gruppi</a></li>    
+             <li><a href=gestioneaule?IDgruppo=${aula.gruppo.key}>${aula.gruppo.nome}</a></li>     
+
+        </ul>
+    </div> 
+    </div>
+</div>
 <h2>Eventi programmati per l'aula: ${aula.nome}</h2>
 
 <a href="gestioneeventi?IDaula=${aula.key}&data=${settiamanaprecedente}"> Settimana Precedente </a> &nbsp;<a href="gestioneeventi?IDaula=${aula.key}&data=${settimanasuccessiva}"> Settiamana Prossima </a>

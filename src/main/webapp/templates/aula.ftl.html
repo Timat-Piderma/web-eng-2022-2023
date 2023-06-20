@@ -1,3 +1,13 @@
+<div class="row" id="header" >
+    <div class="sixteen columns">
+        <div class="sinistra"> 
+        <ul class="breadcrumb">
+            <li><a href="listgruppi">Home</a></li>
+            <li><a href="gruppo?n=${aula.gruppo.key}">Lista Aule</a></li>
+        </ul>
+    </div> 
+    </div>
+</div>
 <div class="sixteen columns">
     <h2>${aula.nome}</h2>
     <p>
@@ -23,7 +33,7 @@
                             <#assign attrezzaturaPresente = true>
                         </#if>
                     </#list>
-                    <input type="checkbox" disabled <#if attrezzaturaPresente>checked</#if>>
+                     <input type="checkbox" disabled <#if attrezzaturaPresente>checked</#if> class="blue-checkbox">
                 </td>
         </#list>
     </table>
