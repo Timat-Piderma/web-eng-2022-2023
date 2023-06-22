@@ -9,14 +9,36 @@
     </div> 
     </div>
 </div>
-<h3>Eventi dell'aule ${aula.nome} </h3>   <a href="eventisettimana?IDaula=${aula.key}&data=${settiamanaprecedente}"><button class="classical-button">Settimana Precedente</button></a> &nbsp;<a href="eventisettimana?IDaula=${aula.key}&data=${settimanasuccessiva}"> <button class="classical-button">Settiamana Prossima</button></a>
+<h3>Eventi dell'aule ${aula.nome} </h3>  
+<div style="text-align: center">
+    <a href="eventisettimana?IDaula=${aula.key}&data=${settiamanaprecedente}"><button class="classical-button">Settimana Precedente</button></a> &nbsp;
+    <a href="eventisettimana?IDaula=${aula.key}&data=${settimanasuccessiva}"> <button class="classical-button">Settiamana Prossima</button></a>
+</div>
 <br>
 <#if (eventi?size>0)>
-<ul>
+
+    <table class="table_sett">
+        <thead style="background-color:#fcba03 ">
+        <th>Orario</th>
+        <th>Lun</th>
+        <th>Mar</th>
+        <th>Mer</th>
+        <th>Gio</th>
+        <th>Ven</th>
+        <th>Sab</th>
+        <th>Dom<br>Giorno</th>
+        </thead>
+            <tr>
+        <td>8:30-9:00</td>
     <#list eventi as evento>
-    <li>
-        <p>${evento.nome} &nbsp; ${evento.giorno} &nbsp; ${evento.aula.nome}&nbsp; ${evento.oraInizio}<p>
-    </li>
+
+        <td>
+        ${evento.nome} &nbsp; ${evento.giorno} &nbsp; ${evento.aula.nome}&nbsp; ${evento.oraInizio}
+        </td>
+  
     </#list>
-</ul>
+      </tr>
+    </table>
+<#else>
+<p style="font-size:30px"><b>Non ci sono eventi in questa settimana</b></p>
 </#if>
