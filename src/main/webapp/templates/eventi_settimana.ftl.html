@@ -1,604 +1,66 @@
-<div class="row" id="header" >
+<div class="row" id="header">
     <div class="sixteen columns">
-        <div class="sinistra"> 
-        <ul class="breadcrumb">
-            <li><a href="listgruppi">Home</a></li>
-            <li><a href="gruppo?n=${aula.gruppo.key}">Lista Aule</a></li>
-            <li><a href="aula?id=${aula.key}">Info Aula</a></li>
-        </ul>
-    </div> 
+        <div class="sinistra">
+            <ul class="breadcrumb">
+                <li><a href="listgruppi">Home</a></li>
+                <li><a href="gruppo?n=${aula.gruppo.key}">Lista Aule</a></li>
+                <li><a href="aula?id=${aula.key}">Info Aula</a></li>
+            </ul>
+        </div>
     </div>
 </div>
-<h3>Eventi dell'aule ${aula.nome} </h3>  
+
+<h3>Eventi dell'aule ${aula.nome}</h3>
+
 <div style="text-align: center">
-    <a href="eventisettimana?IDaula=${aula.key}&data=${settiamanaprecedente}"><button class="classical-button">Settimana Precedente</button></a> &nbsp;
-    <a href="eventisettimana?IDaula=${aula.key}&data=${settimanasuccessiva}"> <button class="classical-button">Settiamana Prossima</button></a>
+    <a href="eventisettimana?IDaula=${aula.key}&data=${settiamanaprecedente}">
+        <button class="classical-button">Settimana Precedente</button>
+    </a>
+    &nbsp;
+    <a href="eventisettimana?IDaula=${aula.key}&data=${settimanasuccessiva}">
+        <button class="classical-button">Settimana Prossima</button>
+    </a>
 </div>
 <br>
-<#if (eventi?size>0)>
+<!--bisogna mettere il mese sopra i giorni della settimana, in ogni giorno della settimana bisogna mettere il numero, nel pallino nero come volevo fare io-->
 
-    <table class="table_sett">
-        <thead style="background-color:#fcba03 ">
-        <th>Orario</th>
-        <th>Lun</th>
-        <th>Mar</th>
-        <th>Mer</th>
-        <th>Gio</th>
-        <th>Ven</th>
-        <th>Sab</th>
-        <th>Dom<br>Giorno</th>
-        </thead>
+<#if (eventi?size>0)>
+    <table id="aule">
         <tr>
-        <td>8:00-8:15</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "08:00:00")>
-        <td>
-        ${evento.nome} &nbsp; ${evento.giorno} &nbsp; ${evento.aula.nome}&nbsp; ${evento.oraInizio}
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>8:15-8:30</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "8:15:00")>
-       <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>8:30-8:45</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "8:30:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>8:45-9:00</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "08:00:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>9:00-9:15</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "09:00:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>9:15-9:30</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "09:15:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>9:30-9:45</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "09:30:00")>
-       <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-        </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>9:45-10:00</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "09:45:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>10:00-10:15</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "10:00:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>10:15-10:30</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "10:15:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>10:30-10:45</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "10:30:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>10:45-11:00</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "10:45:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>11:00-11:15</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "11:00:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>11:15-11:30</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "11:15:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>11:30-11:45</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "11:30:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>11:45-12:00</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "11:45:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>12:00-12:15</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "12:00:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>12:15-12:30</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "12:15:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>12:30-12:45</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "12:30:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>12:45-13:00</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "12:45:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>13:00-13:15</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "13:00:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>13:15-13:30</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "13:15:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>13:30-13:45</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "13:30:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>13:45-14:00</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "13:45:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>14:00-14:15</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "14:00:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>14:15-14:30</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "14:15:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>14:30-14:45</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "14:30:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>14:45-15:00</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "14:45:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>15:00-15:15</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "15:00:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>15:15-15:30</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "15:15:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>15:30-15:45</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "15:30:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>15:45-16:00</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "15:45:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>16:00-16:15</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "16:00:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>16:15-16:30</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "16:15:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>16:30-16:45</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "16:30:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>16:45-17:00</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "16:45:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>17:00-17:15</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "17:00:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>17:15-17:30</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "17:15:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>17:30-17:45</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "17:30:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>17:45-18:00</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "17:45:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>18:00-18:15</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "18:00:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>18:15-18:30</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "18:15:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>18:30-18:45</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "18:30:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-            ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
-        </tr><tr>
-        <td>18:45-19:00</td>
-        <#list eventi as evento>
-        <#if (evento.oraInizio?string("HH:mm:ss") == "18:45:00")>
-        <td>
-        <div class="event-calendario">
-        <div class="event-desc-calendario">
-          ${evento.nome} &nbsp; ${evento.giorno}
-        </div>
-      </div>
-        </td>
-        </#if>
-        </#list>
+            <th>Orario</th>
+            <th>Lun</th>
+            <th>Mar</th>
+            <th>Mer</th>
+            <th>Gio</th>
+            <th>Ven</th>
+            <th>Sab</th>
+            <th>Dom<br>Giorno</th>
         </tr>
-      </tr>
+        <#list ["08:00-08:15", "08:15-08:30", "08:30-08:45", "08:45-09:00", "09:00-09:15", "09:15-09:30", "09:30-09:45",
+"09:45-10:00", "10:00-10:15", "10:15-10:30", "10:30-10:45", "10:45-11:00", "11:00-11:15", "11:15-11:30",
+"11:30-11:45", "11:45-12:00", "12:00-12:15", "12:15-12:30", "12:30-12:45", "12:45-13:00", "13:00-13:15",
+"13:15-13:30", "13:30-13:45", "13:45-14:00", "14:00-14:15", "14:15-14:30", "14:30-14:45", "14:45-15:00",
+"15:00-15:15", "15:15-15:30", "15:30-15:45", "15:45-16:00", "16:00-16:15", "16:15-16:30", "16:30-16:45",
+"16:45-17:00", "17:00-17:15", "17:15-17:30", "17:30-17:45", "17:45-18:00", "18:00-18:15", "18:15-18:30",
+"18:30-18:45", "18:45-19:00"
+] as orario>
+            <tr>
+                <td>${orario}</td>
+                <#list eventi as evento>
+                    <#if (evento.oraInizio?string("HH:mm")+"-"+evento.oraFine?string("HH:mm") == orario)>
+                        <td>
+                            <div class="event-calendario">
+                                <div class="event-desc-calendario">
+                                    ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
+                                </div>
+                            </div>
+                        </td>
+                    </#if>
+                </#list>
+            </tr>
+        </#list>
     </table>
 <#else>
-<p style="font-size:30px"><b>Non ci sono eventi in questa settimana</b></p>
+    <p>Nessun evento trovato per questa aula.</p>
 </#if>
+

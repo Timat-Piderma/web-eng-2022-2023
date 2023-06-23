@@ -214,11 +214,11 @@ insert into Amministratore(username, `password`) values
     ("Seba", "admin");
     
 insert into Evento(giorno, oraInizio, oraFine, nome, descrizione, tipologia, responsabileID, aulaID, corsoID) values
-	("2023-06-16", "22:00", "13:30", "I2I007","docente mascio tania", "lezione",2,1,7),
+	("2023-06-16", "22:00", "13:30", "I2I007","docente mascio tania", "lezione",2,1,1),
     ("2023-06-16", "00:30", "17:30", "DT0761", "docente masi anna" , "lezione",2,1,2),
-    ("2023-06-16", "14:30", "13:30", "F0140","docente smriglio stefano", "lezione", 1,1,2),
-    ("2023-05-16", "16:30", "18:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1);
-    
+    ("2023-06-16", "14:30", "14:45", "F0140","docente smriglio stefano", "lezione", 1,1,2),
+    ("2023-05-16", "18:00", "18:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1),
+    ("2023-06-17", "18:30", "18:45", "F0140","docente smriglio stefano", "lezione", 1,1,2);
     
 insert into Corso(nome) values
 	("Advanced database system (basi di dati II)"),
@@ -267,9 +267,5 @@ insert into Richiede (eventoID, corsoID) values
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+
 SELECT * from evento
-
-
-
-    
-
