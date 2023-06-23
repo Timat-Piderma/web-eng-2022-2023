@@ -220,3 +220,22 @@ ul.breadcrumb li:first-child::before {
     margin:20px;
     
 }
+
+.event-calendario {
+  flex: 0 0 auto;
+	font-size: 13px;
+	border-radius: 4px;
+	padding: 5px;
+	margin-bottom: 5px;
+	line-height: 14px;
+	background: #e4f2f2;
+	border: 1px solid #b5dbdc;
+	color: #009aaf;
+	text-decoration: none;
+}
+
+.event-desc-calendario {
+	color: #666;
+	margin: 3px 0 7px 0;
+	text-decoration: none;	
+}
