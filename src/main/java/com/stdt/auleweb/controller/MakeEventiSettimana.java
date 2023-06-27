@@ -11,7 +11,9 @@ import com.stdt.auleweb.framework.result.TemplateResult;
 import com.stdt.auleweb.framework.security.SecurityHelpers;
 import java.io.IOException;
 import java.sql.Date;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,9 +36,12 @@ public class MakeEventiSettimana extends AuleWebBaseController {
             if (eventi != null) {
                 request.setAttribute("eventi", eventi);
                 request.setAttribute("aula", aula);
-                request.setAttribute("giorno", data);
+                LocalDate giornoCorrente = LocalDate.parse(data);
+                LocalDate primoGiornoSettimana = giornoCorrente.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+                request.setAttribute("giorno",primoGiornoSettimana.getDayOfMonth() );
                 request.setAttribute("settiamanaprecedente", LocalDate.parse(data).plusDays(-7));
                 request.setAttribute("settimanasuccessiva", LocalDate.parse(data).plusDays(7));
+                request.setAttribute("giornoInizioSettimana", LocalDate.parse(data).plusDays(7));
                 //verr� usato automaticamente il template di outline spcificato tra i context parameters
                 //the outlne template specified through the context parameters will be added by the TemplateResult to the specified template
                 TemplateResult res = new TemplateResult(getServletContext());
