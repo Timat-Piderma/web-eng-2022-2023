@@ -140,7 +140,6 @@ a {
 #aule th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
   background-color: transparent;
   color: black;
   width: 12%;
@@ -253,6 +252,6 @@ ul.breadcrumb li:first-child::before {
 	color: #fff;
 	width: 20px;
 	border-radius: 50%;
-  flex: 0 0 auto;
-  align-self: flex-end;
+        flex: 0 0 auto;
+        align-self: flex-end;
 }
