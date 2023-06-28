@@ -11,12 +11,24 @@
 </div>
 <h2>Aule disponibili per ${gruppo.nome}</h2>
 <#if (aule?size>0)>
-<ul>
+<table id="gruppi">
+    <tr>
+    <th style="width: 16%">Aula</th>
+    <th style="width: 30%">Edificio</th>
+    <th style="width: 30%">Luogo</th>
+    <th style="width: 12%">Gestione Eventi </th>
+    <th style="width: 12%">Gesione Aula</th>
+    </tr>
     <#list aule as aula>
-    <li>
-        <a href="gestioneeventi?IDaula=${aula.key}"><b>${aula.nome}</b> </a><a href="gestioneaule?IDaula=${aula.key}&IDgruppo=${gruppo.key}">Modifica</a>
-    </li>
+     
+    <tr>
+        <td> ${aula.nome} </td>
+        <td>${aula.posizione.edificio}</td>
+        <td>${aula.posizione.luogo}</td>
+        <td ><a style="color:blue; font-weight: bold;" href="gestioneeventi?IDaula=${aula.key}">Gestisci</a></td>
+        <td><a style="color:red; font-weight: bold;" href="gestioneaule?IDaula=${aula.key}&IDgruppo=${gruppo.key}">Modifica</a></td>
+    </tr>
     </#list>
-</ul>
+</table>
 </#if>
 <a href="gestioneaule?IDaula=0&IDgruppo=${gruppo.key}"><button class="classical-button">Aggiungi Aula</button></a>

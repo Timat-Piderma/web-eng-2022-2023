@@ -14,12 +14,26 @@
 
 <a href="gestioneeventi?IDaula=${aula.key}&data=${settiamanaprecedente}"> <button class="classical-button">Settimana Precedente</button></a> &nbsp;<a href="gestioneeventi?IDaula=${aula.key}&data=${settimanasuccessiva}"> <button class="classical-button">Settiamana Prossima</button></a>
 <#if (eventi?size>0)>
-<ul>
+<table id="gruppi">
+    <tr>
+    <th style="width: 18%">Evento</th>
+    <th style="width: 17%">Giorno</th>
+    <th style="width: 17%">Aula</th>
+    <th style="width: 17%">Ora Inizio</th>
+    <th style="width: 17%">Ora Fine</th>
+    <th style="width: 15%">Gestione Evento</th>
+    </tr>
     <#list eventi as evento>
-    <li>
-        <p>${evento.nome} &nbsp; ${evento.giorno} &nbsp; ${evento.aula.nome}&nbsp; ${evento.oraInizio} <a href="gestioneeventi?IDevento=${evento.key}&IDaula=${aula.key}&data=${data}">Modifica</a> <p> 
-    </li>
+     
+    <tr>
+        <td> ${evento.nome} </td>
+        <td> ${evento.giorno}</td>
+        <td> ${evento.aula.nome}</td>
+        <td> ${evento.oraInizio}</td>
+        <td> ${evento.oraFine}</td>
+        <td><a style="color:red; font-weight: bold;" href="gestioneeventi?IDevento=${evento.key}&IDaula=${aula.key}&data=${data}">Modifica</a></td>
+    </tr>
     </#list>
-</ul>
+</table>
 </#if>
 <p><a href="gestioneeventi?IDevento=0&IDaula=${aula.key}"><button class="classical-button">Aggiungi Evento</button></a></p>
