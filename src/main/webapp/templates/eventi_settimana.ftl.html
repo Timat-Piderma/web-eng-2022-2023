@@ -24,38 +24,46 @@
 <br>
 <!--bisogna mettere il mese sopra i giorni della settimana, in ogni giorno della settimana bisogna mettere il numero, nel pallino nero come volevo fare io-->
 <#if (eventi?size>0)>
-    <table id="aule">
-        <tr>
-            <th>Orario</th>
-            <th>Lun ${giorno}</th>
-            <th>Mar ${giorno+1}</th>
-            <th>Mer ${giorno+2}</th>
-            <th>Gio ${giorno+3}</th>
-            <th>Ven ${giorno+4}</th>
-            <th>Sab ${giorno+5}</th>
-            <th>Dom ${giorno+6}</th>
-        </tr>
-        <#list ["08:00-08:30", "08:30-09:00", "09:00-09:30", "09:30-10:00", "10:00-10:30", "10:30-11:00", "11:00-11:30",
-         "11:30-12:00", "12:00-12:30", "12:30-13:00", "13:00-13:30", "13:30-14:00", "14:00-14:30", "14:30-15:00",
-         "15:00-15:30", "15:30-16:00", "16:00-16:30", "16:30-17:00", "17:00-17:30", "17:30-18:00", "18:00-18:30",
-         "18:30-19:00"] as orario>
-            <tr>
-                <td>${orario}</td>
-                <#list eventi as evento>
-                    <#if (evento.oraInizio?string("HH:mm")+"-"+evento.oraFine?string("HH:mm") == orario)>
-                        <td>
-                            <div class="event-calendario">
-                                <div class="event-desc-calendario">
-                                    ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
-                                </div>
-                            </div>
-                        </td>
-                    </#if>
-                </#list>
-            </tr>
+
+<form>    
+    <input type="hidden" name="IDaula" value="${aula.key}"/>
+    <input type="hidden" name="data" value="${data}"/>
+
+    <div class="row"><input type="submit" name="attachment" value="Scarica file iCalendar"/> </div>
+</form>
+
+<table id="aule">
+    <tr>
+        <th>Orario</th>
+        <th>Lun ${giorno}</th>
+        <th>Mar ${giorno+1}</th>
+        <th>Mer ${giorno+2}</th>
+        <th>Gio ${giorno+3}</th>
+        <th>Ven ${giorno+4}</th>
+        <th>Sab ${giorno+5}</th>
+        <th>Dom ${giorno+6}</th>
+    </tr>
+    <#list ["08:00-08:30", "08:30-09:00", "09:00-09:30", "09:30-10:00", "10:00-10:30", "10:30-11:00", "11:00-11:30",
+    "11:30-12:00", "12:00-12:30", "12:30-13:00", "13:00-13:30", "13:30-14:00", "14:00-14:30", "14:30-15:00",
+    "15:00-15:30", "15:30-16:00", "16:00-16:30", "16:30-17:00", "17:00-17:30", "17:30-18:00", "18:00-18:30",
+    "18:30-19:00"] as orario>
+    <tr>
+        <td>${orario}</td>
+        <#list eventi as evento>
+        <#if (evento.oraInizio?string("HH:mm")+"-"+evento.oraFine?string("HH:mm") == orario)>
+        <td>
+            <div class="event-calendario">
+                <div class="event-desc-calendario">
+                    ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
+                </div>
+            </div>
+        </td>
+        </#if>
         </#list>
-    </table>
+    </tr>
+    </#list>
+</table>
 <#else>
-    <p>Nessun evento trovato per questa aula.</p>
+<p>Nessun evento trovato per questa aula.</p>
 </#if>
 
