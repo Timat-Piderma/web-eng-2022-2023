@@ -1,11 +1,23 @@
 <h2>Gruppi disponibili</h2>
-<#if (gruppi?size>0)>
-<ul>
-    <#list gruppi as gruppo>
-    <li>
-        <a href="gestioneaule?IDgruppo=${gruppo.key}"><b>${gruppo.nome}</b>  <a href="gestionegruppi?IDgruppo=${gruppo.key}">Modifica</a> </a>
-    </li>
-    </#list>
-</ul>
-</#if>
+<div style="margin-bottom:10px;">
 <a href="gestionegruppi?IDgruppo=0"><button class="classical-button">Aggiungi Gruppo</button></a>
+</div>
+<#if (gruppi?size>0)>
+<table id="gruppi">
+    <tr>
+    <th style="width: 16%">Gruppo</th>
+    <th style="width: 60%">Descrizione</th>
+    <th style="width: 12%">Gestione Aule</th>
+    <th style="width: 12%">Gesione Gruppo</th>
+    </tr>
+    <#list gruppi as gruppo>
+     
+    <tr>
+        <td> ${gruppo.nome} </td>
+        <td> ${gruppo.descrizione} </td>
+        <td><a href="gestioneaule?IDgruppo=${gruppo.key}">Gestisci</a></td>
+        <td><a href="gestionegruppi?IDgruppo=${gruppo.key}">Modifica</a></td>
+    </tr>
+    </#list>
+</table>
+</#if>

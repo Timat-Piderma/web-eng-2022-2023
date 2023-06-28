@@ -38,10 +38,9 @@ public class MakeEventiSettimana extends AuleWebBaseController {
                 request.setAttribute("aula", aula);
                 LocalDate giornoCorrente = LocalDate.parse(data);
                 LocalDate primoGiornoSettimana = giornoCorrente.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-                request.setAttribute("giorno",primoGiornoSettimana.getDayOfMonth() );
+                request.setAttribute("giorno",primoGiornoSettimana.getDayOfMonth());
                 request.setAttribute("settiamanaprecedente", LocalDate.parse(data).plusDays(-7));
                 request.setAttribute("settimanasuccessiva", LocalDate.parse(data).plusDays(7));
-                request.setAttribute("giornoInizioSettimana", LocalDate.parse(data).plusDays(7));
                 //verr� usato automaticamente il template di outline spcificato tra i context parameters
                 //the outlne template specified through the context parameters will be added by the TemplateResult to the specified template
                 TemplateResult res = new TemplateResult(getServletContext());

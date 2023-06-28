@@ -255,3 +255,31 @@ ul.breadcrumb li:first-child::before {
         flex: 0 0 auto;
         align-self: flex-end;
 }
+/*tabella gestione gruppi*/
+#gruppi {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: auto;
+}
+
+#gruppi td, #gruppi th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  
+
+}
+
+#gruppi tr:nth-child(even){background-color: #f2f2f2;}
+
+#gruppi tr:hover {background-color: #ddd;}
+
+#gruppi th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: transparent;
+  color: black;
+  
+ 
+} 
