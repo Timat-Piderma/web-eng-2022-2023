@@ -60,7 +60,6 @@ com\stdt\auleweb\controller\GestioneAule.class
 com\stdt\auleweb\data\proxy\ResponsabileProxy.class
 com\stdt\auleweb\data\dao\AmministratoreDAO.class
 com\stdt\auleweb\controller\AuleWebBaseController.class
-.netbeans_automatic_build
 com\stdt\auleweb\controller\ListGruppi.class
 com\stdt\auleweb\data\impl\PosizioneImpl.class
 com\stdt\auleweb\framework\data\DataCache.class

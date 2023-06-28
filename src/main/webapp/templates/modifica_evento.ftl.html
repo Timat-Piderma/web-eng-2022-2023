@@ -114,15 +114,16 @@
 
 
     <#if !evento.key??>
-    <div class="row"><input type="submit" name="update" value="Crea Evento"/> </div>
+    <div class="row"><input class="classical-button" style="margin: 10px" type="submit" name="update" value="Crea Evento"/> </div>
     </#if>
     <#if evento.key??>
-    <div class="row"><input type="submit" name="update" value="Modifica Evento"/> <input type="submit" name="delete" value="Elimina Evento"/></div>
+    <div class="row"><input class="classical-button" style="margin: 10px" type="submit" name="update" value="Modifica Evento"/> <input class="classical-button" style="margin: 10px" type="submit" name="delete" value="Elimina Evento"/></div>
     </#if>
 
 
 
 </form>
+<div class="row" style="margin: 10px"><a href="gestioneeventi?IDaula=${aula.key}"> <button class="classical-button">Indietro</button> </a></div>
 
 <script>
     function enableInputField() {

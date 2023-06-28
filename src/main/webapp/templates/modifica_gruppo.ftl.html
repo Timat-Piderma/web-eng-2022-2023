@@ -15,12 +15,13 @@
     </div>
 
     <#if !gruppo.key??>
-    <div class="row"><input type="submit" name="update" value="Crea Gruppo"/> </div>
+    <div class="row"><input class="classical-button" style="margin: 10px" type="submit" name="update" value="Crea Gruppo"/> </div>
     </#if>
     <#if gruppo.key??>
-    <div class="row"><input type="submit" name="update" value="Modifica Gruppo"/> <input type="submit" name="delete" value="Elimina Gruppo"/></div>
+    <div class="row"><input class="classical-button" style="margin: 10px" type="submit" name="update" value="Modifica Gruppo"/> <input class="classical-button" style="margin: 10px" type="submit" name="delete" value="Elimina Gruppo"/></div>
     </#if>
 
 
 
 </form>
+<div class="row" style="margin: 10px"><a href="gestionegruppi"> <button class="classical-button">Indietro</button> </a></div>

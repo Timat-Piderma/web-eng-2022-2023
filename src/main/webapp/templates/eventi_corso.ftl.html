@@ -30,7 +30,7 @@
     <input type="submit" value="Cerca Eventi"/>
 </form>
 <#if (eventi??)>
-<h3>Eventi del Corso ${corso.nome} </h3>   <a href="eventicorso?IDgruppo=${gruppo.key}&data=${settiamanaprecedente}&IDcorso=${corso.key}"> Settimana Precedente </a> &nbsp;<a href="eventicorso?IDcorso=${corso.key}&data=${settimanasuccessiva}&IDgruppo=${gruppo.key}"> Settiamana Prossima </a>
+<h3>Eventi del Corso ${corso.nome} </h3>   <a href="eventicorso?IDgruppo=${gruppo.key}&data=${settiamanaprecedente}&IDcorso=${corso.key}"><button class="classical-button"> Settimana Precedente</button> </a> &nbsp;<a href="eventicorso?IDcorso=${corso.key}&data=${settimanasuccessiva}&IDgruppo=${gruppo.key}"><button class="classical-button"> Settiamana Prossima</button> </a>
 
 <ul>
     <#list eventi as evento>

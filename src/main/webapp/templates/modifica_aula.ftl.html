@@ -60,12 +60,11 @@
     </div>
 
     <#if !aula.key??>
-    <div class="row"><input type="submit" name="update" value="Crea Aula"/> </div>
+    <div class="row"><input class="classical-button" style="margin: 10px" type="submit" name="update" value="Crea Aula"/> </div>
     </#if>
     <#if aula.key??>
-    <div class="row"><input type="submit" name="update" value="Modifica Aula"/> <input type="submit" name="delete" value="Elimina Aula"/></div>
+    <div class="row"><input class="classical-button" style="margin: 10px" type="submit" name="update" value="Modifica Aula"/><input class="classical-button" type="submit" name="delete" value="Elimina Aula"/></div>
     </#if>
 
-
-
 </form>
+<div class="row" style="margin: 10px"><a href="gestioneaule?IDgruppo=${IDgruppo}"> <button class="classical-button">Indietro</button> </a></div>
