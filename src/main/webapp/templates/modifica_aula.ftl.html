@@ -1,51 +1,72 @@
 <h2>Modifica Aula</h2>
-
+<div class="container-group">
 <form method="post" action="gestioneaule">
 
-    <div class="container">
+
         <input type="hidden" name="IDaula" value="${aula.key!0}"/>
         <input type="hidden" name="IDgruppo" value="${IDgruppo}"/>
-        <div class="row">
+    
 
+    <div class="ro">
+        <div class="col-25">
+        <label for="name"><b>Nome</b></label>
+      </div>
+      <div class="col-75">
+          <input type="text" name="nome" id="name" value="${strip_slashes(aula.nome)}" required/>
+      </div>
+    </div>
+
+    <div class="ro">
+        <div class="col-25">
+        <label for="cap"><b>Capienza</b></label>
+      </div>
+        <div class="col-75">
+          <input name="capienza" id="cap" type="number" value="${aula.capienza}" />
+      </div>
+    </div>
+    <div class="ro">
+        <div class="col-25">
+        <label for="mail"><b>EmailResponsabile</b></label>
+      </div>
+      <div class="col-75">
+          <input type="email" id="mail" name="emailresponsabile" value="${strip_slashes(aula.emailResponsabile)}"/>
+      </div> 
+    </div>
+   
+
+    <div class="ro">
+        <div class="col-25">
+        <label for="Not"><b>Note</b></label>
+        </div>
+        <div class="col-75">
+        <#if !aula.key??>
+        <textarea name="note" ></textarea>  </#if>
+        <#if aula.key??>
+        <textarea name="note" >${strip_slashes(aula.note)}</textarea>  </#if>
         </div>
     </div>
-
-    <div class="row">
-        <div class="four columns clabel">Nome</div>
-        <div class="twelve columns"><input name="nome" value="${strip_slashes(aula.nome)}"/> </div>
+        
+    <div class="ro">
+        <div class="col-25">
+            <label for="PE"><b>Numero di prese Elettriche</b></label>
+        </div>
+        <div class="col-75"><input type="number" id="PE" name="numeropreseelettriche" value="${aula.numeroPreseElettriche}"/> </div>
     </div>
 
-    <div class="row">
-        <div class="four columns clabel">Capienza</div>
-        <div class="twelve columns"><input name="capienza" type="number" value="${aula.capienza}" /></div>
-    </div>
-    <div class="row">
-        <div class="four columns clabel">EmailResponsabile</div>
-        <div class="twelve columns"><input name="emailresponsabile" value="${strip_slashes(aula.emailResponsabile)}"/> </div>
+    <div class="ro">
+        <div class="col-25">
+            <label for="PR"><b>Numero di prese di Rete</b></label>
+        </div>
+        <div class="col-75"><input type="number" id="PR" name="numeropreserete" value="${aula.numeroPreseRete}"/> </div>  
     </div>
 
-    <div class="row">
-        <div class="four columns clabel">Note</div>
-        <#if !aula.key??>
-        <div class="twelve columns"><textarea name="note" ></textarea></div>   </#if>
-        <#if aula.key??>
-        <div class="twelve columns"><textarea name="note" >${strip_slashes(aula.note)}</textarea></div>  </#if>
-    </div>
+    <div class="ro">
 
-    <div class="row">
-        <div class="four columns clabel">Numero di prese Elettriche</div>
-        <div class="twelve columns"><input type="number" name="numeropreseelettriche" value="${aula.numeroPreseElettriche}"/> </div>
-    </div>
-
-    <div class="row">
-        <div class="four columns clabel">Numero di prese di Rete</div>
-        <div class="twelve columns"><input type="number" name="numeropreserete" value="${aula.numeroPreseRete}"/> </div>  
-    </div>
-
-    <div class="row">
-
-        <div class="four columns clabel">Posizione</div>
-        <div class="twelve columns"><select name="posizione">
+        <div class="col-25">
+            <label for="pos"><b>Posizione</b></label>
+        </div>
+        <div class="col-75">
+                <select name="posizione" id="pos">
                 <option value="" selected>Seleziona una Posizione</option>
                 <#list posizioni as posizione>
                 <option value="${posizione.key}"
@@ -55,16 +76,16 @@
                     >${posizione.edificio}, Piano ${posizione.piano}, ${posizione.luogo}</option>
                 </#list> 
             </select>
-        </div>
-
+        </div>     
     </div>
-
+        
     <#if !aula.key??>
-    <div class="row"><input class="classical-button" style="margin: 10px" type="submit" name="update" value="Crea Aula"/> </div>
+    <input class="submit_gruppo" style="margin: 10px" type="submit" name="update" value="Crea Aula"/> 
     </#if>
     <#if aula.key??>
-    <div class="row"><input class="classical-button" style="margin: 10px" type="submit" name="update" value="Modifica Aula"/><input class="classical-button" type="submit" name="delete" value="Elimina Aula"/></div>
+    <input class="submit_gruppo" type="submit" name="update" value="Modifica Aula"/><input class="submit_gruppo" type="submit" name="delete" value="Elimina Aula"/>
     </#if>
 
 </form>
-<div class="row" style="margin: 10px"><a href="gestioneaule?IDgruppo=${IDgruppo}"> <button class="classical-button">Indietro</button> </a></div>
+</div>
+<a href="gestioneaule?IDgruppo=${IDgruppo}"> <button class="classical-button">Indietro</button> </a>

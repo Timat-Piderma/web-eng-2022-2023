@@ -278,7 +278,7 @@ ul.breadcrumb li:first-child::before {
  
 } 
 /*modifica gruppo*/
-input[type=text], textarea {
+input[type=text], textarea, input[type=number], input[type=email], select{
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -307,7 +307,7 @@ label {
             
 }
 
-input[type=submit]:hover {
+.submit_gruppo:hover {
   background-color: #fcba03;
   color: black;
 }
