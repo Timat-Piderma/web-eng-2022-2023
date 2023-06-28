@@ -1,8 +1,6 @@
 <h2>Modifica Evento</h2>
-
-<form method="post" action="gestionegruppi">
-
-    
+<!-- comment
+<form method="post" action="gestionegruppi">  
         <input type="hidden" name="IDgruppo" value="${gruppo.key!0}"/>
     <div class="container_log">
         <label for="nome"><b>Nome</b></label>
@@ -24,4 +22,34 @@
 
 
 </form>
-<div class="row" style="margin: 10px"><a href="gestionegruppi"> <button class="classical-button">Indietro</button> </a></div>
+ -->
+<div class="container-group">
+  <form method="post" action="gestionegruppi">
+         <div class="ro">
+      <div class="col-25">
+        <label for="nome"><b>Nome</b></label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="nome" value="${strip_slashes(gruppo.nome)}" required>
+      </div>
+    </div>
+    <div class="ro">
+      <div class="col-25">
+        <label for="descr">Descrizione</label>
+      </div>
+      <div class="col-75">
+        <textarea name="descrizione" >${strip_slashes(gruppo.descrizione)}</textarea>
+      </div>
+    </div>
+    <div class="ro">
+      <#if !gruppo.key??>
+    <input  type="submit" class="submit_gruppo" name="update" value="Crea Gruppo"/> 
+    </#if>
+    <#if gruppo.key??>
+    <input type="submit" class="submit_gruppo" name="update" value="Modifica Gruppo"/> <input class="submit_gruppo" type="submit" name="delete" value="Elimina Gruppo"/>
+    </#if>
+    </div>
+  </form>
+</div>
+ 
+<div><a href="gestionegruppi"> <button class="classical-button">Indietro</button> </a></div>
