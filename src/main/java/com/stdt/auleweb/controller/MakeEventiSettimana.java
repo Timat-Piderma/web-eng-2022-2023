@@ -3,18 +3,18 @@ package com.stdt.auleweb.controller;
 import com.stdt.auleweb.data.dao.AuleWebDataLayer;
 import com.stdt.auleweb.data.model.Aula;
 import com.stdt.auleweb.data.model.Evento;
-import com.stdt.auleweb.data.model.Gruppo;
 import com.stdt.auleweb.framework.data.DataException;
+import com.stdt.auleweb.framework.data.iCal4j_Util;
 import com.stdt.auleweb.framework.result.SplitSlashesFmkExt;
 import com.stdt.auleweb.framework.result.TemplateManagerException;
 import com.stdt.auleweb.framework.result.TemplateResult;
 import com.stdt.auleweb.framework.security.SecurityHelpers;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,10 +22,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Giuseppe
- */
 public class MakeEventiSettimana extends AuleWebBaseController {
 
     private void action_evento(HttpServletRequest request, HttpServletResponse response, int IDaula, String data) throws IOException, ServletException, TemplateManagerException {
@@ -37,8 +33,9 @@ public class MakeEventiSettimana extends AuleWebBaseController {
                 request.setAttribute("eventi", eventi);
                 request.setAttribute("aula", aula);
                 LocalDate giornoCorrente = LocalDate.parse(data);
+                request.setAttribute("data", giornoCorrente);
                 LocalDate primoGiornoSettimana = giornoCorrente.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-                request.setAttribute("giorno",primoGiornoSettimana.getDayOfMonth());
+                request.setAttribute("giorno", primoGiornoSettimana.getDayOfMonth());
                 request.setAttribute("settiamanaprecedente", LocalDate.parse(data).plusDays(-7));
                 request.setAttribute("settimanasuccessiva", LocalDate.parse(data).plusDays(7));
                 //verr� usato automaticamente il template di outline spcificato tra i context parameters
@@ -56,6 +53,33 @@ public class MakeEventiSettimana extends AuleWebBaseController {
         }
     }
 
+    private void action_attachment(HttpServletRequest request, HttpServletResponse response, int IDaula, String data) throws IOException, ServletException, TemplateManagerException {
+        try {
+            Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(IDaula);
+            List<Evento> eventi = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiBySettimana(aula, Date.valueOf(data));
+
+            if (eventi != null) {
+                String ical = iCal4j_Util.CalendarUtil(eventi);
+
+                // Imposta l'intestazione della risposta per indicare che il contenuto è un file iCalendar
+                response.setContentType("text/calendar");
+
+// Imposta il nome del file
+                response.setHeader("Content-Disposition", "attachment; filename=calendario.ics");
+
+// Scrivi il contenuto del file iCalendar nella risposta
+                try ( PrintWriter out = response.getWriter()) {
+                    out.print(ical);
+                }
+
+            } else {
+                handleError("Unable to download iCalendar file", request, response);
+            }
+        } catch (DataException ex) {
+            handleError("Data access exception: " + ex.getMessage(), request, response);
+        }
+    }
+
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
@@ -65,6 +89,10 @@ public class MakeEventiSettimana extends AuleWebBaseController {
         try {
             IDaula = SecurityHelpers.checkNumeric(request.getParameter("IDaula"));
             data = SecurityHelpers.sanitizeFilename(request.getParameter("data"));
+
+            if (request.getParameter("attachment") != null) {
+                action_attachment(request, response, IDaula, data);
+            }
 
             action_evento(request, response, IDaula, data);
         } catch (NumberFormatException ex) {
