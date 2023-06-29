@@ -10,6 +10,7 @@
 </div>
 
 <h3>Eventi delle aule ${gruppo.nome} per specifici corsi</h3> 
+<div class="container-group">
 <form method="post" action="eventicorso">
 
     <input type="hidden" name="IDgruppo" value="${gruppo.key}"/>
@@ -17,8 +18,13 @@
     <#if (IDcorso??)>
     <input type="hidden" name="IDcorso" value="${corso.key!0}"/>
     </#if>
+    <div class="ro">
+    <div class="col-25">
+        <label><b>Seleziona un Corso</b></label>
+    </div>
+    <div class="col-75">
     <select name="corsoSelect">
-        <option value="" disabled selected>Seleziona un Corso</option>
+        <option value="" disabled selected>-</option>
         <#list corsi as corsos>
         <option value="${corsos.key}"
                 <#if (corso?? && corsos.key=corso.key)>
@@ -27,8 +33,11 @@
             >${corsos.nome}</option>
         </#list> 
     </select>
-    <input type="submit" value="Cerca Eventi"/>
+        </div>
+    </div>
+    <input type="submit" class="submit_gruppo" value="Cerca Eventi"/>
 </form>
+    </div>
 <#if (eventi??)>
 <h3>Eventi del Corso ${corso.nome} </h3>   <a href="eventicorso?IDgruppo=${gruppo.key}&data=${settiamanaprecedente}&IDcorso=${corso.key}"><button class="classical-button"> Settimana Precedente</button> </a> &nbsp;<a href="eventicorso?IDcorso=${corso.key}&data=${settimanasuccessiva}&IDgruppo=${gruppo.key}"><button class="classical-button"> Settiamana Prossima</button> </a>
 
