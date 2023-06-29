@@ -25,11 +25,11 @@
 <!--bisogna mettere il mese sopra i giorni della settimana, in ogni giorno della settimana bisogna mettere il numero, nel pallino nero come volevo fare io-->
 <#if (eventi?size>0)>
 
-<form>    
+<form style="border: none">    
     <input type="hidden" name="IDaula" value="${aula.key}"/>
     <input type="hidden" name="data" value="${data}"/>
 
-    <div class="row"><input type="submit" name="attachment" value="Scarica file iCalendar"/> </div>
+    <button class="classical-button" type="submit" name="attachment">Scarica file iCalendar</button>
 </form>
 
 <table id="aule">
