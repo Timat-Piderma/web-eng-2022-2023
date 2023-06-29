@@ -1,62 +1,72 @@
 <h2>Modifica Evento</h2>
-
+<div class="container-group">
 <form method="post" action="gestioneeventi">
-
-    <div class="container">
         <input type="hidden" name="IDevento" value="${evento.key!0}"/>
         <input type="hidden" name="data" value="${data}"/>
         <input type="hidden" name="IDaula" value="${aula.key}"/>
-        <div class="row">
+ 
 
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="four columns clabel">Giorno</div>
-        <#if !evento.giorno??>
-        <div class="twelve columns"><input  type="date" name="giorno"/></div>
+        <div class="ro">
+        <div class="col-25">
+        <label><b>Giorno</b></label>
+      </div>
+      <div class="col-75">
+          <#if !evento.giorno??>
+        <input  type="date" name="giorno"/>
         </#if>
         <#if evento.giorno??>
-        <div class="twelve columns"><input  type="date" name="giorno" value="${giornoevento}"/></div>
+        <input  type="date" name="giorno" value="${giornoevento}"/>
         </#if>
-
-    </div>
-
-    <div class="row">
-
-        <div class="four columns clabel">oraInizio</div>
-        <#if !evento.oraInizio??>
-        <div class="twelve columns"><input type="time" name="oraInizio" step="900"/></div>
+        </div>
+      </div>
+        
+        <div class="ro">
+        <div class="col-25">
+        <label for="in"><b>oraInizio</b></label>
+      </div>
+      <div class="col-75">
+          <#if !evento.oraInizio??>
+        <input type="time"  name="oraInizio" step="900"/>
         </#if>
         <#if evento.oraInizio??>
-        <div class="twelve columns"><input type="time" name="oraInizio" step="900" value="${evento.oraInizio}"/></div>
+        <input type="time" name="oraInizio" step="900" value="${evento.oraInizio}"/>
         </#if>
-
+      </div>
     </div>
-    <div class="row">
-        <div class="four columns clabel">oraFine</div>
-        <#if !evento.oraFine??>
-        <div class="twelve columns"><input type="time" name="oraFine" step="900"/></div>
+        
+        <div class="ro">
+        <div class="col-25">
+        <label for="fin"><b>oraFine</b></label>
+      </div>
+      <div class="col-75">
+          <#if !evento.oraFine??>
+        <input type="time" name="oraFine" step="900"/>
         </#if>
         <#if evento.oraFine??>
-        <div class="twelve columns"><input type="time" name="oraFine" step="900" value="${evento.oraFine}"/></div>
-        </#if>
+        <input type="time" name="oraFine" step="900" value="${evento.oraFine}"/>
+        </#if>  
+      </div>
+    </div>
 
+    <div class="ro">
+        <div class="col-25">
+        <label for="nome"><b>Nome</b></label>
+        </div>
+        <div class="col-75"><input type="text" name="nome" value="${strip_slashes(evento.nome)}"/> </div>
     </div>
 
     <div class="row">
-        <div class="four columns clabel">Nome</div>
-        <div class="twelve columns"><input name="nome" value="${strip_slashes(evento.nome)}"/> </div>
+        <div class="col-25">
+        <label for="descr"><b>Descrizione</b></label>
+        </div>
+        <div class="col-75"><textarea name="descrizione" >${strip_slashes(evento.descrizione)}</textarea></div>
     </div>
 
-    <div class="row">
-        <div class="four columns clabel">Descrizione</div>
-        <div class="twelve columns"><textarea name="descrizione" >${strip_slashes(evento.descrizione)}</textarea></div>
-    </div>
-
-    <div class="row">
-        <div class="four columns clabel">Tipologia</div>
-        <div class="twelve columns"><select id="tipologia" name="tipologia" onchange="enableInputField()">
+    <div class="ro">
+        <div class="col-25">
+        <label for="tip"><b>Tipologia</b></label>
+        </div>
+        <div class="col-75"><select id="tipologia" name="tipologia" onchange="enableInputField()">
                 <option value="" disabled selected>Seleziona una Tipologia</option>
                 <#list tipologie as tipologia>
                 <option value="${tipologia}"
@@ -69,10 +79,12 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="ro">
 
-        <div class="four columns clabel">Corso</div>
-        <div class="twelve columns"><select name="corso" id="corsoSelect" disabled>
+        <div class="col-25">
+        <label for="tip"><b>Corso</b></label>
+        </div>
+        <div class="col-75"><select name="corso" id="corsoSelect" disabled>
                 <option value="" disabled selected>Seleziona un Corso</option>
                 <#list corsi as corso>
                 <option value="${corso.key}"
@@ -83,16 +95,18 @@
                 </#list> 
             </select>
             <br>
-            Oppure inserisci i dati di un nuovo Corso
+            <p><b>Oppure inserisci i dati di un nuovo Corso</b></p>
             <input id="corsoInput" disabled type="text"  name="nomeNuovoCorso" placeholder="Inserisci Nome">
         </div>
 
     </div>
 
-    <div class="row">
+    <div class="ro">
 
-        <div class="four columns clabel">Responsabile</div>
-        <div class="twelve columns"><select name="responsabile">
+        <div class="col-25">
+        <label for="tip"><b>Responsabile</b></label>
+        </div>
+        <div class="col-75"><select name="responsabile">
                 <option value="" disabled selected>Seleziona un responsabile</option>
                 <#list responsabili as responsabile>
                 <option value="${responsabile.key}"
@@ -103,7 +117,7 @@
                 </#list> 
             </select>
             <br>
-            Oppure inserisci i dati di un nuovo Resposabile
+            <p><b>Oppure inserisci i dati di un nuovo Resposabile</b></p>
             <input type="text"  name="nomeNuovoResponsabile" placeholder="Inserisci Nome">
             <input type="text"  name="emailNuovoResponsabile" placeholder="Inserisci Email">
         </div>
@@ -119,11 +133,9 @@
     <#if evento.key??>
     <div class="row"><input class="classical-button" style="margin: 10px" type="submit" name="update" value="Modifica Evento"/> <input class="classical-button" style="margin: 10px" type="submit" name="delete" value="Elimina Evento"/></div>
     </#if>
-
-
-
 </form>
-<div class="row" style="margin: 10px"><a href="gestioneeventi?IDaula=${aula.key}"> <button class="classical-button">Indietro</button> </a></div>
+</div>
+<a href="gestioneeventi?IDaula=${aula.key}"> <button class="classical-button">Indietro</button> </a>
 
 <script>
     function enableInputField() {

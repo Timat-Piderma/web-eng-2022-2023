@@ -278,7 +278,8 @@ ul.breadcrumb li:first-child::before {
  
 } 
 /*modifica gruppo*/
-input[type=text], textarea, input[type=number], input[type=email], select{
+input[type=text], textarea, input[type=number], input[type=email], 
+input[type=date], input[type=time], select{
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
