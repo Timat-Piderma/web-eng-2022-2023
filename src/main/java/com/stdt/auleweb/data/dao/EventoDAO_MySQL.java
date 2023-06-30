@@ -25,7 +25,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
     private PreparedStatement sEventoByID;
     private PreparedStatement sEventi, sEventiByAula, sEventiByCorso, sEventiByResponsabile;
-    private PreparedStatement sEventiBySettimana, sEventiByGiorno, sEventiNextThreeHours, sEventiBySettimanaAndCorso;
+    private PreparedStatement sEventiBySettimana, sEventiByGiorno, sEventiNextThreeHours, sEventiBySettimanaAndCorso, sEventiRicorrenti;
     private PreparedStatement iEvento, uEvento, dEvento;
 
     public EventoDAO_MySQL(DataLayer d) {
@@ -49,6 +49,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventiByGiorno = connection.prepareStatement("SELECT evento.ID as eventoID from evento inner join tiene on tiene.eventoID = evento.ID inner join aula on tiene.aulaID = aula.ID where evento.giorno = ? and aula.gruppoID = ?");
             sEventiNextThreeHours = connection.prepareStatement("SELECT evento.ID AS eventoID FROM evento JOIN tiene on evento.ID = tiene.eventoID JOIN aula on aula.ID = tiene.aulaID WHERE evento.oraInizio >= CURRENT_TIMESTAMP AND evento.oraInizio <= CURRENT_TIMESTAMP + INTERVAL 3 HOUR AND aula.gruppoID=? AND evento.giorno= curdate()");
             sEventiBySettimanaAndCorso = connection.prepareStatement("SELECT evento.ID AS eventoID FROM evento JOIN aula on evento.aulaID = aula.ID WHERE WEEK(giorno)=WEEK(?) AND corsoID=? AND aula.gruppoID=?");
+            sEventiRicorrenti = connection.prepareStatement("SELECT ID AS eventoID from evento where nome=? AND responsabileID=? order by giorno ");
 
             iEvento = connection.prepareStatement("INSERT INTO evento (giorno,oraInizio,oraFine,descrizione,nome,tipologia,aulaID,responsabileID,corsoID) VALUES(?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             uEvento = connection.prepareStatement("UPDATE evento SET giorno=?,oraInizio=?,oraFine=?,descrizione=?, nome=?, tipologia=?, aulaID=?, responsabileID=?, corsoID=?, version=? WHERE ID=? and version=?");
@@ -161,6 +162,24 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventiBySettimana.setObject(1, giorno);
             sEventiBySettimana.setInt(2, aula.getKey());
             ResultSet rs = sEventiBySettimana.executeQuery();
+
+            while (rs.next()) {
+                result.add((Evento) getEvento(rs.getInt("eventoID")));
+            }
+            return result;
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load eventi", ex);
+        }
+    }
+
+    @Override
+    public List<Evento> getEventiRicorrenti(String nome, int IDresponsabile) throws DataException {
+        List<Evento> result = new ArrayList();
+
+        try {
+            sEventiRicorrenti.setString(1, nome);
+            sEventiRicorrenti.setInt(2, IDresponsabile);
+            ResultSet rs = sEventiRicorrenti.executeQuery();
 
             while (rs.next()) {
                 result.add((Evento) getEvento(rs.getInt("eventoID")));

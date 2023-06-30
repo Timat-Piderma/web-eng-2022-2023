@@ -25,6 +25,8 @@ public interface EventoDAO {
 
     List<Evento> getEventiBySettimana(Aula aula, Date giorno) throws DataException;
 
+    List<Evento> getEventiRicorrenti(String nome, int IDresponsabile) throws DataException;
+
     List<Evento> getEventiByGiorno(Gruppo gruppo, Date giorno) throws DataException;
 
     List<Evento> getEventiNextThreeHours(Gruppo gruppo) throws DataException;
