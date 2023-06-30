@@ -35,7 +35,26 @@ public class MakeEventiSettimana extends AuleWebBaseController {
                 LocalDate giornoCorrente = LocalDate.parse(data);
                 request.setAttribute("data", giornoCorrente);
                 LocalDate primoGiornoSettimana = giornoCorrente.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-                request.setAttribute("giorno", primoGiornoSettimana.getDayOfMonth());
+                LocalDate secondoGiornoSettimana = giornoCorrente.with(TemporalAdjusters.previousOrSame(DayOfWeek.TUESDAY));
+                LocalDate terzoGiornoSettimana = giornoCorrente.with(TemporalAdjusters.previousOrSame(DayOfWeek.WEDNESDAY));
+                LocalDate quartoGiornoSettimana = giornoCorrente.with(TemporalAdjusters.previousOrSame(DayOfWeek.THURSDAY));
+                LocalDate quintoGiornoSettimana = giornoCorrente.with(TemporalAdjusters.previousOrSame(DayOfWeek.FRIDAY));
+                LocalDate sestoGiornoSettimana = giornoCorrente.with(TemporalAdjusters.previousOrSame(DayOfWeek.SATURDAY));
+                LocalDate settimoGiornoSettimana = giornoCorrente.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
+                request.setAttribute("lunedi", primoGiornoSettimana.getDayOfMonth());
+                request.setAttribute("lunedi-giorno", primoGiornoSettimana);
+                request.setAttribute("martedi", secondoGiornoSettimana.getDayOfMonth());
+                request.setAttribute("martedi-giorno", secondoGiornoSettimana);
+                request.setAttribute("mercoled", terzoGiornoSettimana.getDayOfMonth());
+                request.setAttribute("mercoledi-giorno", terzoGiornoSettimana);
+                request.setAttribute("giovedi", quartoGiornoSettimana.getDayOfMonth());
+                request.setAttribute("giovedi-giorno", quartoGiornoSettimana);
+                request.setAttribute("venerdi", quintoGiornoSettimana.getDayOfMonth());
+                request.setAttribute("venerdi-giorno", quintoGiornoSettimana);
+                request.setAttribute("sabato", sestoGiornoSettimana.getDayOfMonth());
+                request.setAttribute("sabato-giorno", sestoGiornoSettimana);
+                request.setAttribute("domenica", settimoGiornoSettimana.getDayOfMonth());
+                request.setAttribute("domenica-giorno", settimoGiornoSettimana);
                 request.setAttribute("settiamanaprecedente", LocalDate.parse(data).plusDays(-7));
                 request.setAttribute("settimanasuccessiva", LocalDate.parse(data).plusDays(7));
                 //verr� usato automaticamente il template di outline spcificato tra i context parameters
