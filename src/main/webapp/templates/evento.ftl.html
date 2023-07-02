@@ -3,25 +3,24 @@
         <div class="sinistra"> 
         <ul class="breadcrumb">
             <li><a href="listgruppi">Home</a></li>
-            <li><a href="javascript:history.back()"> <button class="classical-button">Calendario</button> </a></li>
+            <li><a href="javascript:history.back()"> Calendario</a></li>
         </ul>
     </div> 
     </div>
 </div>
 <div class="sixteen columns">
- <h2>${evento.nome}</h2>
+ <h2>Evento : ${evento.nome}</h2>
 <p>
-<br>${evento.giorno}
-<br>${evento.oraInizio}
-<br>${evento.oraFine}
-<br>${evento.nome}
-<br>${evento.descrizione}
-<br>${evento.tipologia}
-<br>${evento.responsabile.nome}
-<br>${evento.aula.nome}
+<br>Giorno:${evento.giorno}
+<br>Ora inizio:${evento.oraInizio}
+<br>Ora fine:${evento.oraFine}
+<br>Nome:${evento.nome}
+<br>Descrizione:${evento.descrizione}
+<br>Tipologia:${evento.tipologia}
+<br>Responsabile:${evento.responsabile.nome}
+<br>Aula:${evento.aula.nome}
 <#if (evento.corso??)>
-<br>----------
-<br>${evento.corso.nome}
+<br>Corso:${evento.corso.nome}
 </#if>
 </p>
     

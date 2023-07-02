@@ -58,7 +58,7 @@
             <#if (evento.oraInizio?string("HH:mm") == orario?substring(0,5) && evento.giorno?string("yyyy-MM-dd") == lunedigiorno)>
             <div class="event-calendario">
                 <div class="event-desc-calendario">
-                    ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
+                    <a href="javascript:history.back()"> ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if> </a>
                 </div>
             </div>
             </#if>
@@ -69,7 +69,7 @@
             <#if (evento.oraInizio?string("HH:mm") == orario?substring(0,5) && evento.giorno?string("yyyy-MM-dd") == martedigiorno)>
             <div class="event-calendario">
                 <div class="event-desc-calendario">
-                    ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
+                     <a href="evento?id=${evento.key}"> ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if> </a>
                 </div>
             </div>
             </#if>
@@ -80,7 +80,7 @@
             <#if (evento.oraInizio?string("HH:mm") == orario?substring(0,5) && evento.giorno?string("yyyy-MM-dd") == mercoledigiorno)>
             <div class="event-calendario">
                 <div class="event-desc-calendario">
-                    ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
+                     <a href="evento?id=${evento.key}"> ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if> </a>
                 </div>
             </div>
             </#if>
@@ -92,7 +92,7 @@
             
             <div rowspan="3" class="event-calendario">
                 <div class="event-desc-calendario">
-                    ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
+                     <a href="evento?id=${evento.key}"> ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if> </a>
                 </div>
             </div>
             </#if>
@@ -103,7 +103,7 @@
             <#if (evento.oraInizio?string("HH:mm") == orario?substring(0,5) && evento.giorno?string("yyyy-MM-dd") == venerdigiorno)>
             <div class="event-calendario">
                 <div class="event-desc-calendario">
-                    ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
+                     <a href="evento?id=${evento.key}"> ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if> </a>
                 </div>
             </div>
             </#if>
@@ -114,7 +114,7 @@
             <#if (evento.oraInizio?string("HH:mm") == orario?substring(0,5) && evento.giorno?string("yyyy-MM-dd") == sabatogiorno)>
             <div class="event-calendario">
                 <div class="event-desc-calendario">
-                    ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
+                     <a href="evento?id=${evento.key}"> ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if> </a>
                 </div>
             </div>
             </#if>
@@ -125,7 +125,7 @@
             <#if (evento.oraInizio?string("HH:mm") == orario?substring(0,5) && evento.giorno?string("yyyy-MM-dd") == domenicagiorno)>
             <div class="event-calendario">
                 <div class="event-desc-calendario">
-                    ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if>
+                     <a href="evento?id=${evento.key}"> ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if> </a>
                 </div>
             </div>
             </#if>
