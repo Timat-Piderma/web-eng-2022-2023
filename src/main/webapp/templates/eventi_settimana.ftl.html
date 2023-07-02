@@ -35,14 +35,14 @@
 <table id="aule">
     <tr>
         <th>Orario</th>
+        <th>Dom ${domenica}</th>
         <th>Lun ${lunedi}</th>
         <th>Mar ${martedi}</th>
         <th>Mer ${mercoled}</th>
         <th>Gio ${giovedi}</th>
         <th>Ven ${venerdi}</th>
         <th>Sab ${sabato}</th>
-        <th>Dom ${domenica}</th>
-    </tr>
+            </tr>
     
     <#list ["08:00-08:30", "08:30-09:00", "09:00-09:30", "09:30-10:00", "10:00-10:30", "10:30-11:00", "11:00-11:30",
     "11:30-12:00", "12:00-12:30", "12:30-13:00", "13:00-13:30", "13:30-14:00", "14:00-14:30", "14:30-15:00",
@@ -52,7 +52,17 @@
     <tr>
         <td>${orario}</td>
         
-        
+        <td>
+             <#list eventi as evento>
+            <#if (evento.oraInizio?string("HH:mm") == orario?substring(0,5) && evento.giorno?string("yyyy-MM-dd") == domenicagiorno)>
+            <div class="event-calendario">
+                <div class="event-desc-calendario">
+                     <a href="evento?id=${evento.key}"> ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if> </a>
+                </div>
+            </div>
+            </#if>
+            </#list>
+        </td>
         <td>
             <#list eventi as evento>
             <#if (evento.oraInizio?string("HH:mm") == orario?substring(0,5) && evento.giorno?string("yyyy-MM-dd") == lunedigiorno)>
@@ -120,17 +130,7 @@
             </#if>
             </#list>
         </td>
-         <td>
-             <#list eventi as evento>
-            <#if (evento.oraInizio?string("HH:mm") == orario?substring(0,5) && evento.giorno?string("yyyy-MM-dd") == domenicagiorno)>
-            <div class="event-calendario">
-                <div class="event-desc-calendario">
-                     <a href="evento?id=${evento.key}"> ${evento.nome}&nbsp; ${evento.oraInizio}&nbsp; ${evento.oraFine} &nbsp; ${evento.tipologia} &nbsp; <#if (evento.corso??)>${evento.corso.nome}</#if> </a>
-                </div>
-            </div>
-            </#if>
-            </#list>
-        </td>
+         
         
         
     </tr>
