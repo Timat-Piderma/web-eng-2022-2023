@@ -35,12 +35,12 @@ public class MakeEventiSettimana extends AuleWebBaseController {
                 LocalDate giornoCorrente = LocalDate.parse(data);
                 request.setAttribute("data", giornoCorrente);
                 LocalDate primoGiornoSettimana = giornoCorrente.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-                LocalDate secondoGiornoSettimana = primoGiornoSettimana.with(TemporalAdjusters.previousOrSame(DayOfWeek.TUESDAY));
-                LocalDate terzoGiornoSettimana = primoGiornoSettimana.with(TemporalAdjusters.previousOrSame(DayOfWeek.WEDNESDAY));
-                LocalDate quartoGiornoSettimana = primoGiornoSettimana.with(TemporalAdjusters.previousOrSame(DayOfWeek.THURSDAY));
-                LocalDate quintoGiornoSettimana = primoGiornoSettimana.with(TemporalAdjusters.previousOrSame(DayOfWeek.FRIDAY));
-                LocalDate sestoGiornoSettimana = primoGiornoSettimana.with(TemporalAdjusters.previousOrSame(DayOfWeek.SATURDAY));
-                LocalDate settimoGiornoSettimana = primoGiornoSettimana.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
+                LocalDate secondoGiornoSettimana = primoGiornoSettimana.with(TemporalAdjusters.nextOrSame(DayOfWeek.TUESDAY));
+                LocalDate terzoGiornoSettimana = primoGiornoSettimana.with(TemporalAdjusters.nextOrSame(DayOfWeek.WEDNESDAY));
+                LocalDate quartoGiornoSettimana = primoGiornoSettimana.with(TemporalAdjusters.nextOrSame(DayOfWeek.THURSDAY));
+                LocalDate quintoGiornoSettimana = primoGiornoSettimana.with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY));
+                LocalDate sestoGiornoSettimana = primoGiornoSettimana.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY));
+                LocalDate settimoGiornoSettimana = primoGiornoSettimana.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
                 request.setAttribute("lunedi", primoGiornoSettimana.getDayOfMonth());
                 request.setAttribute("lunedigiorno", primoGiornoSettimana);
                 request.setAttribute("martedi", secondoGiornoSettimana.getDayOfMonth());
