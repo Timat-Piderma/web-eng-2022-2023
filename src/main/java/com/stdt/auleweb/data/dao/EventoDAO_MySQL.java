@@ -45,7 +45,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventiByCorso = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE corsoID=?");
             sEventiByResponsabile = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE responsabileID=?");
 
-            sEventiBySettimana = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE WEEK(evento.giorno)=WEEK(?) AND aulaID=?");
+            sEventiBySettimana = connection.prepareStatement("SELECT ID AS eventoID FROM evento WHERE WEEK(evento.giorno)=WEEK(?) AND aulaID=? order by oraInizio");
             sEventiByGiorno = connection.prepareStatement("SELECT evento.ID as eventoID from evento inner join tiene on tiene.eventoID = evento.ID inner join aula on tiene.aulaID = aula.ID where evento.giorno = ? and aula.gruppoID = ?");
             sEventiNextThreeHours = connection.prepareStatement("SELECT evento.ID AS eventoID FROM evento JOIN tiene on evento.ID = tiene.eventoID JOIN aula on aula.ID = tiene.aulaID WHERE evento.oraInizio >= CURRENT_TIMESTAMP AND evento.oraInizio <= CURRENT_TIMESTAMP + INTERVAL 3 HOUR AND aula.gruppoID=? AND evento.giorno= curdate()");
             sEventiBySettimanaAndCorso = connection.prepareStatement("SELECT evento.ID AS eventoID FROM evento JOIN aula on evento.aulaID = aula.ID WHERE WEEK(giorno)=WEEK(?) AND corsoID=? AND aula.gruppoID=?");
