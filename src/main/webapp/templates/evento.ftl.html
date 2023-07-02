@@ -1,5 +1,16 @@
-<h2>${evento.nome}</h2>
-
+<div class="row" id="header" >
+    <div class="sixteen columns">
+        <div class="sinistra"> 
+        <ul class="breadcrumb">
+            <li><a href="listgruppi">Home</a></li>
+            <li><a href="javascript:history.back()"> <button class="classical-button">Calendario</button> </a></li>
+        </ul>
+    </div> 
+    </div>
+</div>
+<div class="sixteen columns">
+ <h2>${evento.nome}</h2>
+<p>
 <br>${evento.giorno}
 <br>${evento.oraInizio}
 <br>${evento.oraFine}
@@ -8,9 +19,13 @@
 <br>${evento.tipologia}
 <br>${evento.responsabile.nome}
 <br>${evento.aula.nome}
-
 <#if (evento.corso??)>
 <br>----------
 <br>${evento.corso.nome}
 </#if>
+</p>
+    
+</div>
+
+
 
