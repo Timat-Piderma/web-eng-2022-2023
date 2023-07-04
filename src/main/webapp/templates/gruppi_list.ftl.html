@@ -3,7 +3,7 @@
     <div class="row" style="text-align: center" >
     <#list gruppi as gruppo>
     <div class="four columns" style="padding-bottom: 30px;" >
-        <a href="gruppo?n=${gruppo.key}"><image title="img" src="images/${gruppo.nome}.png"><br><p><b>${gruppo.nome}</b></p></a>
+        <a href="gruppo?n=${gruppo.key}"><image title="${gruppo.nome}" src="images/${gruppo.nome}.png"><br><p><b>${gruppo.nome}</b></p></a>
     </div>
     </#list>
     </div>
