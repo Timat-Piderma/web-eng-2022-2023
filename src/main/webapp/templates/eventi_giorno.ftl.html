@@ -10,13 +10,28 @@
 </div>
 <h3>Eventi delle aule ${gruppo.nome} del giorno ${giorno} </h3>   <a href="eventigiorno?IDgruppo=${gruppo.key}&data=${ieri}"> <button class="classical-button">Ieri</button></a> &nbsp;<a href="eventigiorno?IDgruppo=${gruppo.key}&data=${domani}"><button class="classical-button">Domani</button></a>
 <#if (eventi?size>0)>
-<ul>
-    <#list eventi as evento>
-    <li>
-        <p>${evento.nome} &nbsp; ${evento.giorno} &nbsp; ${evento.aula.nome}<p>
-    </li>
-    </#list>
-</ul>
+    
+    <table id="aule">
+        <tr>
+            <th>Nome Evento</th>
+            <th>Tipologia</th>
+            <th>Ora Inizio</th>
+            <th>Ora Fine</th>
+            <th>Aula</th>
+            <th>Visualizza Evento</th>
+        </tr>
+        <#list eventi as evento>
+        <tr>
+            <td>${evento.nome}</td>
+            <td>${evento.tipologia}</td>
+            <td>${evento.oraInizio}</td>
+            <td>${evento.oraFine}</td>
+            <td>${evento.aula.nome}</td>
+            <td><a href="evento?id=${evento.key}"><b style="color:blue;">Visualizza</b></a></td>
+        </tr>
+        </#list>
+    </table>
+
 <#else>
 <p>Nessun ci sono eventi per questo giorno: ${giorno}.</p>
 </#if>
