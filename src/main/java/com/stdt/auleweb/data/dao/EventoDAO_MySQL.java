@@ -28,6 +28,9 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     private PreparedStatement sEventiBySettimana, sEventiByGiorno, sEventiNextThreeHours, sEventiBySettimanaAndCorso, sEventiRicorrenti;
     private PreparedStatement iEvento, uEvento, dEvento;
 
+    private PreparedStatement iTiene, dTiene;
+    private PreparedStatement iRichiede, uRichiede, dRichiede;
+
     public EventoDAO_MySQL(DataLayer d) {
         super(d);
     }
@@ -55,6 +58,12 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             uEvento = connection.prepareStatement("UPDATE evento SET giorno=?,oraInizio=?,oraFine=?,descrizione=?, nome=?, tipologia=?, aulaID=?, responsabileID=?, corsoID=?, version=? WHERE ID=? and version=?");
             dEvento = connection.prepareStatement("DELETE FROM evento WHERE ID=?");
 
+            iTiene = connection.prepareStatement("INSERT INTO tiene (aulaID, eventoID) VALUES(?,?)");
+            dTiene = connection.prepareStatement("DELETE From tiene WHERE aulaID=? AND eventoID=?");
+
+            iRichiede = connection.prepareStatement("INSERT INTO richiede (eventoID, corsoID) VALUES(?,?)");
+            uRichiede = connection.prepareStatement("UPDATE richiede SET corsoID=? WHERE eventoID=?");
+            dRichiede = connection.prepareStatement("DELETE FROM richiede WHERE eventoID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing auleweb data layer", ex);
         }
@@ -81,6 +90,13 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             iEvento.close();
             uEvento.close();
             dEvento.close();
+
+            iTiene.close();
+            dTiene.close();
+
+            iRichiede.close();
+            uRichiede.close();
+            dRichiede.close();
 
         } catch (SQLException ex) {
             //
@@ -274,8 +290,12 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 }
                 if (evento.getCorso() != null) {
                     uEvento.setInt(9, evento.getCorso().getKey());
+                    uRichiede.setInt(2, evento.getKey());
+                    uRichiede.setInt(1, evento.getCorso().getKey());
                 } else {
                     uEvento.setNull(9, java.sql.Types.INTEGER);
+                    dRichiede.setInt(1, evento.getKey());
+                    dRichiede.executeUpdate();
                 }
 
                 long current_version = evento.getVersion();
@@ -290,6 +310,17 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     evento.setVersion(next_version);
                 }
+
+                if (evento.getCorso() != null) {
+
+                    if (uRichiede.executeUpdate() == 0) {
+                        iRichiede.setInt(1, evento.getKey());
+                        iRichiede.setInt(2, evento.getCorso().getKey());
+                        iRichiede.executeUpdate();
+                    }
+                } else {
+                    dRichiede.executeUpdate();
+                }
             } else { //insert
                 iEvento.setDate(1, new Date(evento.getGiorno().getTime()));
                 iEvento.setTime(2, new Time(evento.getOraInizio().getTime()));
@@ -300,8 +331,10 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
                 if (evento.getAula() != null) {
                     iEvento.setInt(7, evento.getAula().getKey());
+                    iTiene.setInt(1, evento.getAula().getKey());
                 } else {
                     iEvento.setNull(7, java.sql.Types.INTEGER);
+                    iTiene.setNull(1, java.sql.Types.INTEGER);
                 }
                 if (evento.getResponsabile() != null) {
                     iEvento.setInt(8, evento.getResponsabile().getKey());
@@ -310,9 +343,12 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 }
                 if (evento.getCorso() != null) {
                     iEvento.setInt(9, evento.getCorso().getKey());
+                    iRichiede.setInt(2, evento.getCorso().getKey());
                 } else {
                     iEvento.setNull(9, java.sql.Types.INTEGER);
+                    iRichiede.setNull(2, java.sql.Types.INTEGER);
                 }
+
                 if (iEvento.executeUpdate() == 1) {
                     //per leggere la chiave generata dal database
                     //per il record appena inserito, usiamo il metodo
@@ -336,6 +372,14 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                             //inseriamo il nuovo oggetto nella cache
                             //add the new object to the cache
                             dataLayer.getCache().add(Evento.class, evento);
+
+                            iTiene.setInt(2, evento.getKey());
+                            iTiene.executeUpdate();
+
+                            if (evento.getCorso() != null) {
+                                iRichiede.setInt(1, evento.getKey());
+                                iRichiede.executeUpdate();
+                            }
                         }
                     }
                 }
