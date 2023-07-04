@@ -214,15 +214,15 @@ insert into Amministratore(username, `password`) values
     ("Seba", "admin");
     
 insert into Evento(giorno, oraInizio, oraFine, nome, descrizione, tipologia, responsabileID, aulaID, corsoID) values
-	("2023-06-14", "18:00", "18:30", "I2I007","docente mascio tania", "lezione",2,1,1),
-    ("2023-06-15", "16:30", "17:30", "DT0761", "docente masi anna" , "lezione",2,1,2),
-    ("2023-06-17", "15:30", "16:00", "F0140","docente smriglio stefano", "lezione", 1,1,2),
-    ("2023-06-16", "18:00", "18:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1),
-    ("2023-06-17", "18:30", "18:45", "F0140","docente smriglio stefano", "lezione", 1,1,2),
-	("2023-07-01", "18:30", "18:45", "vero","docente smriglio stefano", "lezione", 1,1,2),
-    ("2023-07-01", "17:30", "18:45", "falso","docente mascio tania", "lezione", 1,1,2),
-	("2023-07-01", "19:30", "19:45", "vero1","docente masi anna", "lezione", 1,1,2);
-   
+("2023-07-04", "12:00", "12:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1),
+    ("2023-06-16", "14:30", "15:00", "F0140","docente smriglio stefano", "lezione", 1,1,2),
+    ("2023-06-15", "15:30", "17:00", "F0140","docente della penna giuseppe", "lezione", 1,1,1),
+    ("2023-05-16", "16:30", "18:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1),
+     ("2023-06-30", "16:30", "17:00", "DT0180","docente della penna giuseppe", "lezione", 1,1,1),
+     ("2023-06-30", "17:00", "17:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1),
+     ("2023-06-26", "17:00", "17:30", "DT0180","docente della penna giuseppe", "esame", 1,1,1),
+      ("2023-06-30", "17:30", "18:00", "DT0180","docente della penna giuseppe", "lezione", 1,1,1),
+    ("2023-07-01", "16:30", "17:00", "DT0180","docente della penna giuseppe", "lezione", 1,1,1);
     
 insert into Corso(nome) values
 	("Advanced database system (basi di dati II)"),
@@ -271,8 +271,9 @@ insert into Richiede (eventoID, corsoID) values
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+SELECT * from evento order by giorno  
 
-SELECT * from evento
 
 
     
+
