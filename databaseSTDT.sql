@@ -208,28 +208,35 @@ insert into Responsabile (nome, email) values
     ("Andrea","andrea.dorazio@student.univaq.it"),
     ("Mattia","mattia.peccerillo@student.univaq.it");
     
-insert into Amministratore(username, `password`) values
-	("Tyler", "admin"),
-    ("Timat", "admin"),
-    ("Seba", "admin");
     
 insert into Evento(giorno, oraInizio, oraFine, nome, descrizione, tipologia, responsabileID, aulaID, corsoID) values
-("2023-07-04", "12:00", "12:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1),
-    ("2023-06-16", "14:30", "15:00", "F0140","docente smriglio stefano", "lezione", 1,1,2),
-    ("2023-06-15", "15:30", "17:00", "F0140","docente della penna giuseppe", "lezione", 1,1,1),
-    ("2023-05-16", "16:30", "18:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1),
-     ("2023-06-30", "16:30", "17:00", "DT0180","docente della penna giuseppe", "lezione", 1,1,1),
-     ("2023-06-30", "17:00", "17:30", "DT0180","docente della penna giuseppe", "lezione", 1,1,1),
-     ("2023-06-26", "17:00", "17:30", "DT0180","docente della penna giuseppe", "esame", 1,1,1),
-      ("2023-06-30", "17:30", "18:00", "DT0180","docente della penna giuseppe", "lezione", 1,1,1),
-    ("2023-07-01", "16:30", "17:00", "DT0180","docente della penna giuseppe", "lezione", 1,1,1);
+	("2023-07-04", "14:30", "16:30", "T014R","docente: Giuseppe della Penna", "esame", 1,1,8),
+    ("2023-07-04", "14:30", "16:30", "SR098","docente: Daniele di Pompeo", "lezione", 2,11,3),
+	("2023-07-04", "16:30", "18:30", "S0UU7","docente: Giuseppe della Penna", "esame",3,1,13),
+    ("2023-07-04", "11:30", "13:30", "RR014","docente: Stefano Leucci", "esame", 2,11,2),
+    ("2023-07-05", "15:30", "18:30", "C023S","docente: Giordano Colli", "lezione", 1,1,1),
+    ("2023-06-16", "09:30", "10:30", "F0140","docente: Filippo Mignosi", "lezione", 3,1,9),
+    ("2023-06-14", "09:30", "10:30", "F00T9","docente: Alfonso Pierantonio", "lezione", 1,1,7),
+    ("2023-06-13", "16:30", "18:30", "RS023","docente: Giuseppe della Penna", "lezione", 1,1,8),
+    ("2023-07-04", "16:30", "18:30", "RRRRR","docente: Michele Poggi", "seminario", 3,12,null),
+    ("2023-06-01", "14:30", "17:30", "DR001","docente: Fabrizio Buoncompagno", "lezione", 1,1,11);
+    
+   
     
 insert into Corso(nome) values
-	("Advanced database system (basi di dati II)"),
-	("Advanced probability"),
+	("CPU"),
+	("Laboratorio di algoritmica avanzata"),
+    ("Metodi di sviluppo Agile"),
+    ("Applicazioni per dispositivi mobili"),
+    ("Software testing and validation"),
+    ("Bioinfomatica"),
+    ("Tecnologie del web"),
     ("Web engineering"),
+	("Teoria della calcolabilità e della complessità"),
+	("Informatica Forense"),
+    ("Inglese B2"),
+    ("Teoria dell'informazione"),
     ("Sviluppo web avanzato"),
-    ("Analisi 1"),
     ("Ricerca Operativa"),
     ("Fisica");
     
@@ -253,15 +260,26 @@ insert into Fornito(aulaID, attrezzaturaID) values
 
 insert into Tiene(aulaID, eventoID) values
 (1, 1),
-(2, 2),
+(11, 2),
 (1, 3),
-(1, 4);
+(11, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8),
+(12, 9),
+(1, 10);
 
 insert into Richiede (eventoID, corsoID) values
-(1,1),
-(2,2),
-(3,6),
-(4,3);
+(1,8),
+(2,3),
+(3,13),
+(4,2),
+(5,1),
+(6,9),
+(7,7),
+(8,8),
+(10,11);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -276,4 +294,3 @@ SELECT * from evento order by giorno
 
 
     
-
